@@ -13,7 +13,7 @@ namespace Connected.Migrations
             ContextKey = "Connected.Models.ApplicationDbContext";
         }
 
-        protected override void Seed(Connected.Models.ApplicationDbContext context)
+        protected override void Seed( Connected.Models.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 
