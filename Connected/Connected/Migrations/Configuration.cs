@@ -1,3 +1,5 @@
+using Connected.Models;
+
 namespace Connected.Migrations
 {
     using System;
@@ -15,6 +17,17 @@ namespace Connected.Migrations
 
         protected override void Seed( Connected.Models.ApplicationDbContext context)
         {
+
+            context.UserStatuses.AddOrUpdate(
+                
+                p => p.Id,
+                new UserStatus { Id = 5, Body = "bla"},
+                new UserStatus { Id = 6, Body = "blabla"}
+
+                
+                
+                
+                );
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 

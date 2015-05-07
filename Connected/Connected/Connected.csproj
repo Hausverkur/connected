@@ -163,6 +163,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\UserPostController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -172,12 +173,13 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Recipe.cs" />
     <Compile Include="Models\UserPost.cs" />
+    <Compile Include="Models\UserStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AddFriendsService.cs" />
     <Compile Include="Services\UserPostService.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModel\FrontPageViewModel.cs" />
-    <Compile Include="ViewModel\UserPostViewModel.cs" />
+    <Compile Include="ViewModels\FrontPageViewModel.cs" />
+    <Compile Include="ViewModels\UserPostViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -241,9 +243,11 @@
     <Content Include="Views\Home\Groups.cshtml" />
     <Content Include="Views\Home\Recipes.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Home\UserPosts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\UserPosts\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

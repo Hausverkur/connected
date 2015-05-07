@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Connected.Services;
+using Microsoft.AspNet.Identity;
 
 namespace Connected.Controllers
 {
@@ -14,7 +15,13 @@ namespace Connected.Controllers
            // var service = new UserPostService(string UserName);
 			//var posts = service.GetLatesForUser(this.User.Identity.Name);	
 			//return System.Web.UI.WebControls.View(posts);			
-            //return View(posts);
+            //return View();
+
+            UserPostService service = new UserPostService();
+
+            var posts = service.GetUserStatuses();
+
+            return View(posts);
         }
 
         public ActionResult About()

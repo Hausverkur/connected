@@ -39,9 +39,10 @@ namespace Connected.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public IDbSet<FriendConnection> FriendConnections { get; set; }
-        public DbSet<UserPost> UserPosts { get; set; }
-        public DbSet<Recipe> Recipes { get; set; } 
+        //public IDbSet<FriendConnection> FriendConnections { get; set; }
+       // public DbSet<UserPost> UserPosts { get; set; }
+        //public DbSet<Recipe> Recipes { get; set; }
+        public DbSet<UserStatus> UserStatuses { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
