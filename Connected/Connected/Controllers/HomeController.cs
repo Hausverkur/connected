@@ -26,5 +26,40 @@ namespace Connected.Controllers
 
             return View();
         }
+
+        public ActionResult Groups()
+        {
+            ViewBag.Message = "My groups.";
+
+            return View();
+        }
+
+        public ActionResult MyWall()
+        {
+            ViewBag.Message = "My Wall.";
+
+            return View();
+        }
+
+        public ActionResult Messages()
+        {
+            ViewBag.Message = "My Messages.";
+
+            return View();
+        }
+
+        public ActionResult Recipes()
+        {
+            ViewBag.Message = "My Recipes.";
+
+            return View();
+        }
+
+        public ActionResult Search()
+        {
+            ViewBag.Message = "My what?";
+
+            return View();
+        }
     }
 }
