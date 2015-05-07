@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Connected.Services;
 
 namespace Connected.Controllers
 {
@@ -10,7 +11,10 @@ namespace Connected.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+           // var service = new UserPostService(string UserName);
+			//var posts = service.GetLatesForUser(this.User.Identity.Name);	
+			//return System.Web.UI.WebControls.View(posts);			
+            //return View(posts);
         }
 
         public ActionResult About()
