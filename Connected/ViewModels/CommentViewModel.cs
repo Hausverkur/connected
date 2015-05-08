@@ -7,5 +7,7 @@ namespace Connected.ViewModels
 {
     public class CommentViewModel
     {
+        public int Id { get; set; }
+        public string Body { get; set; }
     }
 }

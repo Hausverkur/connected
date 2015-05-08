@@ -9,5 +9,7 @@ namespace Connected.ViewModels
     {
         public int Id { get; set; }
         public string Body { get; set; }
+
+        public List<CommentViewModel> Comments { get; set; }
     }
 }
