@@ -1,0 +1,28 @@
+﻿@Model List<Connected.Models.UserPost>
+
+@{
+    ViewBag.Title = "Posts";
+}
+
+<h2>Posts</h2>
+
+<div>
+    <h4>UserPost</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        @foreach (var p in Model)
+        {
+
+            <dt>
+                @p.Id
+            </dt>
+
+            <dd>
+                @p.Body
+            </dd>
+        }
+
+    </dl>
+</div>
+<p>
+</p>
