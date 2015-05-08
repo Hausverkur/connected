@@ -13,8 +13,9 @@ namespace Connected.Services
             ApplicationDbContext db = new ApplicationDbContext();
 
             var posts = (from p in db.Userposts
-                         where p.Id == 1
                          select p).ToList();
+
+            CommentService commentService = new CommentService();
 
             return posts;
         }

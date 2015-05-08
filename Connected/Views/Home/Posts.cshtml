@@ -1,4 +1,4 @@
-﻿@Model List<Connected.ViewModels.UserPostViewModel>
+﻿@model Connected.ViewModels.FrontPageViewModel
 
 @{
     ViewBag.Title = "Posts";
@@ -10,7 +10,7 @@
     <h4>UserPost</h4>
     <hr />
     <dl class="dl-horizontal">
-        @foreach (var p in Model)
+        @foreach (var p in Model.Posts)
         {
 
             <dt>

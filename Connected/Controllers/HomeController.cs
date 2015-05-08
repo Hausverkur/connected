@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Connected.Services;
+using Connected.ViewModels;
 
 namespace Connected.Controllers
 {
@@ -20,7 +21,12 @@ namespace Connected.Controllers
 
             var posts = service.GetPosts();
 
-            return View(posts);
+            FrontPageViewModel frontPage = new FrontPageViewModel
+            {
+                Posts = posts,
+            };
+
+            return View(frontPage);
         }
 
         public ActionResult About()

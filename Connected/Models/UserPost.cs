@@ -9,7 +9,5 @@ namespace Connected.Models
     {
         public int Id { get; set; }
         public string Body { get; set; }
-
-        public virtual ICollection<Comment> Comments { get; set; }
     }
 }
