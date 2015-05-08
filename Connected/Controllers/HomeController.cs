@@ -26,6 +26,7 @@ namespace Connected.Controllers
                 Posts = posts,
             };
 
+
             return View(frontPage);
         }
 
