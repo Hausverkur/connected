@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿<!--TO CHANGE THE GENERAL LAYOUT OF THE WEBSITE GOTO
+~\connected\Connected\Content AND CHANGE IT IN SITE
+ALWAYS ADD !important AFTER EACH CHANGE I.E. border-color: #777777 !important; 
+    SO THE WEBSITE WILL CHANGE-->
+
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -7,6 +13,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="../StyleSheets/NavBar.css" rel="stylesheet" type="text/css" />
+    
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -17,19 +24,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                <a href="@Url.Action("Index", "Home")">
+                    <img src="../../Images/Logo.png" height="55px" width="55px" class="navbar-logo" alt="Logo"/></a>
 
-                <a href="@Url.Action("Index", "Home")"><img src="../../Images/Logo.png" height="75px" width="75px"/></a>
-
-                @Html.ActionLink("Connected?", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Connected?", "Index", "Home", new { area = "" }, new { @class = "navbar-title" })
 
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Posts", "Posts", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Posts", "Posts", "Home")</li>
+                    <li >@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" }) </li> 
+                    <li >@Html.ActionLink("Posts", "Posts", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    <li >@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    <li >@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    <li >@Html.ActionLink("Posts", "Posts", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

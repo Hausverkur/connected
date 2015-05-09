@@ -22,3 +22,61 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/* navbar */
+.navbar, .navbar-inverse {
+  	background: #00FF00 !important;
+   	border-color: #00FF00 !important;
+}
+
+/* navbar links */
+.navbar, .navbar-brand {
+	color: #000066 !important;
+	font-size: 125% !important;
+	/* hér ættum við að geta fært linkanna til hægri
+		skoða eitthvað navbar-fixed top í _layout
+		navbar-right í _loginPartial*/
+
+}
+
+.navbar, .navbar-brand:hover{
+	color: white !important;
+}
+
+.navbar, .navbar-brand:visited{
+	color: #330033 !important;
+}
+
+.navbar, .navbar-brand:visited:hover{
+	color: white !important;
+}
+
+/* navbar title */
+.navbar, .navbar-title {
+	color: #000066 !important;
+	font-size: 125% !important;
+
+}
+.navbar, .navbar-title:hover{
+	color: white !important;
+}
+
+.navbar, .navbar-title:visited{
+	color: #330033 !important;
+}
+.navbar, .navbar-title:visited:hover{
+	color: white !important;
+}
+
+/* navbar logo */
+.navbar, .navbar-logo {
+	margin-left: -25px !important;	
+}
+
+/* navbar login */
+/*.navbar, registerLink{
+	font-size: 75% !important;
+}
+.navbar, loginLink{
+	font-size: 75% !important;
+}*/

@@ -276,6 +276,7 @@ table {
   }
   .navbar {
     display: none;
+
   }
   .table td,
   .table th {
@@ -4389,7 +4390,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-default .navbar-brand {
-  color: #777777;
+  color: #330099;
 }
 
 .navbar-default .navbar-brand:hover,
