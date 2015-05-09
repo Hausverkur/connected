@@ -38,7 +38,7 @@ textarea {
 }
 
 .navbar, .navbar-brand:hover{
-	color: white;
+	color: white !important;
 }
 
 .navbar, .navbar-brand:visited{
@@ -46,7 +46,7 @@ textarea {
 }
 
 .navbar, .navbar-brand:visited:hover{
-	color: white;
+	color: white !important;
 }
 
 /* navbar title */
@@ -59,14 +59,14 @@ textarea {
 
 }
 .navbar, .navbar-title:hover{
-	color: white;
+	color: white !important;
 }
 
 .navbar, .navbar-title:visited{
 	color: #330033;
 }
 .navbar, .navbar-title:visited:hover{
-	color: white;
+	color: white !important;
 }
 
 /* navbar logo */
