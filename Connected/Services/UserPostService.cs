@@ -13,7 +13,7 @@ namespace Connected.Services
         {
             ApplicationDbContext db = new ApplicationDbContext();
 
-            var posts = (from p in db.Userposts
+            var posts = (from p in db.UserPosts
                          select p).ToList();
             List<UserPostViewModel> userPosts = new List<UserPostViewModel>();
 
@@ -35,7 +35,7 @@ namespace Connected.Services
         {
             ApplicationDbContext db = new ApplicationDbContext();
 
-            var posts = (from p in db.Userposts
+            var posts = (from p in db.UserPosts
                          where p.Author.Id == userId
                          select p).ToList();
             List<UserPostViewModel> userPosts = new List<UserPostViewModel>();
