@@ -49,17 +49,37 @@ namespace Connected.Controllers
         {
             return View();
         }
-
-        public ActionResult About()
+        public ActionResult MyWall()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Your page.";
 
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult Messages()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Your page.";
+
+            return View();
+        }
+
+        public ActionResult Groups()
+        {
+            ViewBag.Message = "Your page.";
+
+            return View();
+        }
+
+        public ActionResult Recipes()
+        {
+            ViewBag.Message = "Your page.";
+
+            return View();
+        }
+
+        public ActionResult Search()
+        {
+            ViewBag.Message = "Your page.";
 
             return View();
         }

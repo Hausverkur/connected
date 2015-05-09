@@ -15,7 +15,7 @@ ALWAYS ADD !important AFTER EACH CHANGE I.E. border-color: #777777 !important;
  
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse ">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -27,15 +27,17 @@ ALWAYS ADD !important AFTER EACH CHANGE I.E. border-color: #777777 !important;
                     <img src="../../Images/Logo.png" height="55px" width="55px" class="navbar-logo" alt="Logo"/></a>
 
                 @Html.ActionLink("Connected?", "Index", "Home", new { area = "" }, new { @class = "navbar-title" })
-                <p class="ActivePage"></p>
+
             </div>
             <div class="navbar-collapse collapse navbar-right">
                 <ul class="nav navbar-nav">
                     <li >@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" }) </li> 
-                    <li >@Html.ActionLink("Posts", "Posts", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                    <li >@Html.ActionLink("About", "About", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                    <li >@Html.ActionLink("Contact", "Contact", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
-                    <li >@Html.ActionLink("Posts", "Posts", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    <li >@Html.ActionLink("Posts", "Posts", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>                    
+                    <li >@Html.ActionLink("MyWall", "MyWall", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    <li >@Html.ActionLink("Messages", "Messages", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    <li >@Html.ActionLink("Groups", "Groups", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    <li >@Html.ActionLink("Recipes", "Recipes", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    <li >@Html.ActionLink("Search", "Search", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
