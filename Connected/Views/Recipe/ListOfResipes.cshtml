@@ -1,0 +1,17 @@
+﻿@model List<Connected.ViewModels.RecipeViewModel>
+
+@{
+    ViewBag.Title = "ListOfResipes";
+}
+
+<h2>ListOfResipes</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+    <ul>
+        @foreach (var recipe in Model)
+        {
+            <li>@Html.ActionLink(recipe.Name, "DisplayRecipe", new { id = recipe.Id })</li>
+        }
+    </ul>

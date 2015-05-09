@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using Connected.Models;
 using Connected.Services;
 
 namespace Connected.ViewModels
@@ -13,5 +13,6 @@ namespace Connected.ViewModels
         public string Body { get; set; }
 
         public List<CommentViewModel> Comments { get; set; }
+        public virtual ApplicationUser Author { get; set; }
     }
 }

@@ -21,7 +21,8 @@ namespace Connected.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<UserPost> Userposts { get; set; }
-        public DbSet<Comment> Comments { get; set; } 
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Recipe> Recipes { get; set; } 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

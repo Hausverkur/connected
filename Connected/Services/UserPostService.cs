@@ -23,6 +23,7 @@ namespace Connected.Services
                 {
                     Id = post.Id,
                     Body = post.Body,
+                    Author = post.Author,
                 });
             }
 

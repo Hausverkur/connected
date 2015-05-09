@@ -45,6 +45,11 @@ namespace Connected.Controllers
            return View(frontPage);
         }
 
+        public ActionResult AddPost()
+        {
+            return View();
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

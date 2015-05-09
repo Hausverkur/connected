@@ -1,4 +1,5 @@
-﻿@model Connected.ViewModels.FrontPageViewModel
+﻿@using System.Web.UI.WebControls
+@model Connected.ViewModels.FrontPageViewModel
 
 @{
     ViewBag.Title = "Posts";
@@ -8,26 +9,25 @@
 
 <div>
     <h4>UserPost</h4>
-    <hr />
     <dl class="dl-horizontal">
         @foreach (var p in Model.Posts)
         {
+            <p>@p.Author.UserName</p>
+                <dt>
+                    @p.Id
+                </dt>
 
-            <dt>
-                @p.Id
-            </dt>
-
-            <dd>
-                @p.Body
-            </dd>
-            foreach (var c in p.Comments)
-            {
+                <dd>
+                    @p.Body
+                </dd>
+                foreach (var c in p.Comments)
+                {
                 @c.Body
-                <br/>
-            }
-        }
+                <br />
+                }
+                }
 
-    </dl>
+</dl>
 </div>
 <p>
 </p>
