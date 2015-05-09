@@ -17,17 +17,32 @@ namespace Connected.Controllers
 
         public ActionResult Posts()
         {
-            UserPostService service = new UserPostService();
+            UserPostService postService = new UserPostService();
+            CommentService commentService = new CommentService();
 
-            var posts = service.GetPosts();
+            var posts = postService.GetPosts();
 
             FrontPageViewModel frontPage = new FrontPageViewModel
             {
                 Posts = posts,
             };
 
+            foreach (var post in frontPage.Posts)
+            {
+                var Comments = commentService.GetCommentsByPostId(post.Id);
+                List<CommentViewModel> commentViewModels = new List<CommentViewModel>();
+                foreach (var comment in Comments)
+                {
+                    commentViewModels.Add(new CommentViewModel
+                    {
+                        Body = comment.Body,
+                        Id = comment.Id,
+                    });                    
+                }
+                post.Comments = commentViewModels;
+            }
 
-            return View(frontPage);
+           return View(frontPage);
         }
 
         public ActionResult About()

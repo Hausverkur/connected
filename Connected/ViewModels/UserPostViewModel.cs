@@ -13,9 +13,5 @@ namespace Connected.ViewModels
         public string Body { get; set; }
 
         public List<CommentViewModel> Comments { get; set; }
-      
-        CommentService commentService = new CommentService();
-
-        
     }
 }
