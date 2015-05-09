@@ -32,11 +32,8 @@ textarea {
 /* navbar links */
 .navbar, .navbar-brand {
 	color: #000066 !important;
-	font-size: 125% !important;
-	/* hér ættum við að geta fært linkanna til hægri
-		skoða eitthvað navbar-fixed top í _layout
-		navbar-right í _loginPartial*/
-
+	font-size: 140% !important;
+    padding-top: 35px !important;
 }
 
 .navbar, .navbar-brand:hover{
@@ -51,10 +48,14 @@ textarea {
 	color: white !important;
 }
 
+.navbar, .navbar-brand:active{
+   /* font-weight: bold !important;*/
+}
+
 /* navbar title */
 .navbar, .navbar-title {
 	color: #000066 !important;
-	font-size: 125% !important;
+	font-size: 140% !important;
 
 }
 .navbar, .navbar-title:hover{
@@ -74,9 +75,45 @@ textarea {
 }
 
 /* navbar login */
-/*.navbar, registerLink{
-	font-size: 75% !important;
+.navbar, #registerLink{
+	font-size: 100% !important;
+    margin-top: -15px !important;
+    color: black !important;
 }
-.navbar, loginLink{
-	font-size: 75% !important;
-}*/
+.navbar, #loginLink{
+	font-size: 100% !important;
+    margin-top: -15px !important;
+    color: black !important;
+}
+
+.navbar, #Manage{
+	font-size: 100% !important;
+    margin-top: -15px !important;
+    color: black !important;
+}
+.navbar, .logOut{
+	font-size: 100% !important;
+    margin-top: -15px !important;
+    color: black !important;
+}
+
+.navbar, #registerLink:hover{
+	color: white !important;
+}
+
+.navbar, #loginLink:hover{
+	color: white !important;
+}
+
+.navbar, #Manage:hover{
+	color: white !important;
+}
+
+.navbar, .logOut:hover{
+	color: white !important;
+}
+
+/* Active page */
+.navbar, .ActivePage {
+    /*hér köllum við á hvaða page er active*/
+}
