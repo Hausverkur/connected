@@ -1,1 +1,33 @@
-﻿<p>My Wall</p>
+﻿@using System.Web.UI.WebControls
+@model Connected.ViewModels.FrontPageViewModel
+
+@{
+    ViewBag.Title = "Posts";
+}
+
+<h2>My Wall</h2>
+
+<div>
+    <h4>My Posts</h4>
+    <dl class="dl-horizontal">
+        @foreach (var p in Model.Posts)
+        {
+            <p>@p.Author.UserName</p>
+            <dt>
+                @p.Id
+            </dt>
+
+            <dd>
+                @p.Body
+            </dd>
+            foreach (var c in p.Comments)
+            {
+                @c.Body
+                <br />
+            }
+        }
+
+    </dl>
+</div>
+<p>
+</p>

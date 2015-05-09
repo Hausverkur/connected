@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Connected.Services;
 using Connected.ViewModels;
+using Microsoft.AspNet.Identity;
 
 namespace Connected.Controllers
 {
@@ -51,9 +52,34 @@ namespace Connected.Controllers
         }
         public ActionResult MyWall()
         {
-            ViewBag.Message = "Your page.";
+            UserPostService postService = new UserPostService();
+            CommentService commentService = new CommentService();
 
-            return View();
+            var userId = this.User.Identity.GetUserId();
+
+            var posts = postService.GetPostsByUserId(userId);
+
+            FrontPageViewModel frontPage = new FrontPageViewModel
+            {
+                Posts = posts,
+            };
+
+            foreach (var post in frontPage.Posts)
+            {
+                var Comments = commentService.GetCommentsByPostId(post.Id);
+                List<CommentViewModel> commentViewModels = new List<CommentViewModel>();
+                foreach (var comment in Comments)
+                {
+                    commentViewModels.Add(new CommentViewModel
+                    {
+                        Body = comment.Body,
+                        Id = comment.Id,
+                    });
+                }
+                post.Comments = commentViewModels;
+            }
+
+            return View(frontPage);
         }
 
         public ActionResult Messages()

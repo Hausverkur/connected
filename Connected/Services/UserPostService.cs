@@ -31,5 +31,28 @@ namespace Connected.Services
 
             return userPosts;
         }
+        public List<UserPostViewModel> GetPostsByUserId(string userId)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            var posts = (from p in db.Userposts
+                         where p.Author.Id == userId
+                         select p).ToList();
+            List<UserPostViewModel> userPosts = new List<UserPostViewModel>();
+
+            foreach (var post in posts)
+            {
+                userPosts.Add(new UserPostViewModel
+                {
+                    Id = post.Id,
+                    Body = post.Body,
+                    Author = post.Author,
+                });
+            }
+
+            CommentService commentService = new CommentService();
+
+            return userPosts;
+        }
     }
 }
