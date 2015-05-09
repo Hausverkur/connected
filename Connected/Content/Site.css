@@ -25,20 +25,20 @@ textarea {
 
 /* navbar */
 .navbar, .navbar-inverse {
-  	background: #00FF00 !important;
-   	border-color: #00FF00 !important;
+  	background: #00FF00;
+   	border-color: #00FF00;
 }
 
 /* navbar links */
 .navbar, .navbar-brand {
 	color: #000066 !important;
-	font-size: 140% !important;
-    padding-top: 35px !important;
-    clear: right !important;
+	font-size: 140%;
+    padding-top: 35px;
+    clear: right;
 }
 
 .navbar, .navbar-brand:hover{
-	color: white !important;
+	color: white;
 }
 
 .navbar, .navbar-brand:visited{
@@ -46,71 +46,68 @@ textarea {
 }
 
 .navbar, .navbar-brand:visited:hover{
-	color: white !important;
-}
-
-.navbar, .navbar-brand:active{
-   /* font-weight: bold !important;*/
+	color: white;
 }
 
 /* navbar title */
 .navbar, .navbar-title {
-	color: #000066 !important;
-	font-size: 140% !important;
-    text-decoration: none !important;
+	color: #000066;
+	font-size: 140%;
+    text-decoration: none;
+    margin-top: 200px;
 /*fá title til að koma niður please*/
 
 }
 .navbar, .navbar-title:hover{
-	color: white !important;
+	color: white;
 }
 
 .navbar, .navbar-title:visited{
-	color: #330033 !important;
+	color: #330033;
 }
 .navbar, .navbar-title:visited:hover{
-	color: white !important;
+	color: white;
 }
 
 /* navbar logo */
 .navbar, .navbar-logo {
-	margin-left: -20px !important;
-    margin-top: 110px !important;
+	margin-left: -20px;
+    margin-top: 80px;
 }
 
 /* navbar login */
 .navbar, #registerLink{
-	font-size: 100% !important;
-    margin-top: -15px !important;
-    color: black !important;
+	font-size: 100%;
+    margin-top: -15px;
+    color: black;
 }
 .navbar, #loginLink{
-	font-size: 100% !important;
-    margin-top: -15px !important;
-    color: black !important;
+	font-size: 100%;
+    margin-top: -15px;
+    color: black;
 }
 
 .navbar, #Manage{
-	font-size: 100% !important;
-    margin-top: -15px !important;
-    color: black !important;
+	font-size: 100%;
+    margin-top: -15px;
+    color: black;
 }
 .navbar, .logOut{
-	font-size: 100% !important;
-    margin-top: -15px !important;
+	font-size: 100%;
+    margin-top: -15px;
     color: black !important;
 }
 
 .navbar, #registerLink:hover{
-	color: white !important;
+	color: white;
 }
 
 .navbar, #loginLink:hover{
-	color: white !important;
+	color: white;
 }
 
 .navbar, #Manage:hover{
-	color: white !important;
+	color: white;
 }
 
 .navbar, .logOut:hover{
@@ -119,5 +116,6 @@ textarea {
 
 /* navbar header*/
 .navbar, .navbar-header {
-    margin-top: -95px !important;
+    margin-top: -95px;
+    width: auto;
 }
