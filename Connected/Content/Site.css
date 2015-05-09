@@ -1,5 +1,5 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 70px;
     padding-bottom: 20px;
 }
 
@@ -34,6 +34,7 @@ textarea {
 	color: #000066 !important;
 	font-size: 140% !important;
     padding-top: 35px !important;
+    clear: right !important;
 }
 
 .navbar, .navbar-brand:hover{
@@ -56,6 +57,8 @@ textarea {
 .navbar, .navbar-title {
 	color: #000066 !important;
 	font-size: 140% !important;
+     text-decoration: none !important;
+/*fá title til að koma niður please*/
 
 }
 .navbar, .navbar-title:hover{
@@ -71,7 +74,8 @@ textarea {
 
 /* navbar logo */
 .navbar, .navbar-logo {
-	margin-left: -25px !important;	
+	margin-left: -20px !important;
+    margin-top: 110px !important;
 }
 
 /* navbar login */
@@ -113,7 +117,7 @@ textarea {
 	color: white !important;
 }
 
-/* Active page */
-.navbar, .ActivePage {
-    /*hér köllum við á hvaða page er active*/
+/* navbar header*/
+.navbar, .navbar-header {
+    margin-top: -95px !important;
 }
