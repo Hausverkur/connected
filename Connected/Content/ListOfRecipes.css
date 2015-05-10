@@ -1,5 +1,18 @@
-﻿.table {
+﻿.RecipeArea {
+    border: solid black;
+    margin-right: 65%;
+}
 
+.Description, #Description {
+   margin-right: 65%;
+}
+
+.Likes {
+    font-weight: bold;
+}
+
+.RecipeName, #Name {
+    font-weight: bold;
 }
 
 .create {
@@ -8,3 +21,4 @@
     text-decoration: none;
     /*this needs to be a button not a link*/
 }
+
