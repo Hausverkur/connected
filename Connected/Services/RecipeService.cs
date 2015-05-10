@@ -33,18 +33,7 @@ namespace Connected.Services
         {
             ApplicationDbContext db = new ApplicationDbContext();
 
-            db.Recipes.Add(new Recipe
-            {
-                DateTimePosted = DateTime.Now,
-                Description = "jdflæahkl",
-                Dislikes = 0,
-                Id = 9,
-                Image = "fdkjlsaæ",
-                Ingredients = "fjdklsaæfd",
-                Likes = 0,
-                Method = "fjkdlsæahgdjlæa",
-                Name = "jfkdlæsahgjklaæ",
-            });
+            db.Recipes.Add(recipe);
             db.SaveChanges();
         }
     }

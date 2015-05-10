@@ -1,21 +1,16 @@
 ﻿@model IEnumerable<Connected.ViewModels.RecipeViewModel>
 
 @{
-    ViewBag.Title = "ListOfRecipes";
+    ViewBag.Title = "ListOfRecipes";    
+    <link href="~/Content/ListOfRecipes.css" rel="stylesheet" />
 }
 
 <h2>ListOfRecipes</h2>
 
-<p>
-    @Html.ActionLink("Create New", "CreateRecipe")
+<p class="create">
+    @Html.ActionLink("Create Recipe", "CreateRecipe")
 </p>
 
-<ul>
-    @foreach (var r in Model)
-    {
-        <li>@Html.ActionLink("Details", "DisplayRecipe", new { id = r.Id })</li>
-    }
-</ul>
     <table class="table">
         <tr>
             <th>
