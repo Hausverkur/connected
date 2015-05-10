@@ -26,16 +26,21 @@ textarea {
 /* navbar */
 .navbar, .navbar-inverse {
   	background: #FF69CB;
-   	border-color: #00FF00;
+   	border-color: #000000;
 }
 
 /* navbar links */
-.navbar, .navbar-brand {
+.navbar, .navbar-brand{
 	color: #000066 !important;
 	font-size: 140%;
     padding-top: 45px;
     margin-top: 35px;
     clear: right;
+   
+}
+
+.navbar, .navbar-collapse collapse navbar-right{
+     text-align: right;
 }
 
 .navbar, .navbar-brand:hover{
@@ -74,6 +79,7 @@ textarea {
 .navbar, .navbar-logo {
 	/*margin-left: -20px;
     margin-top: 80px;*/
+   
 }
 
 /* navbar login */
@@ -120,4 +126,6 @@ textarea {
     margin-top: 0px;
     padding-top: 25px;
     width: auto;
+    padding-left: auto;
+    padding-right: auto;
 }
