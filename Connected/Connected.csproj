@@ -173,7 +173,6 @@
     <Compile Include="Models\GroupMember.cs" />
     <Compile Include="Models\GroupPost.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ImagePost.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\PostDislike.cs" />
     <Compile Include="Models\PostLike.cs" />
@@ -182,7 +181,6 @@
     <Compile Include="Models\RecipeComment.cs" />
     <Compile Include="Models\RecipeDislike.cs" />
     <Compile Include="Models\RecipeLike.cs" />
-    <Compile Include="Models\RecipePost.cs" />
     <Compile Include="Models\RecipeShare.cs" />
     <Compile Include="Models\ToDoList.cs" />
     <Compile Include="Models\ToDoListTask.cs" />

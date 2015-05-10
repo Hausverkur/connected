@@ -30,7 +30,6 @@ namespace Connected.Models
         public DbSet<Group> Groups { get; set; }
         public DbSet<GroupMember> GroupMembers { get; set; }
         public DbSet<GroupPost> GroupPosts { get; set; }
-        public DbSet<ImagePost> ImagePosts { get; set; }
         public DbSet<PostDislike> PostDislikes { get; set; }
         public DbSet<PostLike> PostLikes { get; set; }
         public DbSet<PostShare> PostShares { get; set; }
@@ -38,7 +37,6 @@ namespace Connected.Models
         public DbSet<RecipeComment> RecipeComments { get; set; }
         public DbSet<RecipeDislike> RecipeDislikes { get; set; }
         public DbSet<RecipeLike> RecipeLikes { get; set; }
-        public DbSet<RecipePost> RecipePosts { get; set; }
         public DbSet<RecipeShare> RecipeShares { get; set; }
         public DbSet<ToDoList> ToDoLists { get; set; }
         public DbSet<ToDoListTask> ToDoListTasks { get; set; }

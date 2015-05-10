@@ -15,8 +15,8 @@ namespace Connected.Models
         public int Likes { get; set; }
         public int Dislikes { get; set; }
         public int Shares { get; set; }
-        public bool IsImage { get; set; }
-        public bool IsRecipe { get; set; }
+        public string ImageUrl { get; set; }
+        public virtual Recipe Recipe { get; set; }
 
         public virtual ApplicationUser Author { get; set; }
     }

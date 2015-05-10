@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using Connected.Models;
+
 namespace Connected.Migrations
 {
     using System;
@@ -14,6 +17,25 @@ namespace Connected.Migrations
 
         protected override void Seed(Connected.Models.ApplicationDbContext context)
         {
+
+
+          
+       
+
+            /*var userPosts = new List<UserPost>
+            {
+                
+                new UserPost { ApplicationUser Author = "", Body = "Hallo",   Likes = 0, 
+                    DateTimePosted = DateTime.Now, Dislikes = 0, Shares = 0, IsImage = false, IsRecipe = false,},
+                
+            };
+            userPosts.ForEach(s => context.UserPosts.AddOrUpdate(p => p.Body, s));
+            context.SaveChanges();*/
+
+
+
+
+
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
