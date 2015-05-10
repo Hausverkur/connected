@@ -163,6 +163,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RecipeController.cs" />
+    <Compile Include="Controllers\UserWallController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -192,13 +193,17 @@
     <Compile Include="Services\GroupService.cs" />
     <Compile Include="Services\RecipeListViewModel.cs" />
     <Compile Include="Services\RecipeService.cs" />
+    <Compile Include="Services\UserInformationService.cs" />
     <Compile Include="Services\UserPostService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CommentViewModel.cs" />
     <Compile Include="ViewModels\FrontPageViewModel.cs" />
     <Compile Include="ViewModels\GroupViewModel.cs" />
+    <Compile Include="ViewModels\MyWallViewModel.cs" />
     <Compile Include="ViewModels\RecipeViewModel.cs" />
+    <Compile Include="ViewModels\UserInformationViewModel.cs" />
     <Compile Include="ViewModels\UserPostViewModel.cs" />
+    <Compile Include="ViewModels\UserWallViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -273,6 +278,7 @@
     <Content Include="Views\Group\Index.cshtml" />
     <Content Include="Views\Group\ListOfGroups.cshtml" />
     <Content Include="Views\Group\DisplayGroup.cshtml" />
+    <Content Include="Views\UserWall\UserWall.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
