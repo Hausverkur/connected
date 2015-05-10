@@ -36,14 +36,14 @@ namespace Connected.Services
             db.Recipes.Add(new Recipe
             {
                 DateTimePosted = DateTime.Now,
-                Description = "jdflæahkl",
+                Description = recipe.Description,
                 Dislikes = 0,
-                Id = 9,
-                Image = "fdkjlsaæ",
-                Ingredients = "fjdklsaæfd",
+                Id = recipe.Id,
+                Image = recipe.Image,
+                Ingredients = recipe.Ingredients,
                 Likes = 0,
-                Method = "fjkdlsæahgdjlæa",
-                Name = "jfkdlæsahgjklaæ",
+                Method = recipe.Method,
+                Name = recipe.Name,
             });
             db.SaveChanges();
         }
