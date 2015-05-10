@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Connected.Models;
 using Connected.Services;
 using Connected.ViewModels;
 
@@ -11,7 +12,7 @@ namespace Connected.Controllers
     public class RecipeController : Controller
     {
         // GET: Recipe
-        public ActionResult ListOfResipes()
+        public ActionResult ListOfRecipes()
         {
             RecipeService service = new RecipeService();
 
@@ -61,6 +62,22 @@ namespace Connected.Controllers
                 return View(theRecipe);
             }
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult CreateRecipe()
+        {
+            return View(new Recipe());
+        }
+
+        [HttpPost]
+        public ActionResult CreateRecipe(FormCollection formData)
+        {
+            RecipeService service = new RecipeService();
+            Recipe recipe = new Recipe();
+            UpdateModel(recipe);
+            service.AddRecipe(recipe);
+            return RedirectToAction("ListOfRecipes");
         }
     }
 }

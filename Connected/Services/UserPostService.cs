@@ -13,7 +13,7 @@ namespace Connected.Services
         {
             ApplicationDbContext db = new ApplicationDbContext();
 
-            var posts = (from p in db.UserPosts
+            var posts = (from p in db.UserPosts.OfType<UserPost>()
                          select p).ToList();
             List<UserPostViewModel> userPosts = new List<UserPostViewModel>();
 

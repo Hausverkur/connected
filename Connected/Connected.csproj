@@ -254,13 +254,14 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\Posts.cshtml" />
     <Content Include="Views\Home\AddPost.cshtml" />
-    <Content Include="Views\Recipe\ListOfResipes.cshtml" />
     <Content Include="Views\Recipe\DisplayRecipe.cshtml" />
     <Content Include="Views\Home\MyWall.cshtml" />
     <Content Include="Views\Home\Messages.cshtml" />
     <Content Include="Views\Home\Groups.cshtml" />
     <Content Include="Views\Home\Recipes.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Recipe\CreateRecipe.cshtml" />
+    <Content Include="Views\Recipe\ListOfRecipes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
