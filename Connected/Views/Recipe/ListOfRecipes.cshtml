@@ -9,15 +9,14 @@
 <h2>ListOfRecipes</h2>
 
 <button class="create">
-    @Html.ActionLink("Create Recipe", "CreateRecipe")
+    @Html.ActionLink("Create Recipe", "CreateRecipe", new { id = "Create" })
 </button>
 
     @foreach (var item in Model)
     {
         <p class="RecipeArea">
             <h4 class="RecipeName">
-                @Html.DisplayFor(modelItem => item.Name, new {id = "Name"})
-                @Html.ActionLink("Details", "DisplayRecipe", new {id = item.Id})
+                @Html.DisplayFor(modelItem => item.Name, new {id = "RecipeName"})
             </h4>
             <p class="Description">
                  @Html.DisplayFor(modelItem => item.Description, new { id = "Description" })
@@ -27,6 +26,9 @@
                 @Html.DisplayFor(modelItem => item.Likes, new { id = "NrLikes" })
                 @Html.DisplayNameFor(model => model.Dislikes)
                 @Html.DisplayFor(modelItem => item.Dislikes, new { id = "NrDisLikes" })
+            </p>
+            <p class="Details">
+                @Html.ActionLink("Details", "DisplayRecipe", new { id = item.Id })
             </p>
         </p>
     }
