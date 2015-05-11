@@ -1,0 +1,49 @@
+﻿.RecipeArea {
+    border: solid black;
+    margin-right: 20%;
+    margin-left: 20%;
+}
+
+.RecipeName {
+    margin-left: 35%;
+}
+
+.Image {
+    margin-left: 40%;
+}
+
+.Description {
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.DescriptionName {
+    font-size: 115%;
+}
+
+.Ingredients {
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.IngredientsName {
+    font-size: 115%;
+}
+
+.Method {
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.MethodName {
+    font-size: 115%;
+}
+
+.Date {
+    margin-left: 70%;
+}
+
+.Likes {
+     margin-left: 25%;
+     word-spacing: 4px;
+}

@@ -9,7 +9,7 @@
 <h2>ListOfRecipes</h2>
 
 <button class="create">
-    @Html.ActionLink("Create Recipe", "CreateRecipe")
+    @Html.ActionLink("Create Recipe", "CreateRecipe", new { id = "Create" })
 </button>
 
     @foreach (var item in Model)
