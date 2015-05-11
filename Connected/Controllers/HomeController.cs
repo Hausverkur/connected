@@ -38,6 +38,8 @@ namespace Connected.Controllers
                     {
                         Body = comment.Body,
                         Id = comment.Id,
+                        DateTimePosted = comment.DateTimePosted,
+                        Author = comment.Author,
                     });                    
                 }
                 post.Comments = commentViewModels;
@@ -74,6 +76,8 @@ namespace Connected.Controllers
                     {
                         Body = comment.Body,
                         Id = comment.Id,
+                        DateTimePosted = comment.DateTimePosted,
+                        Author = comment.Author,
                     });
                 }
                 post.Comments = commentViewModels;

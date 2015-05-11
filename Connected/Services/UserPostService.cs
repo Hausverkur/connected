@@ -54,5 +54,27 @@ namespace Connected.Services
 
             return userPosts;
         }
+
+        public List<UserPostViewModel> GetFriendsPosts(List<string> userId)
+        {
+            
+        }
+
+        public void AddUserPost(UserPost userPost)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            db.UserPosts.Add(new UserPost
+            {
+                DateTimePosted = DateTime.Now,
+                Body = userPost.Body,
+                Dislikes = 0,
+                Likes = 0,
+                Shares = 0,
+                ImageUrl = userPost.ImageUrl,
+                Author = userPost.Author,
+            });
+            db.SaveChanges();
+        }
     }
 }
