@@ -2,78 +2,65 @@
 
 @{
     ViewBag.Title = "DisplayRecipe";
+    <link href="~/Content/DisplayRecipe.css" rel="stylesheet" />
 }
 
 <h2>DisplayRecipe</h2>
 
-<div>
-    <h4>RecipeViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+<div class="RecipeArea">
+    <h1 class="RecipeName">
+        @Html.DisplayFor(model => model.Name)
+    </h1>
+    <div class="Image">
+        @Html.DisplayFor(model => model.Image)
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
+    <p class="Description">
+        <b class="DescriptionName">
             @Html.DisplayNameFor(model => model.Description)
-        </dt>
+        </b> <br/>
+        @Html.DisplayFor(model => model.Description)
+    </p>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
+    <p class="Ingredients">
+        <b class="IngredientsName">
             @Html.DisplayNameFor(model => model.Ingredients)
-        </dt>
+        </b> <br/>
+        @Html.DisplayFor(model => model.Ingredients)
+    </p>
 
-        <dd>
-            @Html.DisplayFor(model => model.Ingredients)
-        </dd>
-
-        <dt>
+    <p class="Method">
+        <b class="MethodName">
             @Html.DisplayNameFor(model => model.Method)
-        </dt>
+        </b> <br/>
+        @Html.DisplayFor(model => model.Method)
+    </p>
 
-        <dd>
-            @Html.DisplayFor(model => model.Method)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Image)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DateTimePosted)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DateTimePosted)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Likes)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Likes)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Dislikes)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Dislikes)
-        </dd>
-
-    </dl>
+    <p class="Date">
+        Posted on: @Html.DisplayFor(model => model.DateTimePosted)
+    </p>
 </div>
+    <p class="Likes">
+        <b>
+            @Html.DisplayNameFor(model => model.Likes)
+        </b>
+        @Html.DisplayFor(model => model.Likes)
+
+        <b>
+            @Html.DisplayNameFor(model => model.Dislikes)
+        </b>
+        @Html.DisplayFor(model => model.Dislikes)
+
+        Comment Shares
+
+    </p>
+
+
+<div>
+    @Html.ActionLink("Back to List", "ListOfRecipes")
+</div>
+
+<p>
+    here are list of user comments
+</p>
 
