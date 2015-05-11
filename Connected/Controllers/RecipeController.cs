@@ -58,9 +58,14 @@ namespace Connected.Controllers
                     Likes = recipe.Likes,
                     Method = recipe.Method,
                     Name = recipe.Name,
+                    //Author = recipe.Author,
                 };
+                var comment = new Comment(); //Laga þetta, búa til sér CreateComment?
+                UpdateModel(comment);
+                service.AddComment(comment);
                 return View(theRecipe);
             }
+
             return View();
         }
 
@@ -79,5 +84,7 @@ namespace Connected.Controllers
             service.AddRecipe(recipe);
             return RedirectToAction("ListOfRecipes");
         }
+
+
     }
 }
