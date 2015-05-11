@@ -1,19 +1,20 @@
-﻿.RecipeArea {
-    border: solid black;
-    margin-right: 65%;
+﻿
+.Description, #Description {
+   margin-right: 40%;
+   margin-left: 25%;
 }
 
-.Description, #Description {
-   margin-right: 65%;
+.RecipeName, #RecipeName {
+  margin-left: 20%;
+  font-weight: bold;
 }
 
 .Likes {
     font-weight: bold;
+    margin-left: 25%;
+    margin-bottom: 5%;
 }
 
-.RecipeName, #Name {
-    font-weight: bold;
-}
 
 .create {
     margin-left: 85%;

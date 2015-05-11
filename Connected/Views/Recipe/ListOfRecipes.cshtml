@@ -15,7 +15,7 @@
     @foreach (var item in Model)
     {
         <p class="RecipeArea">
-            <h4 class="">
+            <h4 class="RecipeName">
                 @Html.DisplayFor(modelItem => item.Name, new {id = "Name"})
                 @Html.ActionLink("Details", "DisplayRecipe", new {id = item.Id})
             </h4>
