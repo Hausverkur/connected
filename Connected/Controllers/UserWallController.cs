@@ -61,11 +61,11 @@ namespace Connected.Controllers
 
                 model.Friends.Add(new UserViewModel
                 {
-                    //Age = u.Age,
-                    //Description = u.Description,
+                    Age = u.Age,
+                    Description = u.Description,
                     Email = u.Email,
-                    //Gender = u.Gender,
-                    //ProfilePicture = u.ProfilePicture,
+                    Gender = u.Gender,
+                    ProfilePicture = u.ProfilePicture,
                     UserName = u.UserName,
                     Id = u.Id
 
