@@ -33,5 +33,18 @@ namespace Connected.Services
             }
             return null;
         }
+
+        public void AddGroup(Group group)
+        {
+            db.Groups.Add(new Group
+            {
+                Description = group.Description,
+                Id = group.Id,
+                Image = group.Image,
+                Name = group.Name,
+                NumberOfUsers = group.NumberOfUsers,
+            });
+            db.SaveChanges();
+        }
     }
 }
