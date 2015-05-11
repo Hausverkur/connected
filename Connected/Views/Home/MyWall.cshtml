@@ -12,7 +12,6 @@
     <dl class="dl-horizontal">
         @foreach (var p in Model.Posts)
         {
-            
             <dt>
                 @p.Id
             </dt>
@@ -20,6 +19,7 @@
             <dd>
                 @p.Body
             </dd>
+            
             <p>@p.Author.UserName</p>
             <p>@p.DateTimePosted</p>
             <p>@p.Likes</p>

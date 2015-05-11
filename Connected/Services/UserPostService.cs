@@ -55,11 +55,6 @@ namespace Connected.Services
             return userPosts;
         }
 
-        public List<UserPostViewModel> GetFriendsPosts(List<string> userId)
-        {
-            
-        }
-
         public void AddUserPost(UserPost userPost)
         {
             ApplicationDbContext db = new ApplicationDbContext();
