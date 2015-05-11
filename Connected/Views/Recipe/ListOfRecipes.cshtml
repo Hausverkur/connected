@@ -9,29 +9,32 @@
 <h2>ListOfRecipes</h2>
 
 <button class="create">
-    @Html.ActionLink("Create Recipe", "CreateRecipe", new { id = "create"})
-</button>
 
-    @foreach (var item in Model)
-    {
-        <p class="RecipeArea">
-            <h4 class="RecipeName">
-                @Html.DisplayFor(modelItem => item.Name, new {id = "RecipeName"})
-            </h4>
-            <p class="Description">
-                 @Html.DisplayFor(modelItem => item.Description, new { id = "Description" })
-            </p>
-            <p class="Likes">
-                @Html.DisplayNameFor(model => model.Likes)
-                @Html.DisplayFor(modelItem => item.Likes, new { id = "NrLikes" })
-                @Html.DisplayNameFor(model => model.Dislikes)
-                @Html.DisplayFor(modelItem => item.Dislikes, new { id = "NrDisLikes" })
-            </p>
-            <p class="Details">
-                @Html.ActionLink("Details", "DisplayRecipe", new { id = item.Id })
-            </p>
-        </p>
-    }
+    @Html.ActionLink("Create Recipe", "CreateRecipe", new { id = "create"})
+
+</button>
+                      <div class="ListOfRecipes">
+                          @foreach (var item in Model)
+                          {
+                              <p class="RecipeArea">
+                                  <h4 class="RecipeName">
+                                      @Html.DisplayFor(modelItem => item.Name, new { id = "RecipeName" })
+                                  </h4>
+                              <p class="Description">
+                                  @Html.DisplayFor(modelItem => item.Description, new { id = "Description" })
+                              </p>
+                              <p class="Likes">
+                                  @Html.DisplayNameFor(model => model.Likes)
+                                  @Html.DisplayFor(modelItem => item.Likes, new { id = "NrLikes" })
+                                  @Html.DisplayNameFor(model => model.Dislikes)
+                                  @Html.DisplayFor(modelItem => item.Dislikes, new { id = "NrDisLikes" })
+                              </p>
+                              <p class="Details">
+                                  @Html.ActionLink("Details", "DisplayRecipe", new { id = item.Id })
+                              </p>
+                              </p>
+                          }
+                      </div>
 
 
 

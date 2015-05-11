@@ -5,7 +5,7 @@
 
 
 .Description, #Description {
-   margin-right: 30%;
+   margin-right: 15%;
    margin-left: 25%;
 }
 
@@ -17,7 +17,7 @@
 
 .Details{
     margin-left: 25%;
-    margin-bottom: 3%;
+    margin-bottom: 10%;
 
 }
 
@@ -33,4 +33,8 @@
     text-decoration: none;
 }
 
-
+.ListOfRecipes{
+    border: solid black;
+    margin-right: 18%;
+    margin-left: 18%;
+}
