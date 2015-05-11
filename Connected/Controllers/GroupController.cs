@@ -62,5 +62,21 @@ namespace Connected.Controllers
             }
             return View();
         }
+
+        [HttpGet]
+        public ActionResult CreateGroup()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateGroup(FormCollection formData)
+        {
+            GroupService service = new GroupService();
+            Group group = new Group();
+            UpdateModel(group);
+            service.AddGroup(group);
+            return View();
+        }
     }
 }

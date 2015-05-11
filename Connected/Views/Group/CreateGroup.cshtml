@@ -1,10 +1,10 @@
-﻿@model Connected.ViewModels.GroupViewModel
+﻿@model Connected.Models.Group
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "CreateGroup";
 }
 
-<h2>Create</h2>
+<h2>CreateGroup</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>GroupViewModel</h4>
+        <h4>Group</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
