@@ -6,17 +6,13 @@ using System.Web.Mvc;
 using Connected.Models;
 using Connected.Services;
 using Connected.ViewModels;
+using Microsoft.AspNet.Identity;
 
 namespace Connected.Controllers
 {
     public class GroupController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
-        // GET: Group
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         public ActionResult ListOfGroups()
         {
@@ -75,7 +71,7 @@ namespace Connected.Controllers
             GroupService service = new GroupService();
             Group group = new Group();
             UpdateModel(group);
-            service.AddGroup(group);
+            service.AddGroup(group, this.User.Identity.GetUserId());
             return View();
         }
     }
