@@ -1,18 +1,23 @@
-﻿
-.Description, #Description {
-   margin-right: 40%;
-   margin-left: 25%;
+﻿.RecipeName, #RecipeName {
+  margin-left: 10%;
+  font-weight: bold;
 }
 
-.RecipeName, #RecipeName {
-  margin-left: 20%;
-  font-weight: bold;
+
+.Description, #Description {
+   margin-right: 40%;
+   margin-left: 20%;
 }
 
 .Likes {
     font-weight: bold;
-    margin-left: 25%;
-    margin-bottom: 5%;
+    margin-left: 20%;
+    margin-bottom: 1%;
+}
+
+.Details{
+    margin-left: 20%;
+    margin-bottom: 3%;
 }
 
 
