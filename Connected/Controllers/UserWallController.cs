@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Connected.Models;
 using Connected.Services;
 using Connected.ViewModels;
 using Microsoft.AspNet.Identity;
@@ -21,7 +22,7 @@ namespace Connected.Controllers
         {
             UserPostService postService = new UserPostService();
             CommentService commentService = new CommentService();
-            UserInformationService infoService = new UserInformationService();
+            UserService userService = new UserService();
 
             var userId = this.User.Identity.GetUserId();
 
@@ -34,7 +35,7 @@ namespace Connected.Controllers
                 Posts = posts,
             };
 
-            var user = infoService.GetUserInfo(userId);
+            var user = userService.GetUserInfo(userId);
             model.User = user;
 
             foreach (var post in model.Posts)
@@ -52,6 +53,24 @@ namespace Connected.Controllers
                 post.Comments = commentViewModels;
             }
 
+            var friends = userService.GetFriends(userId);
+            model.Friends = new List<UserViewModel>();
+          
+            foreach (var u in friends)
+            {
+
+                model.Friends.Add(new UserViewModel
+                {
+                    //Age = u.Age,
+                    //Description = u.Description,
+                    Email = u.Email,
+                    //Gender = u.Gender,
+                    //ProfilePicture = u.ProfilePicture,
+                    UserName = u.UserName,
+                    Id = u.Id
+
+                });
+            }
             return View(model);
         }
     }

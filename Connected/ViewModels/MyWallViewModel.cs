@@ -8,6 +8,6 @@ namespace Connected.ViewModels
     public class MyWallViewModel
     {
         public List<UserPostViewModel> Posts { get; set; }
-        public UserInformationViewModel UserInfo { get; set; }
+        public UserViewModel UserInfo { get; set; }
     }
 }
