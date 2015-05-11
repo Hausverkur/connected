@@ -45,9 +45,25 @@ namespace Connected.Services
                 Likes = 0,
                 Method = recipe.Method,
                 Name = recipe.Name,
+                //Author = recipe.Author
             });
 
             db.SaveChanges();
+        }
+
+        public void AddComment(Comment comment) //vantar meira?
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            db.Comments.Add(new Comment
+            {
+                Body = comment.Body,
+                Id = comment.Id,
+                DateTimePosted = DateTime.Now,
+               // Author = comment.Author,
+            });
+            db.SaveChanges();
+            
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Connected.Models;
 
 namespace Connected.ViewModels
 {
@@ -16,5 +17,11 @@ namespace Connected.ViewModels
         public DateTime DateTimePosted { get; set; }
         public int Likes { get; set; }
         public int Dislikes { get; set; }
+
+        //viljum sér viewmodel fyrir comments og laga þetta
+        public List<CommentViewModel> Comments { get; set; }
+
+        //public virtual ApplicationUser Author { get; set; }
+
     }
 }

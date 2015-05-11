@@ -16,5 +16,7 @@ namespace Connected.Models
         public DateTime DateTimePosted { get; set; }
         public int Likes { get; set; }
         public int Dislikes { get; set; }
+
+        //public virtual ApplicationUser Author { get; set; }
     }
 }
