@@ -39,6 +39,21 @@
         <p>Name: @Model.User.Email </p>
     </dl>
 </div>
+<div>
+    <h4>Friends</h4>
+    <dl class="dl-horizontal">
+        @foreach (var f in Model.Friends)
+        {
+            //<p>@f.Age</p>
+            <p>@f.UserName</p>
+            <p>@f.Id</p>
+            <p>@f.Email</p>
+            //<p>@f.Description</p>
+            //<p>@f.Gender</p>
+        }
+
+    </dl>
+</div>
 <p>
 </p>
 

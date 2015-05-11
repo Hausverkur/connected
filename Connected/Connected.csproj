@@ -194,7 +194,7 @@
     <Compile Include="Services\GroupService.cs" />
     <Compile Include="Services\RecipeListViewModel.cs" />
     <Compile Include="Services\RecipeService.cs" />
-    <Compile Include="Services\UserInformationService.cs" />
+    <Compile Include="Services\UserService.cs" />
     <Compile Include="Services\UserPostService.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CommentViewModel.cs" />
@@ -202,7 +202,7 @@
     <Compile Include="ViewModels\GroupViewModel.cs" />
     <Compile Include="ViewModels\MyWallViewModel.cs" />
     <Compile Include="ViewModels\RecipeViewModel.cs" />
-    <Compile Include="ViewModels\UserInformationViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="ViewModels\UserPostViewModel.cs" />
     <Compile Include="ViewModels\UserWallViewModel.cs" />
   </ItemGroup>
@@ -268,7 +268,6 @@
     <Content Include="Views\Home\MyWall.cshtml" />
     <Content Include="Views\Home\Messages.cshtml" />
     <Content Include="Views\Home\Groups.cshtml" />
-    <Content Include="Views\Home\Recipes.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Recipe\CreateRecipe.cshtml" />
     <Content Include="Views\Recipe\ListOfRecipes.cshtml" />

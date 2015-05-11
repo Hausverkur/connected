@@ -8,14 +8,14 @@
 
 <h2>ListOfRecipes</h2>
 
-<p class="create">
+<button class="create">
     @Html.ActionLink("Create Recipe", "CreateRecipe")
-</p>
+</button>
 
     @foreach (var item in Model)
     {
         <p class="RecipeArea">
-            <h4 class="">
+            <h4 class="RecipeName">
                 @Html.DisplayFor(modelItem => item.Name, new {id = "Name"})
                 @Html.ActionLink("Details", "DisplayRecipe", new {id = item.Id})
             </h4>
