@@ -16,7 +16,7 @@ namespace Connected.Services
             var posts = (from p in db.UserPosts.OfType<UserPost>()
                          select p).ToList();
             List<UserPostViewModel> userPosts = new List<UserPostViewModel>();
-
+            
             foreach (var post in posts)
             {
                 userPosts.Add(new UserPostViewModel
