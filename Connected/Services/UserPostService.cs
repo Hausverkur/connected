@@ -71,5 +71,10 @@ namespace Connected.Services
             });
             db.SaveChanges();
         }
+
+        /*public List<UserPostViewModel> GetFriendsPosts(List<ApplicationUser> friends)
+        {
+            
+        }*/
     }
 }

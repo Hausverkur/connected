@@ -18,6 +18,9 @@ namespace Connected.Models
         public string ImageUrl { get; set; }
         public virtual Recipe Recipe { get; set; }
 
+        public bool GroupPost { get; set; }
+        public int GroupReference { get; set; }
+
         public virtual ApplicationUser Author { get; set; }
     }
 }

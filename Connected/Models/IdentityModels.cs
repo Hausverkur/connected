@@ -9,6 +9,7 @@ namespace Connected.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        public string FullName { get; set; }
         public int Age { get; set; }
         public string ProfilePicture { get; set; }
         public string Gender { get; set; }
@@ -29,7 +30,6 @@ namespace Connected.Models
         public DbSet<Friendship> Friendships { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<GroupMember> GroupMembers { get; set; }
-        public DbSet<GroupPost> GroupPosts { get; set; }
         public DbSet<PostDislike> PostDislikes { get; set; }
         public DbSet<PostLike> PostLikes { get; set; }
         public DbSet<PostShare> PostShares { get; set; }
@@ -52,6 +52,6 @@ namespace Connected.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<Connected.ViewModels.GroupViewModel> GroupViewModels { get; set; }
+        //public System.Data.Entity.DbSet<Connected.ViewModels.GroupViewModel> GroupViewModels { get; set; }
     }
 }
