@@ -12,7 +12,6 @@ namespace Connected.Services
         public List<UserPostViewModel> GetPosts()
         {
             ApplicationDbContext db = new ApplicationDbContext();
-
             var posts = (from p in db.UserPosts.OfType<UserPost>()
                          select p).ToList();
             List<UserPostViewModel> userPosts = new List<UserPostViewModel>();
@@ -23,7 +22,7 @@ namespace Connected.Services
                 {
                     Id = post.Id,
                     Body = post.Body,
-                    Author = post.Author,
+                    Author = post.User,
                 });
             }
 
@@ -34,9 +33,8 @@ namespace Connected.Services
         public List<UserPostViewModel> GetPostsByUserId(string userId)
         {
             ApplicationDbContext db = new ApplicationDbContext();
-
             var posts = (from p in db.UserPosts
-                         where p.Author.Id == userId
+                         where p.User.Id == userId
                          select p).ToList();
             List<UserPostViewModel> userPosts = new List<UserPostViewModel>();
 
@@ -46,7 +44,7 @@ namespace Connected.Services
                 {
                     Id = post.Id,
                     Body = post.Body,
-                    Author = post.Author,
+                    Author = post.User,
                 });
             }
 
@@ -55,21 +53,24 @@ namespace Connected.Services
             return userPosts;
         }
 
-        public void AddUserPost(UserPost userPost)
+        public void AddUserPost(UserPost post, string userId)
         {
-            ApplicationDbContext db = new ApplicationDbContext();
-
-            db.UserPosts.Add(new UserPost
+            using (ApplicationDbContext db = new ApplicationDbContext())
             {
+                db.UserPosts.Add(new UserPost
+            {
+                UserId = userId,
+                Body = "blablablabla",
                 DateTimePosted = DateTime.Now,
-                Body = userPost.Body,
-                Dislikes = 0,
                 Likes = 0,
+                Dislikes = 0,
                 Shares = 0,
-                ImageUrl = userPost.ImageUrl,
-                Author = userPost.Author,
+                GroupPost = false,
+                GroupReference = 0,
+                ImageUrl = "bla",
             });
-            db.SaveChanges();
+                db.SaveChanges();
+            }
         }
 
         /*public List<UserPostViewModel> GetFriendsPosts(List<ApplicationUser> friends)
