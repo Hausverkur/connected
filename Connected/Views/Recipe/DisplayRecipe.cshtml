@@ -42,18 +42,14 @@
 </div>
     <p class="Likes">
         <input type="button" name="btnLike" value="Like" class="glyphicon glyphicon-thumbs-up" />
-        <b>
-            @Html.DisplayNameFor(model => model.Likes)
-        </b>
+     
         @Html.DisplayFor(model => model.Likes)
 
         <input type="button" name="btnDislike" value="Dislike" class="glyphicon glyphicon-thumbs-down" />
-        <b>
-            @Html.DisplayNameFor(model => model.Dislikes)
-        </b>
+    
         @Html.DisplayFor(model => model.Dislikes)
 
-        <a>Comment</a> <a>Shares</a>
+         <a>Shares</a>
 
     </p>
 
@@ -62,28 +58,8 @@
     @Html.ActionLink("Back to List", "ListOfRecipes")
 </div>
 
-<!--Hér að neðan viljum við laga comments (description -> Comments.Body) -->
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<button class="create">
 
-        <div class="form-group">
-                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })<!--Body-->
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })<!--Body-->
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })<!--Body-->
-            </div>
-        </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Comment" class="btn btn-default"/>
-        </div>
-    </div>
-}
+    @Html.ActionLink("Comment", "CreateComment")
 
-<p class="Comment">
-    <b class="CommentName">
-        @Html.DisplayNameFor(model => model.Description) <!--Body-->
-    </b> <br />
-    @Html.DisplayFor(model => model.Description) <!--Body-->
-</p>
+</button>
