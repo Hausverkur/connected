@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -17,6 +18,8 @@ namespace Connected.Models
         public int Likes { get; set; }
         public int Dislikes { get; set; }
 
-        //public virtual ApplicationUser Author { get; set; }
+        public string AuthorId { get; set; }
+        [ForeignKey("AuthorId")]
+        public virtual ApplicationUser Author { get; set; }
     }
 }
