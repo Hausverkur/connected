@@ -60,9 +60,7 @@ namespace Connected.Controllers
                     Name = recipe.Name,
                     //Author = recipe.Author,
                 };
-                var comment = new Comment(); //Laga þetta, búa til sér CreateComment?
-                UpdateModel(comment);
-                service.AddComment(comment);
+
                 return View(theRecipe);
             }
 
@@ -85,6 +83,37 @@ namespace Connected.Controllers
             return RedirectToAction("ListOfRecipes");
         }
 
+        //comments below
+        [HttpGet]
+        public ActionResult DisplayComment(int? id)
+        {
+            RecipeService service = new RecipeService();
+            if (id.HasValue)
+            {
+                int theId = id.Value;
+                var comment = service.GetCommentById(theId);
+                var theComment = new RecipeCommentViewModel
+                {
+                    Body = comment.Body,
+                    DateTimePosted = comment.DateTimePosted,
+                    Id = comment.Id,
+                    //Author = recipe.Author,
+                };
 
+                return View(theComment);
+            }
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateComment(FormCollection formData)
+        {
+            RecipeService service = new RecipeService();
+            Comment comment = new Comment();
+            UpdateModel(comment);
+            service.AddComment(comment);
+            return RedirectToAction("DisplayRecipe"); //laga
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace Connected.ViewModels
         public int Dislikes { get; set; }
 
         //viljum sér viewmodel fyrir comments og laga þetta
-        public List<CommentViewModel> Comments { get; set; }
+        public List<RecipeCommentViewModel> Comments { get; set; }
 
         //public virtual ApplicationUser Author { get; set; }
 

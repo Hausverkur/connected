@@ -51,6 +51,29 @@ namespace Connected.Services
             db.SaveChanges();
         }
 
+        //Recipe comments below
+
+        public List<Comment> GetComments()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            var comments = (from comment in db.Comments
+                            select comment).ToList();
+
+            return comments;
+        }
+
+        public Comment GetCommentById(int id)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            var comment = (from c in db.Comments
+                           where c.Id == id
+                           select c).First();
+
+            return comment;
+
+        }
         public void AddComment(Comment comment) //vantar meira?
         {
             ApplicationDbContext db = new ApplicationDbContext();
@@ -60,10 +83,10 @@ namespace Connected.Services
                 Body = comment.Body,
                 Id = comment.Id,
                 DateTimePosted = DateTime.Now,
-               // Author = comment.Author,
+                // Author = comment.Author,
             });
             db.SaveChanges();
-            
+
         }
     }
 }

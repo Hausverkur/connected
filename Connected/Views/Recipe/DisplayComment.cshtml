@@ -1,0 +1,29 @@
+﻿@model Connected.ViewModels.RecipeCommentViewModel
+
+@{
+    ViewBag.Title = "DisplayRecipe";
+    <link href="~/Content/DisplayRecipe.css" rel="stylesheet" />
+}
+
+<h2>DisplayRecipe</h2>
+
+<div class="RecipeArea">
+    <h1 class="RecipeName">
+        @Html.DisplayFor(model => model.Id)
+    </h1>
+    <p class="Description">
+
+        @Html.DisplayFor(model => model.Body)
+    </p>
+    <p class="Date">
+        Posted on: @Html.DisplayFor(model => model.DateTimePosted)
+    </p>
+</div>
+
+<p class="Comment">
+    @Html.DisplayFor(model => model.Body) <!--Body-->
+</p>
+
+<div>
+    @Html.ActionLink("Back to List", "DisplayRecipe")
+</div>
