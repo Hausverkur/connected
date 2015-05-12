@@ -38,11 +38,11 @@ namespace Connected.Services
             {
                 DateTimePosted = DateTime.Now,
                 Description = recipe.Description,
-                Dislikes = 0,
+                Dislikes = recipe.Dislikes,
                 Id = recipe.Id,
                 Image = recipe.Image,
                 Ingredients = recipe.Ingredients,
-                Likes = 0,
+                Likes = recipe.Likes,
                 Method = recipe.Method,
                 Name = recipe.Name,
                 //Author = recipe.Author

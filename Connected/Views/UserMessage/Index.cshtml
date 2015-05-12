@@ -1,0 +1,46 @@
+﻿@using System.Web.UI.WebControls
+@using Connected.ViewModels
+@model Connected.ViewModels.UserMessagesViewModel
+
+@{
+    ViewBag.Title = "Messages";
+}
+
+<h2>My Messages</h2>
+
+<div>
+    <h4>Recieved Messages</h4>
+    <dl class="dl-horizontal">
+        @foreach (var r in Model.RecievedMessages)
+        {
+            <p>@r.Author.UserName</p>  
+            <dt>
+                @r.Id
+            </dt>
+
+            <dd>
+                @r.Body
+            </dd>
+
+        }
+
+    </dl>
+</div>
+<div>
+    <h4>Sent Messages</h4>
+    <dl class="dl-horizontal">
+        @foreach (var s in Model.SentMessages)
+        {
+            <p>@s.Recipient.UserName</p>
+            <dt>
+                @s.Id
+            </dt>
+
+            <dd>
+                @s.Body
+            </dd>
+
+        }
+
+    </dl>
+</div>
