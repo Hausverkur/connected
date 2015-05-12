@@ -55,19 +55,20 @@ namespace Connected.Services
 
         public void AddUserPost(UserPost post, string userId)
         {
+            DateTime now = DateTime.Now;
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
                 db.UserPosts.Add(new UserPost
             {
                 UserId = userId,
-                Body = "blablablabla",
-                DateTimePosted = DateTime.Now,
+                Body = post.Body,
+                DateTimePosted = now,
                 Likes = 0,
                 Dislikes = 0,
                 Shares = 0,
                 GroupPost = false,
                 GroupReference = 0,
-                ImageUrl = "bla",
+                ImageUrl = post.ImageUrl,
             });
                 db.SaveChanges();
             }

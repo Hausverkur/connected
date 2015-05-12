@@ -164,6 +164,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RecipeController.cs" />
+    <Compile Include="Controllers\UserMessageController.cs" />
     <Compile Include="Controllers\UserWallController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -202,6 +203,7 @@
     <Compile Include="ViewModels\GroupViewModel.cs" />
     <Compile Include="ViewModels\MyWallViewModel.cs" />
     <Compile Include="ViewModels\RecipeViewModel.cs" />
+    <Compile Include="ViewModels\UserMessagesViewModel.cs" />
     <Compile Include="ViewModels\UserMessageViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="ViewModels\UserPostViewModel.cs" />
@@ -279,6 +281,7 @@
     <Content Include="Views\UserWall\UserWall.cshtml" />
     <Content Include="Views\Group\CreateGroup.cshtml" />
     <Content Include="Views\Home\CreateUserPost.cshtml" />
+    <Content Include="Views\UserMessage\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
