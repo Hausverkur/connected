@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Security.Permissions;
 using System.Web;
@@ -21,6 +22,8 @@ namespace Connected.Models
         public bool GroupPost { get; set; }
         public int GroupReference { get; set; }
 
-        public virtual ApplicationUser Author { get; set; }
+        public string UserId { get; set; }
+        [ForeignKey("UserId")]
+        public virtual ApplicationUser User { get; set; }
     }
 }

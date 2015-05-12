@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
+using Connected.Models;
 using Connected.Services;
 using Connected.ViewModels;
 using Microsoft.AspNet.Identity;
@@ -112,6 +114,23 @@ namespace Connected.Controllers
             ViewBag.Message = "Your page.";
 
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult CreateUserPost()
+        {
+            return View(new UserPost());
+        }
+
+        [HttpPost]
+        public ActionResult CreateUserPost(FormCollection formData)
+        {
+            UserPostService postService = new UserPostService();
+            UserService userService = new UserService();
+            UserPost post = new UserPost();
+            UpdateModel(post);
+            postService.AddUserPost(post, this.User.Identity.GetUserId());
+            return RedirectToAction("MyWall");
         }
     }
 }
