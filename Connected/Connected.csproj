@@ -283,7 +283,11 @@
     <Content Include="Views\Home\CreateUserPost.cshtml" />
     <Content Include="Views\UserMessage\Index.cshtml" />
 
+
     <Content Include="Views\Search\Search.cshtml" />
+
+
+    <Content Include="Views\Home\PostAPost.cshtml" />
 
     <Content Include="Views\Recipe\CreateComment.cshtml" />
     <Content Include="Views\Recipe\DisplayComment.cshtml" />
