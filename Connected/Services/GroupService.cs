@@ -41,7 +41,6 @@ namespace Connected.Services
 
         public void AddGroup(Group group, string userId)
         {
-            UserService userService = new UserService();
             Group g = new Group
             {
                 Description = group.Description,
@@ -54,23 +53,15 @@ namespace Connected.Services
             db.SaveChanges();
         }
 
-        public void AddGroupMember(Group group, ApplicationUser user)
+        public void AddGroupMember(int groupId, string userId)
         {
             db.GroupMembers.Add(new GroupMember
             {
-                GroupReference = group,
-                User = user,
+                GroupId = groupId,
+                UserId = userId,
             });
 
             db.SaveChanges();
-        }
-
-        private int GetLastGroupMemberId()
-        {
-            var p_iid = (from g in db.GroupMembers
-                        orderby g.Id descending 
-                        select g.Id).First();
-            return p_iid;
         }
     }
 }

@@ -72,7 +72,15 @@ namespace Connected.Controllers
             Group group = new Group();
             UpdateModel(group);
             service.AddGroup(group, this.User.Identity.GetUserId());
-            return View();
+            return RedirectToAction("ListOfGroups");
+        }
+
+        public ActionResult AddGroupMember(int groupId)
+        {
+            GroupService service = new GroupService();
+            service.AddGroupMember(groupId, this.User.Identity.GetUserId());
+
+            return RedirectToAction("DisplayGroup", groupId);
         }
     }
 }
