@@ -13,7 +13,9 @@ namespace Connected.ViewModels
         public string Description { get; set; }
         public string Image { get; set; }
         public int NumberOfUsers { get; set; }
+        public bool UserInGroup { get; set; }
 
-        public List<ApplicationUser> Users { get; set; } 
+        public List<ApplicationUser> Users { get; set; }
+        public List<UserPostViewModel> Posts { get; set; } 
     }
 }

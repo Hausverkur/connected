@@ -1,5 +1,7 @@
 ﻿@model Connected.ViewModels.GroupViewModel
-
+@using System.Activities.Expressions
+@using System.Diagnostics.Eventing.Reader
+@using Connected.Services;
 @{
     ViewBag.Title = "DisplayGroup";
 }
@@ -13,7 +15,14 @@
         <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-
+        @if (!Model.UserInGroup)
+        {
+            @Html.ActionLink("Join group", "AddGroupMember", new {@id = Model.Id})
+        }
+        else
+        {
+            @Html.ActionLink("Leave group", "RemoveGroupMember", new { @id = Model.Id })
+        }
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>

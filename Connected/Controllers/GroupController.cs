@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 using Connected.Models;
 using Connected.Services;
 using Connected.ViewModels;
@@ -52,11 +53,14 @@ namespace Connected.Controllers
                     Image = groupModel.Image,
                     Name = groupModel.Name,
                     NumberOfUsers = groupModel.NumberOfUsers,
+                    UserInGroup = service.IsInGroup(theId, this.User.Identity.GetUserId()),
                 };
+
+                group.Posts = service.GetGroupPostsById(theId);
 
                 return View(group);
             }
-            return View();
+            return RedirectToAction("ListOfGroups");
         }
 
         [HttpGet]
@@ -75,12 +79,49 @@ namespace Connected.Controllers
             return RedirectToAction("ListOfGroups");
         }
 
-        public ActionResult AddGroupMember(int groupId)
+        public ActionResult AddGroupMember(int? id)
         {
-            GroupService service = new GroupService();
-            service.AddGroupMember(groupId, this.User.Identity.GetUserId());
+            if (id.HasValue)
+            {
+                GroupService service = new GroupService();
+                service.AddGroupMember(id.Value, this.User.Identity.GetUserId());
 
-            return RedirectToAction("DisplayGroup", groupId);
+                return RedirectToAction("DisplayGroup", new { id = id.Value });
+            }
+            return RedirectToAction("ListOfGroups");
         }
+
+        public ActionResult RemoveGroupMember(int? id)
+        {
+            if (id.HasValue)
+            {
+                GroupService service = new GroupService();
+                service.RemoveGroupMember(id.Value, this.User.Identity.GetUserId());
+
+                return RedirectToAction("DisplayGroup", new { id = id.Value });
+            }
+            return RedirectToAction("ListOfGroups");
+        }
+
+        [HttpGet]
+        public ActionResult CreateGroupPost()
+        {
+            return View(new UserPost());
+        }
+
+        [HttpPost]
+        public ActionResult AddGroupPost(int? groupId, FormCollection formData)
+        {
+            if (groupId.HasValue)
+            {
+                GroupService groupService = new GroupService();
+                UserPost post = new UserPost();
+                UpdateModel(post);
+                groupService.CreateGroupPost(this.User.Identity.GetUserId(), groupId.Value, post);
+                return RedirectToAction("DisplayGroup", groupId);
+            }
+            return RedirectToAction("ListOfGroups");
+        }
+
     }
 }
