@@ -191,6 +191,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CommentService.cs" />
     <Compile Include="Services\GroupService.cs" />
+    <Compile Include="Services\UserMessageService.cs" />
     <Compile Include="ViewModels\RecipeListViewModel.cs" />
     <Compile Include="Services\RecipeService.cs" />
     <Compile Include="Services\UserService.cs" />
@@ -201,6 +202,7 @@
     <Compile Include="ViewModels\GroupViewModel.cs" />
     <Compile Include="ViewModels\MyWallViewModel.cs" />
     <Compile Include="ViewModels\RecipeViewModel.cs" />
+    <Compile Include="ViewModels\UserMessageViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="ViewModels\UserPostViewModel.cs" />
     <Compile Include="ViewModels\UserWallViewModel.cs" />
