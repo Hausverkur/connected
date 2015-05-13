@@ -29,12 +29,16 @@
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
+    <br /> <br /> <br />
 }
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
 
+
 <div>
-    <a href="javascript:history.go(-1)">Back to List</a>
+    <a href="javascript:history.go(-1)">Back</a>
+</div>
+<div>
+    @Html.ActionLink("Back to List", "ListOfGroups")
 </div>
