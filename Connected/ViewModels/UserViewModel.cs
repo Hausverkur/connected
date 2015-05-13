@@ -15,8 +15,9 @@ namespace Connected.ViewModels
         public string Gender { get; set; }
         public string Description { get; set; }
         public string UserName { get; set; }
+        public string FullName { get; set; }
 
        
-        //public virtual ApplicationUser User { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 }

@@ -52,6 +52,8 @@ namespace Connected.Models
             return new ApplicationDbContext();
         }
 
+        public System.Data.Entity.DbSet<Connected.ViewModels.SearchViewModel> SearchViewModels { get; set; }
+
         //public System.Data.Entity.DbSet<Connected.ViewModels.GroupViewModel> GroupViewModels { get; set; }
     }
 }
