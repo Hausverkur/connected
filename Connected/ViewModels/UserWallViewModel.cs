@@ -12,5 +12,6 @@ namespace Connected.ViewModels
         public List<UserPostViewModel> Posts { get; set; }
         public virtual ApplicationUser User { get; set; }
         public List<UserViewModel> Friends { get; set; }
+        public int AreFriends { get; set; }
     }
 }

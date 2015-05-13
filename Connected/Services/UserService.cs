@@ -15,9 +15,8 @@ namespace Connected.Services
         public ApplicationUser GetUserInfo(string userId)
         {
             var information = (from i in db.Users
-                where i.Id == userId
-                select i).First();
-
+                               where i.Id == userId
+                               select i).FirstOrDefault();
             return information;
         }
 
@@ -36,16 +35,21 @@ namespace Connected.Services
             return friends;
 
         }
-
-        /*public List<ApplicationUser> GetAllUsers()
+        public int AreFriends(string userId, string friendId)
         {
-            ApplicationDbContext db = new ApplicationDbContext();
+            var friends1 = (from f in db.Friendships
+                            where f.User1.Id == userId
+                                  && f.User2.Id == friendId
+                            select f.Comfirmed);
+            var friends2 = (from f in db.Friendships
+                where f.User1.Id == friendId
+                      && f.User2.Id == userId
+                select f.Comfirmed);
 
-            var user = (from u in db.Users
-                select u).ToList();
-
-            return user;
-
-        }*/
+            var friends = friends1.Union(friends2).FirstOrDefault();
+            if (friends != null && friends == true) return 2;
+            else if (friends != null && friends == false) return 1;
+            else return 0;
+        }
     }
 }

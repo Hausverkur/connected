@@ -18,7 +18,7 @@ namespace Connected.Controllers
             return View();
         }
 
-        public ActionResult UserWall()
+        public ActionResult UserWall(string id)
         {
             UserPostService postService = new UserPostService();
             CommentService commentService = new CommentService();
@@ -69,7 +69,25 @@ namespace Connected.Controllers
 
                 });
             }
+
+            model.AreFriends = userService.AreFriends(this.User.Identity.GetUserId(), model.User.Id);
+
             return View(model);
+        }
+
+        public ActionResult AddFriend(string userId)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            db.Friendships.Add(new Friendship
+            {
+                Comfirmed = false,
+                User1Id = this.User.Identity.GetUserId(),
+                User2Id = userId,
+            });
+            db.SaveChanges();
+
+            return RedirectToAction("UserWall", new{id = userId});
         }
     }
 }

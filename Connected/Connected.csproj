@@ -165,7 +165,6 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RecipeController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
-    <Compile Include="Controllers\UserMessageController.cs" />
     <Compile Include="Controllers\UserWallController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -224,6 +223,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\Group.png" />
     <Content Include="Images\Logo.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -284,7 +284,7 @@
     <Content Include="Views\Recipe\ListOfRecipes.cshtml" />
     <Content Include="Views\Group\ListOfGroups.cshtml" />
     <Content Include="Views\Group\DisplayGroup.cshtml" />
-    <Content Include="Views\UserWall\UserWall.cshtml" />
+    <Content Include="Views\Home\UserWall.cshtml" />
     <Content Include="Views\Home\CreateUserPost.cshtml" />
     <Content Include="Views\UserMessage\Index.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />
@@ -294,11 +294,14 @@
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Group\CreateGroup.cshtml" />
     <Content Include="Views\Group\CreateGroupPost.cshtml" />
+    <Content Include="Views\Home\View.cshtml" />
+    <Content Include="Views\Home\AddUserPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\FrontPage\" />
     <Folder Include="Views\UserPost\" />
+    <Folder Include="Views\UserWall\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
