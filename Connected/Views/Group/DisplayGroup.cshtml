@@ -3,93 +3,59 @@
 @using System.Diagnostics.Eventing.Reader
 @using Connected.Services;
 @{
-    ViewBag.Title = "DisplayGroup";
+    ViewBag.Title = @Html.DisplayFor(model => model.Name);
+    <link href="~/Content/DisplayGroup.css" rel="stylesheet" />
+
 }
 
-<h2>DisplayGroup</h2>
+<div class="Border">
+    <h2>@Html.DisplayFor(model => model.Name)</h2>
 
-<!--<h4>GroupViewModel</h4>-->
-<br/>
-<div>
-<<<<<<< HEAD
+    <br />
+    <div>
+        <p>
+            <b class="DescriptionName">
+                @Html.DisplayNameFor(model => model.Description)
+            </b>
+            @Html.DisplayFor(model => model.Description)
 
-    
-    <hr />
-=======
-    <h4>GroupViewModel</h4>
-    <hr/>
-    @Html.ActionLink("Add Post", "CreateGroupPost", new{id = Model.Id})
->>>>>>> acfe3d9ffb3213578debbe7aeb0f7bf78f86525f
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-<<<<<<< HEAD
+        </p>
+        <section class="Image">
+            @Html.DisplayFor(model => model.Image)
+        </section>
+        <br />
+        <p>
+            <b>
+                @Html.DisplayNameFor(model => model.NumberOfUsers)
+            </b>
+            @Html.DisplayFor(model => model.NumberOfUsers)
+        </p>
+        <br/> <br/>
+        @foreach (var post in Model.Posts)
+        {
+            <p><b>@post.Author.UserName</b></p>
+            <p>@post.Body</p>
+        }
+    </div>
 
-=======
+    <p>
         @if (!Model.UserInGroup)
         {
-            @Html.ActionLink("Join group", "AddGroupMember", new {@id = Model.Id})
+            @Html.ActionLink("Join group", "AddGroupMember", new { @id = Model.Id })
+
         }
         else
         {
-            @Html.ActionLink("Leave group", "RemoveGroupMember", new {@id = Model.Id})
+            @Html.ActionLink("Leave group", "RemoveGroupMember", new { @id = Model.Id })
+            <br />
+            @Html.ActionLink("Add Group Post", "CreateGroupPost", new { @id = Model.Id })
+
         }
->>>>>>> acfe3d9ffb3213578debbe7aeb0f7bf78f86525f
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Image)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NumberOfUsers)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NumberOfUsers)
-        </dd>
-
-
-    </dl>
-    @foreach (var post in Model.Posts)
-    {
-        <p><b>@post.Author.UserName</b></p>
-        <p>@post.Body</p>
-    }
+    </p>
 </div>
-
-<p>
-    @if (!Model.UserInGroup)
-    {
-        @Html.ActionLink("Join group", "AddGroupMember", new { @id = Model.Id })
-        
-    }
-    else
-    {
-        @Html.ActionLink("Leave group", "RemoveGroupMember", new { @id = Model.Id })
-       <br/>
-        @Html.ActionLink("Add Group Post", "CreateGroupPost")
-   
-    }
-
-</p>
-
 <hr />
+
 <div>
     @Html.ActionLink("Back to List", "ListOfGroups")
 </div>

@@ -52,6 +52,7 @@ namespace Connected.Services
         }
 
         //Recipe comments below
+        /*
 
         public List<Comment> GetComments()
         {
@@ -63,17 +64,17 @@ namespace Connected.Services
             return comments;
         }
 
-        public Comment GetCommentById(int id)
+         public static List<RecipeComment> GetCommentsByRecipeId(int Id)
         {
             ApplicationDbContext db = new ApplicationDbContext();
 
-            var comment = (from c in db.Comments
-                           where c.Id == id
-                           select c).First();
+            var recipecomments = (from recipecomment in db.RecipeComments
+                                  where recipecomment.RecipeReference.Id == Id
+                                  select recipecomment).ToList();
 
-            return comment;
-
+            return recipecomments;
         }
+        
         public void AddComment(Comment comment) //vantar meira?
         {
             ApplicationDbContext db = new ApplicationDbContext();
@@ -87,6 +88,6 @@ namespace Connected.Services
             });
             db.SaveChanges();
 
-        }
+        }*/
     }
 }
