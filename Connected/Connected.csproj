@@ -276,8 +276,10 @@
     <Content Include="Views\Home\AddPost.cshtml" />
     <Content Include="Views\Recipe\DisplayRecipe.cshtml" />
     <Content Include="Views\Home\MyWall.cshtml" />
+
     <Content Include="Views\Home\Messages.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
+
     <Content Include="Views\Recipe\CreateRecipe.cshtml" />
     <Content Include="Views\Recipe\ListOfRecipes.cshtml" />
     <Content Include="Views\Group\ListOfGroups.cshtml" />
