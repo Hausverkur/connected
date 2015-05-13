@@ -17,7 +17,6 @@ namespace Connected.Services
             var information = (from i in db.Users
                                where i.Id == userId
                                select i).FirstOrDefault();
-
             return information;
         }
 
@@ -36,7 +35,6 @@ namespace Connected.Services
             return friends;
 
         }
-
         public int AreFriends(string userId, string friendId)
         {
             var friends1 = (from f in db.Friendships
