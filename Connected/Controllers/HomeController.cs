@@ -164,18 +164,10 @@ namespace Connected.Controllers
 
          public ActionResult UserWall(string id)
         {
-            /*List<UserMessageViewModel> userMessages = new List<UserMessageViewModel>();
-
-            UserMessageService messageService = new UserMessageService();
-
-            var userId = this.User.Identity.GetUserId();
-            userMessages = messageService.GetUserMessages(userId);
-
-            return View();*/
-
-           
-
-
+             if (id == null)
+             {
+                 id = this.User.Identity.GetUserId();
+             }
             UserPostService postService = new UserPostService();
             CommentService commentService = new CommentService();
             UserService userService = new UserService();
@@ -225,8 +217,14 @@ namespace Connected.Controllers
 
                 });
             }
-
-            model.AreFriends = userService.AreFriends(this.User.Identity.GetUserId(), id);
+             if (id == this.User.Identity.GetUserId())
+             {
+                 model.AreFriends = 4;
+             }
+             else
+             {
+                 model.AreFriends = userService.AreFriends(this.User.Identity.GetUserId(), id);
+             }
 
             return View(model);
         }

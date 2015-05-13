@@ -5,7 +5,7 @@
     ViewBag.Title = Model.User.UserName;
 }
 
-<h2>Posts</h2>
+<h2>@Model.User.UserName</h2>
 @{
     switch (Model.AreFriends)
     {
@@ -18,11 +18,11 @@
         case 2:
             @Html.ActionLink("Unfriend", "RemoveFriend", new { userId = Model.User.Id }, null);
             break;
+            case 4:
+        break;
     }
 
-    }
-
-    bla
+}
     <div>
         <h4>UserPost</h4>
         <dl class="dl-horizontal">
@@ -60,13 +60,7 @@
     <dl class="dl-horizontal">
         @foreach (var f in Model.Friends)
         {
-            <p>Age: @f.Age</p>
-            <p>UserName: @f.UserName</p>
-            <p>UserID: @f.Id</p>
-            <p>E-mail: @f.Email</p>
-            <p>Description: @f.Description</p>
-            <p>Gender: @f.Gender</p>
-            <p>ProfilePicture: @f.ProfilePicture</p>
+            <p>@Html.ActionLink(f.UserName, "UserWall", new {id = f.Id})</p>
         }
 
     </dl>
