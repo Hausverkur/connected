@@ -23,6 +23,7 @@ namespace Connected.Controllers
         {
             UserPostService postService = new UserPostService();
             CommentService commentService = new CommentService();
+            UserService userService = new UserService(null);
 
             var posts = postService.GetPosts();
 
@@ -46,6 +47,17 @@ namespace Connected.Controllers
                     });                    
                 }
                 post.Comments = commentViewModels;
+            }
+            var friendRequests = userService.GetFriendRequests(this.User.Identity.GetUserId());
+
+            frontPage.Requests = new List<RequestViewModel>();
+
+            foreach (var request in friendRequests)
+            {
+                frontPage.Requests.Add(new RequestViewModel
+                {
+                    Friendship = request,
+                });
             }
 
            return View(frontPage);
@@ -85,7 +97,6 @@ namespace Connected.Controllers
                 }
                 post.Comments = commentViewModels;
             }
-
             return View(frontPage);
         }
 
@@ -127,7 +138,7 @@ namespace Connected.Controllers
         public ActionResult CreateUserPost(FormCollection formData)
         {
             UserPostService postService = new UserPostService();
-            UserService userService = new UserService();
+            UserService userService = new UserService(null);
             UserPost post = new UserPost();
             UpdateModel(post);
             postService.AddUserPost(post, this.User.Identity.GetUserId());
@@ -144,7 +155,7 @@ namespace Connected.Controllers
         public ActionResult AddUserPost(FormCollection formData)
         {
             UserPostService postService = new UserPostService();
-            UserService userService = new UserService();
+            UserService userService = new UserService(null);
             UserPost post = new UserPost();
             UpdateModel(post);
             postService.AddUserPost(post, this.User.Identity.GetUserId());
@@ -153,21 +164,13 @@ namespace Connected.Controllers
 
          public ActionResult UserWall(string id)
         {
-            /*List<UserMessageViewModel> userMessages = new List<UserMessageViewModel>();
-
-            UserMessageService messageService = new UserMessageService();
-
-            var userId = this.User.Identity.GetUserId();
-            userMessages = messageService.GetUserMessages(userId);
-
-            return View();*/
-
-           
-
-
+             if (id == null)
+             {
+                 id = this.User.Identity.GetUserId();
+             }
             UserPostService postService = new UserPostService();
             CommentService commentService = new CommentService();
-            UserService userService = new UserService();
+            UserService userService = new UserService(null);
 
             var posts = postService.GetPostsByUserId(id);
 
@@ -214,8 +217,14 @@ namespace Connected.Controllers
 
                 });
             }
-
-            model.AreFriends = userService.AreFriends(this.User.Identity.GetUserId(), id);
+             if (id == this.User.Identity.GetUserId())
+             {
+                 model.AreFriends = 4;
+             }
+             else
+             {
+                 model.AreFriends = userService.AreFriends(this.User.Identity.GetUserId(), id);
+             }
 
             return View(model);
         }
@@ -232,6 +241,27 @@ namespace Connected.Controllers
             });
             db.SaveChanges();
 
+            return RedirectToAction("UserWall", new{id = userId});
+        }
+
+        public ActionResult AcceptFriendRequest(int friendshipId)
+        {
+            UserService userService = new UserService(null);
+            userService.AcceptRequest(friendshipId);
+            return RedirectToAction("Posts");
+        }
+
+        public ActionResult DenyFriendRequest(int friendshipId)
+        {
+            UserService userService = new UserService(null);
+            userService.RemoveFriendship(friendshipId);
+            return RedirectToAction("Posts");
+        }
+
+        public ActionResult RemoveFriend(string userId)
+        {
+            UserService userService = new UserService(null);
+            userService.RemoveFriendship(userService.FindFriendship(userId, this.User.Identity.GetUserId()));
             return RedirectToAction("UserWall", new{id = userId});
         }
     }

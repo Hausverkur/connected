@@ -22,26 +22,46 @@ namespace Connected.Models
             return userIdentity;
         }
     }
+    public interface IAppDataContext
+    {
+        IDbSet<Comment> Comments { get; set; }
+        IDbSet<Friendship> Friendships { get; set; }
+        IDbSet<Group> Groups { get; set; }
+        IDbSet<GroupMember> GroupMembers { get; set; }
+        IDbSet<PostDislike> PostDislikes { get; set; }
+        IDbSet<PostLike> PostLikes { get; set; }
+        IDbSet<PostShare> PostShares { get; set; }
+        IDbSet<Recipe> Recipes { get; set; }
+        IDbSet<RecipeComment> RecipeComments { get; set; }
+        IDbSet<RecipeDislike> RecipeDislikes { get; set; }
+        IDbSet<RecipeLike> RecipeLikes { get; set; }
+        IDbSet<RecipeShare> RecipeShares { get; set; }
+        IDbSet<ToDoList> ToDoLists { get; set; }
+        IDbSet<ToDoListTask> ToDoListTasks { get; set; }
+        IDbSet<UserMessage> UserMessages { get; set; }
+        IDbSet<UserPost> UserPosts { get; set; }
+        int SaveChanges();
+    }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IAppDataContext
     {
         
-        public DbSet<Comment> Comments { get; set; }
-        public DbSet<Friendship> Friendships { get; set; }
-        public DbSet<Group> Groups { get; set; }
-        public DbSet<GroupMember> GroupMembers { get; set; }
-        public DbSet<PostDislike> PostDislikes { get; set; }
-        public DbSet<PostLike> PostLikes { get; set; }
-        public DbSet<PostShare> PostShares { get; set; }
-        public DbSet<Recipe> Recipes { get; set; }
-        public DbSet<RecipeComment> RecipeComments { get; set; }
-        public DbSet<RecipeDislike> RecipeDislikes { get; set; }
-        public DbSet<RecipeLike> RecipeLikes { get; set; }
-        public DbSet<RecipeShare> RecipeShares { get; set; }
-        public DbSet<ToDoList> ToDoLists { get; set; }
-        public DbSet<ToDoListTask> ToDoListTasks { get; set; }
-        public DbSet<UserMessage> UserMessages { get; set; }
-        public DbSet<UserPost> UserPosts { get; set; }
+        public IDbSet<Comment> Comments { get; set; }
+        public IDbSet<Friendship> Friendships { get; set; }
+        public IDbSet<Group> Groups { get; set; }
+        public IDbSet<GroupMember> GroupMembers { get; set; }
+        public IDbSet<PostDislike> PostDislikes { get; set; }
+        public IDbSet<PostLike> PostLikes { get; set; }
+        public IDbSet<PostShare> PostShares { get; set; }
+        public IDbSet<Recipe> Recipes { get; set; }
+        public IDbSet<RecipeComment> RecipeComments { get; set; }
+        public IDbSet<RecipeDislike> RecipeDislikes { get; set; }
+        public IDbSet<RecipeLike> RecipeLikes { get; set; }
+        public IDbSet<RecipeShare> RecipeShares { get; set; }
+        public IDbSet<ToDoList> ToDoLists { get; set; }
+        public IDbSet<ToDoListTask> ToDoListTasks { get; set; }
+        public IDbSet<UserMessage> UserMessages { get; set; }
+        public IDbSet<UserPost> UserPosts { get; set; }
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

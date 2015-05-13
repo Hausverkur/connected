@@ -205,6 +205,7 @@
     <Compile Include="ViewModels\GroupViewModel.cs" />
     <Compile Include="ViewModels\MyWallViewModel.cs" />
     <Compile Include="ViewModels\RecipeViewModel.cs" />
+    <Compile Include="ViewModels\RequestViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\UserMessagesViewModel.cs" />
     <Compile Include="ViewModels\UserMessageViewModel.cs" />
@@ -225,6 +226,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\Group.png" />
     <Content Include="Images\Logo.png" />
+    <Content Include="Images\sandwich.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
@@ -288,7 +290,6 @@
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\Home\PostAPost.cshtml" />
     <Content Include="Views\Recipe\CreateComment.cshtml" />
-    <Content Include="Views\Recipe\DisplayComment.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Group\CreateGroup.cshtml" />
     <Content Include="Views\Group\CreateGroupPost.cshtml" />
