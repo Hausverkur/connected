@@ -13,24 +13,23 @@
 
 .GroupName {
     font-weight: bold;
-    margin-left: 25%;
+    margin-left: 15%;
 }
 
 .Description {
       margin-right: 20%;
-      margin-left: 25%;
+      margin-left: 15%;
 }
 
 .Image { /*This needs to be fixed*/
     float: left;
-    max-width: 20%;
-    border: solid black;
+    max-width: 70px;
     margin-top: -5%;
-    max-height: 110px;
+    max-height: 70px;
 }
 
 .Users {
-    margin-left: 25%;
+    margin-left: 15%;
 
 }
 .Join {
