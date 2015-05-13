@@ -35,8 +35,6 @@ namespace Connected.Services
             return friends;
 
         }
-
-
         public int AreFriends(string userId, string friendId)
         {
             var friends1 = (from f in db.Friendships
@@ -53,16 +51,5 @@ namespace Connected.Services
             else if (friends != null && friends == false) return 1;
             else return 0;
         }
-
-        /*public List<ApplicationUser> GetAllUsers()
-        {
-            ApplicationDbContext db = new ApplicationDbContext();
-
-            var user = (from u in db.Users
-                select u).ToList();
-
-            return user;
-
-        }*/
     }
 }
