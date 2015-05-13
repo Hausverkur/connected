@@ -133,5 +133,106 @@ namespace Connected.Controllers
             postService.AddUserPost(post, this.User.Identity.GetUserId());
             return RedirectToAction("MyWall");
         }
+
+        [HttpGet]
+        public ActionResult AddUserPost()
+        {
+            return View(new FrontPageViewModel());
+        }
+
+        [HttpPost]
+        public ActionResult AddUserPost(FormCollection formData)
+        {
+            UserPostService postService = new UserPostService();
+            UserService userService = new UserService();
+            UserPost post = new UserPost();
+            UpdateModel(post);
+            postService.AddUserPost(post, this.User.Identity.GetUserId());
+            return RedirectToAction("MyWall");
+        }
+
+         public ActionResult UserWall(string id)
+        {
+            /*List<UserMessageViewModel> userMessages = new List<UserMessageViewModel>();
+
+            UserMessageService messageService = new UserMessageService();
+
+            var userId = this.User.Identity.GetUserId();
+            userMessages = messageService.GetUserMessages(userId);
+
+            return View();*/
+
+           
+
+
+            UserPostService postService = new UserPostService();
+            CommentService commentService = new CommentService();
+            UserService userService = new UserService();
+
+            var posts = postService.GetPostsByUserId(id);
+
+
+
+            UserWallViewModel model = new UserWallViewModel
+            {
+                Posts = posts,
+            };
+
+            var user = userService.GetUserInfo(id);
+            model.User = user;
+
+            foreach (var post in model.Posts)
+            {
+                var Comments = commentService.GetCommentsByPostId(post.Id);
+                List<CommentViewModel> commentViewModels = new List<CommentViewModel>();
+                foreach (var comment in Comments)
+                {
+                    commentViewModels.Add(new CommentViewModel
+                    {
+                        Body = comment.Body,
+                        Id = comment.Id,
+                    });
+                }
+                post.Comments = commentViewModels;
+            }
+
+            var friends = userService.GetFriends(id);
+            model.Friends = new List<UserViewModel>();
+          
+            foreach (var u in friends)
+            {
+
+                model.Friends.Add(new UserViewModel
+                {
+                    Age = u.Age,
+                    Description = u.Description,
+                    Email = u.Email,
+                    Gender = u.Gender,
+                    ProfilePicture = u.ProfilePicture,
+                    UserName = u.UserName,
+                    Id = u.Id
+
+                });
+            }
+
+            model.AreFriends = userService.AreFriends(this.User.Identity.GetUserId(), id);
+
+            return View(model);
+        }
+
+        public ActionResult AddFriend(string userId)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            db.Friendships.Add(new Friendship
+            {
+                Comfirmed = false,
+                User1Id = this.User.Identity.GetUserId(),
+                User2Id = userId,
+            });
+            db.SaveChanges();
+
+            return RedirectToAction("UserWall", new{id = userId});
+        }
     }
-}
+   }

@@ -2,17 +2,33 @@
 @model Connected.ViewModels.UserWallViewModel
 
 @{
-    ViewBag.Title = "Posts";
+    ViewBag.Title = Model.User.UserName;
 }
 
 <h2>Posts</h2>
+@{
+    switch (Model.AreFriends)
+    {
+        case 0:
+            @Html.ActionLink("Add friend", "AddFriend", new { userId = Model.User.Id }, null);
+            break;
+        case 1:
+            <p>Pending</p>
+            break;
+        case 2:
+            @Html.ActionLink("Unfriend", "RemoveFriend", new { userId = Model.User.Id }, null);
+            break;
+    }
 
-<div>
-    <h4>UserPost</h4>
-    <dl class="dl-horizontal">
-        @foreach (var p in Model.Posts)
+    }
+
+    bla
+    <div>
+        <h4>UserPost</h4>
+        <dl class="dl-horizontal">
+            @foreach (var p in Model.Posts)
         {
-            <p>@p.Author.UserName</p>
+<p>@p.Author.UserName</p>
             <dt>
                 @p.Id
             </dt>
@@ -56,22 +72,4 @@
     </dl>
 </div>
 <p>
-</p>
-
-
-
-@{
-    ViewBag.Title = "UserWall";
-}
-
-<h2>UserWall</h2>
-
-<div>
-    <h4>UserWallViewModel</h4>
-    <hr />
-    <dl class="dl-horizontal"></dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
 </p>

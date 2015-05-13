@@ -13,14 +13,15 @@
     <dl class="dl-horizontal">
         @foreach (var p in Model.Posts)
         {
-            <p>@p.Author.UserName</p>
+            <p>
+            @Html.ActionLink(p.Author.UserName, "UserWall", new{id = p.Author.Id})</p>
                 <dt>
                     @p.Id
                 </dt>
 
-                <dd>
-                    @p.Body
-                </dd>
+            <dd>
+                @p.Body
+            </dd>
             
                 foreach (var c in p.Comments)
                 {

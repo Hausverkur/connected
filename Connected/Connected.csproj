@@ -278,25 +278,23 @@
     <Content Include="Views\Recipe\ListOfRecipes.cshtml" />
     <Content Include="Views\Group\ListOfGroups.cshtml" />
     <Content Include="Views\Group\DisplayGroup.cshtml" />
-    <Content Include="Views\UserWall\UserWall.cshtml" />
+    <Content Include="Views\Home\UserWall.cshtml" />
     <Content Include="Views\Home\CreateUserPost.cshtml" />
     <Content Include="Views\UserMessage\Index.cshtml" />
-
-
     <Content Include="Views\Search\Search.cshtml" />
-
-
     <Content Include="Views\Home\PostAPost.cshtml" />
-
     <Content Include="Views\Recipe\CreateComment.cshtml" />
     <Content Include="Views\Recipe\DisplayComment.cshtml" />
     <Content Include="Views\Group\CreateGroup.cshtml" />
     <Content Include="Views\Group\CreateGroupPost.cshtml" />
+    <Content Include="Views\Home\View.cshtml" />
+    <Content Include="Views\Home\AddUserPost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\FrontPage\" />
     <Folder Include="Views\UserPost\" />
+    <Folder Include="Views\UserWall\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

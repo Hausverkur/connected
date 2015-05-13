@@ -9,5 +9,6 @@ namespace Connected.ViewModels
     public class FrontPageViewModel
     {
         public List<UserPostViewModel> Posts { get; set; }
+        public UserPost Post { get; set; }
     }
 }
