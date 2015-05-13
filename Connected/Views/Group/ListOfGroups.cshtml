@@ -9,39 +9,42 @@
 
 <h2>ListOfGroups</h2>
     <br />
-<p class="Create">
-        @Html.ActionLink("Create New Group", "CreateGroup")  
-</p>
-<div class="GroupArea">
-    @foreach (var item in Model)
-    {
-        <h1>
-            <b>
-                @Html.ActionLink(item.Name, "DisplayGroup", new { id = item.Id })
-            </b>
-        </h1>
-        <p>
-            <b>
-                @Html.DisplayNameFor(model => model.Description)
-            </b>
-            @Html.DisplayFor(modelItem => item.Description)
-        </p>
+<button class="Create">
+    @Html.ActionLink("Create New Group", "CreateGroup")
+</button>
+    <div class="GroupArea">
+        @foreach (var item in Model)
+        {
+
+            <h3 class="GroupName">
+
+                @Html.ActionLink(item.Name, "DisplayGroup", new {id = item.Id})
+
+            </h3>
+    <div class="Image">
         @Html.DisplayFor(modelItem => item.Image)
-        <p>
-            <b>
-                @Html.DisplayNameFor(model => model.NumberOfUsers)
-            </b>
-            @Html.DisplayFor(modelItem => item.NumberOfUsers)
+    </div>
+            <p class="Description">
+                @Html.DisplayFor(modelItem => item.Description)
+            </p>
 
-            @if (item.UserInGroup)
-            {
-                @Html.ActionLink("Leave", "RemoveGroupMember", new { id = item.Id })
-            }
-            else
-            {
-                @Html.ActionLink("Join", "AddGroupMember", new { id = item.Id })
-            }
-        </p>
+            <p class="Users">
+                <b>
+                    Number Of Users:
+                </b>
+                @Html.DisplayFor(modelItem => item.NumberOfUsers)
 
-    }
-</div>
+               
+                    @if (item.UserInGroup)
+                    {
+                        @Html.ActionLink("Leave", "RemoveGroupMember", new {id = item.Id})
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Join", "AddGroupMember", new {id = item.Id})
+                    }
+                
+            </p>
+
+        }
+    </div>

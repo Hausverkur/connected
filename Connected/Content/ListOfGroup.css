@@ -1,2 +1,38 @@
-﻿body {
+﻿.Create {
+    margin-left: 80%;
+    border-left: 20px;  
+    font-size: 125%;
+    text-decoration: none;
+}
+
+.GroupArea {
+    border: solid black;
+    margin-right: 20%;
+    margin-left: 15%;
+}
+
+.GroupName {
+    font-weight: bold;
+    margin-left: 25%;
+}
+
+.Description {
+      margin-right: 20%;
+      margin-left: 25%;
+}
+
+.Image { /*This needs to be fixed*/
+    float: left;
+    max-width: 20%;
+    border: solid black;
+    margin-top: -5%;
+    max-height: 110px;
+}
+
+.Users {
+    margin-left: 25%;
+
+}
+.Join {
+    margin-left: 5%;
 }
