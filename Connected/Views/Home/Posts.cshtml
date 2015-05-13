@@ -14,23 +14,29 @@
         @foreach (var p in Model.Posts)
         {
             <p>
-            @Html.ActionLink(p.Author.UserName, "UserWall", new{id = p.Author.Id})</p>
-                <dt>
-                    @p.Id
-                </dt>
+                @Html.ActionLink(p.Author.UserName, "UserWall", new {id = p.Author.Id})</p>
+            <dt>
+                @p.Id
+            </dt>
 
             <dd>
                 @p.Body
             </dd>
-            
-                foreach (var c in p.Comments)
-                {
-                    @c.Body
-                    <br />
-                }
+
+            foreach (var c in p.Comments)
+            {
+                @c.Body
+                <br/>
+            }
         }
 
-     </dl>
+    </dl>
+    <ul>
+        @foreach (var r in Model.Requests)
+        {
+            <li>@r.Friendship.User1.UserName @Html.ActionLink("Accept", "AcceptFriendRequest", new{FriendshipId = r.Friendship.Id})  @Html.ActionLink("Deny", "DenyFriendRequest", new { FriendshipId = r.Friendship.Id })</li>
+        }
+    </ul>
 </div>
 <p>
 </p>
