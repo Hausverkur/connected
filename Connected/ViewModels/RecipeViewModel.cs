@@ -23,7 +23,6 @@ namespace Connected.ViewModels
 
         //public virtual ApplicationUser Author { get; set; }
         public List<ApplicationUser> Users { get; set; }
-        public List<UserPostViewModel> Posts { get; set; } 
 
     }
 }

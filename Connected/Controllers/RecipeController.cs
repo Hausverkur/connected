@@ -62,7 +62,7 @@ namespace Connected.Controllers
                     Name = recipe.Name,
                     //Author = recipe.Author,
                 };
-
+                theRecipe.Comments = new List<RecipeCommentViewModel>();
                 return View(theRecipe);
             }
 

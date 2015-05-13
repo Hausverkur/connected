@@ -1,4 +1,5 @@
-﻿@model Connected.ViewModels.RecipeViewModel
+﻿@using Connected.Services
+@model Connected.ViewModels.RecipeViewModel
 
 @{
     ViewBag.Title = "DisplayRecipe";
@@ -66,9 +67,9 @@
 <i>Posts</i>
 <hr />
 <br /> <!--What is the problem here?-->
-@foreach (var post in Model.Posts)
+@foreach (var comment in Model.Comments)
 {
-    <p><b>@post.Author.UserName</b></p>
-    <p>@post.Body</p>
+    <p><b>@comment.Author.UserName</b></p>
+    <p>@comment.Body</p>
     <br />
 }
