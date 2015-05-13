@@ -20,18 +20,6 @@ namespace Connected.Controllers
 
         public ActionResult UserWall()
         {
-            /*List<UserMessageViewModel> userMessages = new List<UserMessageViewModel>();
-
-            UserMessageService messageService = new UserMessageService();
-
-            var userId = this.User.Identity.GetUserId();
-            userMessages = messageService.GetUserMessages(userId);
-
-            return View();*/
-
-           
-
-
             UserPostService postService = new UserPostService();
             CommentService commentService = new CommentService();
             UserService userService = new UserService();
@@ -39,8 +27,6 @@ namespace Connected.Controllers
             var userId = this.User.Identity.GetUserId();
 
             var posts = postService.GetPostsByUserId(userId);
-
-
 
             UserWallViewModel model = new UserWallViewModel
             {

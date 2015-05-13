@@ -11,14 +11,31 @@
 <!--<h4>GroupViewModel</h4>-->
 <br/>
 <div>
+<<<<<<< HEAD
 
     
     <hr />
+=======
+    <h4>GroupViewModel</h4>
+    <hr/>
+    @Html.ActionLink("Add Post", "CreateGroupPost", new{id = Model.Id})
+>>>>>>> acfe3d9ffb3213578debbe7aeb0f7bf78f86525f
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
+<<<<<<< HEAD
 
+=======
+        @if (!Model.UserInGroup)
+        {
+            @Html.ActionLink("Join group", "AddGroupMember", new {@id = Model.Id})
+        }
+        else
+        {
+            @Html.ActionLink("Leave group", "RemoveGroupMember", new {@id = Model.Id})
+        }
+>>>>>>> acfe3d9ffb3213578debbe7aeb0f7bf78f86525f
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
@@ -49,6 +66,11 @@
 
 
     </dl>
+    @foreach (var post in Model.Posts)
+    {
+        <p><b>@post.Author.UserName</b></p>
+        <p>@post.Body</p>
+    }
 </div>
 
 <p>
