@@ -89,10 +89,11 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<div>
+    <a href="javascript:history.go(-1)">Back</a>
+    @Html.ActionLink("Back to List", "ListOfGroups")
+</div>
