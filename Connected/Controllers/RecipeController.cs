@@ -84,6 +84,7 @@ namespace Connected.Controllers
         }
 
         //comments below
+        /*
         [HttpGet]
         public ActionResult DisplayComment(int? id)
         {
@@ -113,7 +114,7 @@ namespace Connected.Controllers
             Comment comment = new Comment();
             UpdateModel(comment);
             service.AddComment(comment);
-            return RedirectToAction("DisplayRecipe"); //laga
-        }
+            return RedirectToAction("DisplayRecipe");
+        }*/
     }
 }
