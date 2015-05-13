@@ -23,6 +23,7 @@ namespace Connected.Controllers
         {
             UserPostService postService = new UserPostService();
             CommentService commentService = new CommentService();
+            UserService userService = new UserService();
 
             var posts = postService.GetPosts();
 
@@ -46,6 +47,17 @@ namespace Connected.Controllers
                     });                    
                 }
                 post.Comments = commentViewModels;
+            }
+            var friendRequests = userService.GetFriendRequests(this.User.Identity.GetUserId());
+
+            frontPage.Requests = new List<RequestViewModel>();
+
+            foreach (var request in friendRequests)
+            {
+                frontPage.Requests.Add(new RequestViewModel
+                {
+                    Friendship = request,
+                });
             }
 
            return View(frontPage);
@@ -85,7 +97,6 @@ namespace Connected.Controllers
                 }
                 post.Comments = commentViewModels;
             }
-
             return View(frontPage);
         }
 
@@ -232,6 +243,27 @@ namespace Connected.Controllers
             });
             db.SaveChanges();
 
+            return RedirectToAction("UserWall", new{id = userId});
+        }
+
+        public ActionResult AcceptFriendRequest(int friendshipId)
+        {
+            UserService userService = new UserService();
+            userService.AcceptRequest(friendshipId);
+            return RedirectToAction("Posts");
+        }
+
+        public ActionResult DenyFriendRequest(int friendshipId)
+        {
+            UserService userService = new UserService();
+            userService.RemoveFriendship(friendshipId);
+            return RedirectToAction("Posts");
+        }
+
+        public ActionResult RemoveFriend(string userId)
+        {
+            UserService userService = new UserService();
+            userService.RemoveFriendship(userService.FindFriendship(userId, this.User.Identity.GetUserId()));
             return RedirectToAction("UserWall", new{id = userId});
         }
     }

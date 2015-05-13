@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using Connected.Models;
@@ -40,16 +41,52 @@ namespace Connected.Services
             var friends1 = (from f in db.Friendships
                             where f.User1.Id == userId
                                   && f.User2.Id == friendId
-                            select f.Comfirmed);
+                            select f);
             var friends2 = (from f in db.Friendships
                 where f.User1.Id == friendId
                       && f.User2.Id == userId
-                select f.Comfirmed);
+                select f);
 
             var friends = friends1.Union(friends2).FirstOrDefault();
-            if (friends != null && friends == true) return 2;
-            else if (friends != null && friends == false) return 1;
+            if (friends != null && friends.Comfirmed == true) return 2;
+            else if (friends != null && friends.Comfirmed == false) return 1;
             else return 0;
+        }
+
+        public List<Friendship> GetFriendRequests(string userId)
+        {
+            var friendships = (from requests in db.Friendships
+                                where requests.User2Id == userId
+                                && requests.Comfirmed == false
+                                select requests).ToList();
+            return friendships;
+        }
+
+        public void AcceptRequest(int friendshipId)
+        {
+            Friendship friendship = new Friendship();
+            friendship = db.Friendships.Find(friendshipId);
+            friendship.Comfirmed = true;
+            db.Entry(friendship).State = EntityState.Modified;
+            db.SaveChanges();
+        }
+
+        public void RemoveFriendship(int friendshipId)
+        {
+            Friendship friendship = new Friendship();
+            friendship = db.Friendships.Find(friendshipId);
+            db.Entry(friendship).State = EntityState.Deleted;
+            db.SaveChanges();
+        }
+
+        public int FindFriendship(string user1Id, string user2Id)
+        {
+            var friendship = (from f in db.Friendships
+                where (f.User1Id == user1Id && f.User2Id == user2Id) ||
+                      (f.User1Id == user2Id && f.User2Id == user1Id)
+                select f.Id).FirstOrDefault();
+
+            return friendship;
         }
     }
 }

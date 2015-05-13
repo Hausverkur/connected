@@ -9,5 +9,6 @@ namespace Connected.ViewModels
     {
         public List<UserPostViewModel> Posts { get; set; }
         public UserViewModel UserInfo { get; set; }
+        public List<RequestViewModel> Requests { get; set; } 
     }
 }
