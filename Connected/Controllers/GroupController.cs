@@ -120,7 +120,7 @@ namespace Connected.Controllers
                 groupService.CreateGroupPost(this.User.Identity.GetUserId(), id.Value, post);
                 return RedirectToAction("DisplayGroup", id);
             }
-            return RedirectToAction("ListOfGroups");
+            return RedirectToAction("DisplayGroup");
         }
 
     }

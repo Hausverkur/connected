@@ -20,39 +20,49 @@
             @Html.DisplayFor(model => model.Description)
 
         </p>
+        <br />
+
         <section class="Image">
             @Html.DisplayFor(model => model.Image)
         </section>
-        <br />
+        <br /> <br />
+
         <p>
             <b>
                 @Html.DisplayNameFor(model => model.NumberOfUsers)
             </b>
             @Html.DisplayFor(model => model.NumberOfUsers)
         </p>
+        <br />
+        <p>
+            @if (!Model.UserInGroup)
+            {
+                @Html.ActionLink("Join group", "AddGroupMember", new { @id = Model.Id })
+
+            }
+            else
+            {
+                @Html.ActionLink("Leave group", "RemoveGroupMember", new { @id = Model.Id })
+                <br />
+                @Html.ActionLink("Add Group Post", "CreateGroupPost", new { @id = Model.Id })
+
+            }
+
+        </p>
         <br/> <br/>
+
+        <i>Posts</i>
+        <hr />
+        <br />
         @foreach (var post in Model.Posts)
         {
             <p><b>@post.Author.UserName</b></p>
             <p>@post.Body</p>
+            <br />
         }
     </div>
+    <br />
 
-    <p>
-        @if (!Model.UserInGroup)
-        {
-            @Html.ActionLink("Join group", "AddGroupMember", new { @id = Model.Id })
-
-        }
-        else
-        {
-            @Html.ActionLink("Leave group", "RemoveGroupMember", new { @id = Model.Id })
-            <br />
-            @Html.ActionLink("Add Group Post", "CreateGroupPost", new { @id = Model.Id })
-
-        }
-
-    </p>
 </div>
 <hr />
 
