@@ -10,10 +10,18 @@ namespace Connected.Services
 {
     public class UserService
     {
-        ApplicationDbContext db = new ApplicationDbContext();
+        private readonly IAppDataContext _db;
 
+        public UserService(IAppDataContext context)
+        {
+            _db = context ?? new ApplicationDbContext();
+        }
+
+        
         public ApplicationUser GetUserInfo(string userId)
         {
+            ApplicationDbContext db = new ApplicationDbContext();
+
             var information = (from i in db.Users
                                where i.Id == userId
                                select i).FirstOrDefault();
@@ -22,11 +30,11 @@ namespace Connected.Services
 
         public List<ApplicationUser> GetFriends(string userId)
         {
-            var friends1 = (from f in db.Friendships
+            var friends1 = (from f in _db.Friendships
                 where f.User1.Id == userId
                 select f.User2);
 
-            var friends2 = (from f in db.Friendships
+            var friends2 = (from f in _db.Friendships
                 where f.User2.Id == userId
                 select f.User1);
 
@@ -37,11 +45,11 @@ namespace Connected.Services
         }
         public int AreFriends(string userId, string friendId)
         {
-            var friends1 = (from f in db.Friendships
+            var friends1 = (from f in _db.Friendships
                             where f.User1.Id == userId
                                   && f.User2.Id == friendId
                             select f.Comfirmed);
-            var friends2 = (from f in db.Friendships
+            var friends2 = (from f in _db.Friendships
                 where f.User1.Id == friendId
                       && f.User2.Id == userId
                 select f.Comfirmed);
