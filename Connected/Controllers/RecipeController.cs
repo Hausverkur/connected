@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Services.Description;
 using Connected.Models;
 using Connected.Services;
 using Connected.ViewModels;
+using Microsoft.AspNet.Identity;
 
 namespace Connected.Controllers
 {
@@ -116,5 +118,25 @@ namespace Connected.Controllers
             service.AddComment(comment);
             return RedirectToAction("DisplayRecipe");
         }*/
+
+        [HttpGet]
+        public ActionResult CreateComment()
+        {
+            return View(new UserPost());
+        }
+
+        [HttpPost]
+        public ActionResult CreateComment(FormCollection formData, int? id)
+        {
+            if (id.HasValue)
+            {
+                RecipeService recipeService = new RecipeService();
+                UserPost post = new UserPost();
+                UpdateModel(post);
+                recipeService.CreateComment(this.User.Identity.GetUserId(), id.Value, post);
+                return RedirectToAction("DisplayRecipe", id);
+            }
+            return RedirectToAction("DisplayRecipe");
+        }
     }
 }

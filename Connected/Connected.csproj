@@ -289,7 +289,6 @@
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\Home\PostAPost.cshtml" />
     <Content Include="Views\Recipe\CreateComment.cshtml" />
-    <Content Include="Views\Recipe\DisplayComment.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Group\CreateGroup.cshtml" />
     <Content Include="Views\Group\CreateGroupPost.cshtml" />

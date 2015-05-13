@@ -51,43 +51,25 @@ namespace Connected.Services
             db.SaveChanges();
         }
 
-        //Recipe comments below
-        /*
-
-        public List<Comment> GetComments()
+        public void CreateComment(string userId, int groupId, UserPost post)
         {
-            ApplicationDbContext db = new ApplicationDbContext();
-
-            var comments = (from comment in db.Comments
-                            select comment).ToList();
-
-            return comments;
-        }
-
-         public static List<RecipeComment> GetCommentsByRecipeId(int Id)
-        {
-            ApplicationDbContext db = new ApplicationDbContext();
-
-            var recipecomments = (from recipecomment in db.RecipeComments
-                                  where recipecomment.RecipeReference.Id == Id
-                                  select recipecomment).ToList();
-
-            return recipecomments;
-        }
-        
-        public void AddComment(Comment comment) //vantar meira?
-        {
-            ApplicationDbContext db = new ApplicationDbContext();
-
-            db.Comments.Add(new Comment
+            DateTime now = DateTime.Now;
+            using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                Body = comment.Body,
-                Id = comment.Id,
-                DateTimePosted = DateTime.Now,
-                // Author = comment.Author,
-            });
-            db.SaveChanges();
-
-        }*/
+                db.UserPosts.Add(new UserPost
+                {
+                    UserId = userId,
+                    Body = post.Body,
+                    DateTimePosted = now,
+                    Likes = 0,
+                    Dislikes = 0,
+                    Shares = 0,
+                    GroupPost = true,
+                    GroupReference = groupId,
+                    ImageUrl = post.ImageUrl,
+                });
+                db.SaveChanges();
+            }
+        }
     }
 }

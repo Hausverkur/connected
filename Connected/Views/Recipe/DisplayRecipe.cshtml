@@ -63,3 +63,12 @@
     @Html.ActionLink("Comment", "CreateComment")
 
 </button>
+<i>Posts</i>
+<hr />
+<br /> <!--What is the problem here?-->
+@foreach (var post in Model.Posts)
+{
+    <p><b>@post.Author.UserName</b></p>
+    <p>@post.Body</p>
+    <br />
+}
