@@ -18,6 +18,6 @@ namespace Connected.ViewModels
         public string FullName { get; set; }
 
        
-        public virtual ApplicationUser User { get; set; }
+        //public virtual ApplicationUser User { get; set; }
     }
 }

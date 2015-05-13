@@ -164,12 +164,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RecipeController.cs" />
-<<<<<<< HEAD
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UserMessageController.cs" />
-=======
-    <Compile Include="fonts\UserMessageController.cs" />
->>>>>>> 38ef28cf3627d8b0ff2d90eef403c016d0cad71c
     <Compile Include="Controllers\UserWallController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -288,21 +284,13 @@
     <Content Include="Views\UserWall\UserWall.cshtml" />
     <Content Include="Views\Home\CreateUserPost.cshtml" />
     <Content Include="Views\UserMessage\Index.cshtml" />
-
-
     <Content Include="Views\Search\Search.cshtml" />
-
-
     <Content Include="Views\Home\PostAPost.cshtml" />
-
     <Content Include="Views\Recipe\CreateComment.cshtml" />
     <Content Include="Views\Recipe\DisplayComment.cshtml" />
-<<<<<<< HEAD
     <Content Include="Views\Search\Index.cshtml" />
-=======
     <Content Include="Views\Group\CreateGroup.cshtml" />
     <Content Include="Views\Group\CreateGroupPost.cshtml" />
->>>>>>> 38ef28cf3627d8b0ff2d90eef403c016d0cad71c
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

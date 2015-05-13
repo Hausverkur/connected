@@ -10,7 +10,7 @@ namespace Connected.Services
 {
     public class UserService
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        ApplicationDbContext db = new ApplicationDbContext();
 
         public ApplicationUser GetUserInfo(string userId)
         {
