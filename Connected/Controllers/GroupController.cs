@@ -110,15 +110,15 @@ namespace Connected.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddGroupPost(int? groupId, FormCollection formData)
+        public ActionResult CreateGroupPost(FormCollection formData, int? id)
         {
-            if (groupId.HasValue)
+            if (id.HasValue)
             {
                 GroupService groupService = new GroupService();
                 UserPost post = new UserPost();
                 UpdateModel(post);
-                groupService.CreateGroupPost(this.User.Identity.GetUserId(), groupId.Value, post);
-                return RedirectToAction("DisplayGroup", groupId);
+                groupService.CreateGroupPost(this.User.Identity.GetUserId(), id.Value, post);
+                return RedirectToAction("DisplayGroup", id);
             }
             return RedirectToAction("ListOfGroups");
         }

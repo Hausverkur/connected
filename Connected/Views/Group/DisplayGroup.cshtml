@@ -10,7 +10,8 @@
 
 <div>
     <h4>GroupViewModel</h4>
-    <hr />
+    <hr/>
+    @Html.ActionLink("Add Post", "CreateGroupPost", new{id = Model.Id})
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
@@ -21,7 +22,7 @@
         }
         else
         {
-            @Html.ActionLink("Leave group", "RemoveGroupMember", new { @id = Model.Id })
+            @Html.ActionLink("Leave group", "RemoveGroupMember", new {@id = Model.Id})
         }
         <dd>
             @Html.DisplayFor(model => model.Name)
@@ -52,4 +53,9 @@
         </dd>
 
     </dl>
+    @foreach (var post in Model.Posts)
+    {
+        <p><b>@post.Author.UserName</b></p>
+        <p>@post.Body</p>
+    }
 </div>
