@@ -10,7 +10,7 @@
 <h2>ListOfGroups</h2>
     <br />
 <button class="Create">
-    @Html.ActionLink("Create New Group", "CreateGroup")
+    @Html.ActionLink("Create Group", "CreateGroup")
 </button>
     <div class="GroupArea">
         @foreach (var item in Model)
@@ -21,9 +21,10 @@
                 @Html.ActionLink(item.Name, "DisplayGroup", new {id = item.Id})
 
             </h3>
-    <div class="Image">
-        @Html.DisplayFor(modelItem => item.Image)
-    </div>
+            <div class="Image">
+                <img src="../../Images/Group.png" height="70px" width="70px" class="Image"  alt="Logo" />
+                <!--Html.DisplayFor(modelItem => item.Image)-->
+            </div>
             <p class="Description">
                 @Html.DisplayFor(modelItem => item.Description)
             </p>

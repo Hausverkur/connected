@@ -8,51 +8,64 @@
 
 }
 
-<h2>@Html.DisplayFor(model => model.Name)</h2>
+<div class="Border">
+    <h2>@Html.DisplayFor(model => model.Name)</h2>
 
-<br/>
-<div>
-    <p>
-        <b class="DescriptionName">
-            @Html.DisplayNameFor(model => model.Description)
-        </b>
+    <br />
+    <div>
+        <p>
+            <b class="DescriptionName">
+                @Html.DisplayNameFor(model => model.Description)
+            </b>
             @Html.DisplayFor(model => model.Description)
-  
-    </p>
-    <section class="Image">
-        @Html.DisplayFor(model => model.Image)
-    </section>
-    <p>
-        <b>
-            @Html.DisplayNameFor(model => model.NumberOfUsers)
-        </b>
-        @Html.DisplayFor(model => model.NumberOfUsers)
-    </p>
 
-    @foreach (var post in Model.Posts)
-    {
-        <p><b>@post.Author.UserName</b></p>
-        <p>@post.Body</p>
-    }
+        </p>
+        <br />
+
+        <section class="Image">
+            @Html.DisplayFor(model => model.Image)
+        </section>
+        <br /> <br />
+
+        <p>
+            <b>
+                @Html.DisplayNameFor(model => model.NumberOfUsers)
+            </b>
+            @Html.DisplayFor(model => model.NumberOfUsers)
+        </p>
+        <br />
+        <p>
+            @if (!Model.UserInGroup)
+            {
+                @Html.ActionLink("Join group", "AddGroupMember", new { @id = Model.Id })
+
+            }
+            else
+            {
+                @Html.ActionLink("Leave group", "RemoveGroupMember", new { @id = Model.Id })
+                <br />
+                @Html.ActionLink("Add Group Post", "CreateGroupPost", new { @id = Model.Id })
+
+            }
+
+        </p>
+        <br/> <br/>
+
+        <i>Posts</i>
+        <hr />
+        <br />
+        @foreach (var post in Model.Posts)
+        {
+            <p><b>@post.Author.UserName</b></p>
+            <p>@post.Body</p>
+            <br />
+        }
+    </div>
+    <br />
+
 </div>
-
-<p>
-    @if (!Model.UserInGroup)
-    {
-        @Html.ActionLink("Join group", "AddGroupMember", new { @id = Model.Id })
-        
-    }
-    else
-    {
-        @Html.ActionLink("Leave group", "RemoveGroupMember", new { @id = Model.Id })
-       <br/>
-        @Html.ActionLink("Add Group Post", "CreateGroupPost", new { id = Model.Id })
-   
-    }
-
-</p>
-
 <hr />
+
 <div>
     @Html.ActionLink("Back to List", "ListOfGroups")
 </div>

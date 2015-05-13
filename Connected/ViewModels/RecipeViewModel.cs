@@ -18,10 +18,11 @@ namespace Connected.ViewModels
         public int Likes { get; set; }
         public int Dislikes { get; set; }
 
-        //viljum sér viewmodel fyrir comments og laga þetta
+        //can remove
         public List<RecipeCommentViewModel> Comments { get; set; }
 
         //public virtual ApplicationUser Author { get; set; }
+        public List<ApplicationUser> Users { get; set; }
 
     }
 }

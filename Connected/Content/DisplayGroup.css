@@ -1,2 +1,7 @@
-﻿body {
+﻿.Border {
+    border: thin;
+    /*margin-right: 20%;*/
+    margin-left: 25%;
 }
+
+

@@ -1,40 +1,37 @@
-﻿.RecipeName, #RecipeName {
+﻿.create {
+    margin-left: 80%;
+    border-left: 20px;  
+    font-size: 125%;
+    text-decoration: none;
+    
+}
+
+.RecipeArea{
+    border: solid black;
+    margin-right: 20%;
+    margin-left: 15%;
+}
+
+.RecipeName {
   margin-left: 15%;
   font-weight: bold;
 }
 
 
-.Description, #Description {
-   margin-right: 15%;
-   margin-left: 25%;
-}
-
-.Likes {
-    font-weight: bold;
-    margin-left: 25%;
-    margin-bottom: 1%;
+.Description {
+  margin-right: 20%;
+  margin-left: 15%;
 }
 
 .Details{
-    margin-left: 25%;
+    margin-left: 15%;
     margin-bottom: 10%;
 
 }
 
-
-.create {
-    margin-left: 85%;
-    border-left: 20px;
-    
-}
-
-.create, #create{
-    font-size: 125%;
-    text-decoration: none;
-}
-
-.ListOfRecipes{
-    border: solid black;
-    margin-right: 18%;
-    margin-left: 18%;
+.Image { /*This needs to be fixed*/
+    float: left;
+    max-width: 70px;
+    margin-top: -5%;
+    max-height: 70px;
 }
