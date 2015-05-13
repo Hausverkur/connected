@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Connected.ViewModels.GroupViewModel>
+﻿@using System.Activities.Expressions
+@model IEnumerable<Connected.ViewModels.GroupViewModel>
 
 @{
     ViewBag.Title = "ListOfGroups";
@@ -29,7 +30,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.ActionLink(item.Name, "DisplayGroup", new {id = item.Id})
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Description)
@@ -41,9 +42,14 @@
             @Html.DisplayFor(modelItem => item.NumberOfUsers)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "DisplayGroup", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @if (item.UserInGroup)
+            {
+                @Html.ActionLink("Leave", "RemoveGroupMember", new {id = item.Id})
+            }
+            else
+            {
+                @Html.ActionLink("Join", "AddGroupMember", new {id = item.Id})
+            }
         </td>
     </tr>
 }

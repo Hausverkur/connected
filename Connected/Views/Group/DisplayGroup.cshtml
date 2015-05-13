@@ -1,5 +1,7 @@
 ﻿@model Connected.ViewModels.GroupViewModel
-
+@using System.Activities.Expressions
+@using System.Diagnostics.Eventing.Reader
+@using Connected.Services;
 @{
     ViewBag.Title = "DisplayGroup";
 }
@@ -8,12 +10,20 @@
 
 <div>
     <h4>GroupViewModel</h4>
-    <hr />
+    <hr/>
+    @Html.ActionLink("Add Post", "CreateGroupPost", new{id = Model.Id})
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-
+        @if (!Model.UserInGroup)
+        {
+            @Html.ActionLink("Join group", "AddGroupMember", new {@id = Model.Id})
+        }
+        else
+        {
+            @Html.ActionLink("Leave group", "RemoveGroupMember", new {@id = Model.Id})
+        }
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
@@ -43,4 +53,9 @@
         </dd>
 
     </dl>
+    @foreach (var post in Model.Posts)
+    {
+        <p><b>@post.Author.UserName</b></p>
+        <p>@post.Body</p>
+    }
 </div>
