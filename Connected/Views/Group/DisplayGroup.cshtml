@@ -8,21 +8,17 @@
 
 <h2>DisplayGroup</h2>
 
+<!--<h4>GroupViewModel</h4>-->
+<br/>
 <div>
-    <h4>GroupViewModel</h4>
+
+    
     <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-        @if (!Model.UserInGroup)
-        {
-            @Html.ActionLink("Join group", "AddGroupMember", new {@id = Model.Id})
-        }
-        else
-        {
-            @Html.ActionLink("Leave group", "RemoveGroupMember", new { @id = Model.Id })
-        }
+
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
@@ -51,5 +47,27 @@
             @Html.DisplayFor(model => model.NumberOfUsers)
         </dd>
 
+
     </dl>
+</div>
+
+<p>
+    @if (!Model.UserInGroup)
+    {
+        @Html.ActionLink("Join group", "AddGroupMember", new { @id = Model.Id })
+        
+    }
+    else
+    {
+        @Html.ActionLink("Leave group", "RemoveGroupMember", new { @id = Model.Id })
+       <br/>
+        @Html.ActionLink("Add Group Post", "CreateGroupPost")
+   
+    }
+
+</p>
+
+<hr />
+<div>
+    @Html.ActionLink("Back to List", "ListOfGroups")
 </div>
