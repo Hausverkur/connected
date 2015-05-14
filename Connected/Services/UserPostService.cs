@@ -34,6 +34,7 @@ namespace Connected.Services
         {
             var posts = (from p in db.UserPosts
                          where p.User.Id == userId
+                         && p.GroupPost == false
                          select p).ToList();
             List<UserPostViewModel> userPosts = new List<UserPostViewModel>();
 

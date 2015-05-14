@@ -163,6 +163,7 @@
     <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\RecipeController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\UserWallController.cs" />
@@ -298,6 +299,7 @@
     <Content Include="Views\Home\View.cshtml" />
     <Content Include="Views\Home\AddUserPost.cshtml" />
     <Content Include="Views\Home\CreateComment.cshtml" />
+    <Content Include="Views\Message\Messages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

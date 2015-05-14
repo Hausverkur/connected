@@ -4,9 +4,8 @@
 
 @{
     ViewBag.Title = "Search";
-    <link href="~/Content/Search.css" rel="stylesheet" />
+    <link href="~/Content/Search.css" rel="stylesheet"/>
 }
-
 <!--Þetta er kóði sem er fundinn á netinu og inniheldur bara HTML/CSS-->
 <!--Á eftir að laga mikið til en þessi kóði er samt alveg keyranlegur-->
 <!--T.D. er hægt að cut-a þennan kóða yfir í RecipeList og sjá útlit og virkni þessa kóða-->
@@ -29,23 +28,24 @@
 
                 foreach (var user in Model.Users)
                 {
-                    <p>@user.UserName</p> //link to userwall
+                    <p>@Html.ActionLink(user.UserName, "UserWall", "Home", new { id = user.Id }, null)</p>
                 }
 
             }
         </div>
 
     <div class="Recipe">
-        @if (Model.Recipes.Count > 0)
-        {
-            <h2>Recipes</h2>
+      
+    @if (Model.Recipes.Count > 0)
+    {
+        <h2>Recipes</h2>
 
             foreach (var recipe in Model.Recipes)
             {
-                <p>@recipe.Name</p> //link to display recipe
+                <p>@Html.ActionLink(recipe.Name, "DisplayRecipe", "Recipe", new {id = recipe.Id}, null)</p>
             }
 
-        }
+    }   
     </div>
 
     <div class="Group">
@@ -55,10 +55,12 @@
 
             foreach (var group in Model.Groups)
             {
-                <p>@group.Name</p> // link to display group
+
+                <p>@Html.ActionLink(group.Name, "DisplayGroup", "Group", new {id = group.Id}, null)</p>
             }
         }
     </div>
+
 </div>
 
 <div class="Footer">
