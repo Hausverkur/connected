@@ -85,6 +85,7 @@ namespace Connected.Services
         public void RemoveFriendship(int friendshipId)
         {
             ApplicationDbContext db = new ApplicationDbContext();
+
             Friendship friendship = new Friendship();
             friendship = db.Friendships.Find(friendshipId);
             db.Entry(friendship).State = EntityState.Deleted;
