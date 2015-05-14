@@ -80,66 +80,7 @@ namespace Connected.Controllers
         }
         public ActionResult MyWall()
         {
-            
-            UserPostService postService = new UserPostService(null);
-            CommentService commentService = new CommentService();
-
-            var userId = this.User.Identity.GetUserId();
-
-            var posts = postService.GetPostsByUserId(userId);
-
-            FrontPageViewModel frontPage = new FrontPageViewModel
-            {
-                Posts = posts,
-            };
-
-            foreach (var post in frontPage.Posts)
-            {
-                var Comments = commentService.GetCommentsByPostId(post.Id);
-                List<CommentViewModel> commentViewModels = new List<CommentViewModel>();
-                foreach (var comment in Comments)
-                {
-                    commentViewModels.Add(new CommentViewModel
-                    {
-                        Body = comment.Body,
-                        Id = comment.Id,
-                        DateTimePosted = comment.DateTimePosted,
-                        Author = comment.Author,
-                    });
-                }
-                post.Comments = commentViewModels;
-            }
-            return View(frontPage);
-            //Hvar á þetta að vera!!!!
-            return RedirectToAction("UserWall", new { id = this.User.Identity.GetUserId() });
-        }
-
-        public ActionResult Messages()
-        {
-            ViewBag.Message = "Your page.";
-
-            return View();
-        }
-
-        public ActionResult Groups()
-        {
-            ViewBag.Message = "Your page.";
-
-            return View();
-        }
-
-        public ActionResult Recipes()
-        {
-            ViewBag.Message = "Your page.";
-
-            return View();
-        }
-
-        public ActionResult Search()
-        {
-            ViewBag.Message = "Your page.";
-
-            return View();
+            return RedirectToAction("UserWall", new{id = this.User.Identity.GetUserId()});
         }
 
         [HttpGet]
