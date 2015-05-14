@@ -1,7 +1,7 @@
 ﻿.Post {
    /* background-color: hotpink;*/
-   border: 1px solid lightgray;
-    border-radius: 10px;
+    /*border: 1px solid lightgray;*/
+    /*border-radius: 10px;*/
 }
 
 .italic {
@@ -9,15 +9,17 @@
 }
 
 .Navbar {
-    border: medium black;
+    border: 2px solid lightgray;
+    border-radius: 10px;
     float: right;
     /*background-color: red;*/
 }
 
 .Description {
-    margin-right: 60%;
+    margin-right: 30%;
 }
 
 .Footer {
-    margin-top: 5%;
+    /*margin-top: 5%;*/
+    clear: both;
 }
