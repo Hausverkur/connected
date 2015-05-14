@@ -9,10 +9,16 @@ namespace Connected.Services
 {
     public class UserPostService
     {
+        private readonly IAppDataContext _db;
+
+        public UserPostService(IAppDataContext context)
+        {
+            _db = context ?? new ApplicationDbContext();
+        }
+
         public List<UserPostViewModel> GetPosts()
         {
-            ApplicationDbContext db = new ApplicationDbContext();
-            var posts = (from p in db.UserPosts.OfType<UserPost>()
+            var posts = (from p in _db.UserPosts.OfType<UserPost>()
                          select p).ToList();
             List<UserPostViewModel> userPosts = new List<UserPostViewModel>();
             
@@ -32,8 +38,7 @@ namespace Connected.Services
         }
         public List<UserPostViewModel> GetPostsByUserId(string userId)
         {
-            ApplicationDbContext db = new ApplicationDbContext();
-            var posts = (from p in db.UserPosts
+            var posts = (from p in _db.UserPosts
                          where p.User.Id == userId
                          select p).ToList();
             List<UserPostViewModel> userPosts = new List<UserPostViewModel>();
@@ -56,9 +61,8 @@ namespace Connected.Services
         public void AddUserPost(UserPost post, string userId)
         {
             DateTime now = DateTime.Now;
-            using (ApplicationDbContext db = new ApplicationDbContext())
-            {
-                db.UserPosts.Add(new UserPost
+            
+                _db.UserPosts.Add(new UserPost
             {
                 UserId = userId,
                 Body = post.Body,
@@ -70,7 +74,7 @@ namespace Connected.Services
                 GroupReference = 0,
                 ImageUrl = post.ImageUrl,
             });
-                db.SaveChanges();
+                _db.SaveChanges();
             }
         }
 
@@ -79,4 +83,4 @@ namespace Connected.Services
             
         }*/
     }
-}
+

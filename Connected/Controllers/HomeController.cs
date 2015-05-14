@@ -21,7 +21,7 @@ namespace Connected.Controllers
 
         public ActionResult Posts()
         {
-            UserPostService postService = new UserPostService();
+            UserPostService postService = new UserPostService(null);
             CommentService commentService = new CommentService();
             UserService userService = new UserService(null);
 
@@ -69,7 +69,7 @@ namespace Connected.Controllers
         }
         public ActionResult MyWall()
         {
-            UserPostService postService = new UserPostService();
+            UserPostService postService = new UserPostService(null);
             CommentService commentService = new CommentService();
 
             var userId = this.User.Identity.GetUserId();
@@ -137,7 +137,7 @@ namespace Connected.Controllers
         [HttpPost]
         public ActionResult CreateUserPost(FormCollection formData)
         {
-            UserPostService postService = new UserPostService();
+            UserPostService postService = new UserPostService(null);
             UserService userService = new UserService(null);
             UserPost post = new UserPost();
             UpdateModel(post);
@@ -154,7 +154,7 @@ namespace Connected.Controllers
         [HttpPost]
         public ActionResult AddUserPost(FormCollection formData)
         {
-            UserPostService postService = new UserPostService();
+            UserPostService postService = new UserPostService(null);
             UserService userService = new UserService(null);
             UserPost post = new UserPost();
             UpdateModel(post);
@@ -168,7 +168,7 @@ namespace Connected.Controllers
              {
                  id = this.User.Identity.GetUserId();
              }
-            UserPostService postService = new UserPostService();
+            UserPostService postService = new UserPostService(null);
             CommentService commentService = new CommentService();
             UserService userService = new UserService(null);
 

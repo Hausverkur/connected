@@ -38,7 +38,7 @@ namespace Connected.Tests.Services
             {
                 Id = "user4",
             };
-
+            
             var f1 = new Friendship
             {
                 Comfirmed = true,
@@ -99,8 +99,32 @@ namespace Connected.Tests.Services
                 User2 = u1,
             };
             mockDb.Friendships.Add(f6);
+            var p1 = new UserPost
+            {
+                Id = 1,
+                Body = "Halló",
+                User = u1,
+                UserId = "user1",
+                GroupReference = 1,
+                GroupPost = false,
+                DateTimePosted = DateTime.Now,
+            };
+            mockDb.UserPosts.Add(p1);
+            var p2 = new UserPost
+            {
+                Id = 2,
+                Body = "Halló",
+                User = u1,
+                UserId = "user1",
+                GroupReference = 1,
+                GroupPost = false,
+                DateTimePosted = DateTime.Now,
+            };
+            mockDb.UserPosts.Add(p2);
 
-            _service = new UserService(mockDb);   
+
+            _service = new UserService(mockDb); 
+            
         }
 
         [TestMethod]
@@ -117,6 +141,23 @@ namespace Connected.Tests.Services
             foreach (var item in friends)
             {
                 Assert.AreNotEqual(item, "user1");
+            }
+        }
+
+        [TestMethod]
+        public void TestGetFriendsForUser2()
+        {
+            //ARRANGE:
+            const string user = "user2";
+
+            //ACT:
+            var friends = _service.GetFriends(user);
+
+            //ASSERT:
+            Assert.AreEqual(1, friends.Count);
+            foreach (var item in friends)
+            {
+                Assert.AreNotEqual(item, "user2");
             }
         }
 
