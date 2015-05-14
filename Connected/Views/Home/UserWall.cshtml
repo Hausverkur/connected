@@ -6,7 +6,8 @@
     <link href="~/Content/UserWall.css" rel="stylesheet" />
 }
 
-<h2>@Model.User.UserName</h2>
+<h2>@Model.User.UserName</h2> 
+
 
 
 <div class="nav">
@@ -17,9 +18,11 @@
         <p><b>Age:</b> @Model.User.Age</p>
         <p><b>Gender:</b> @Model.User.Gender</p>
         <p><b>Description:</b></p>
-        <br />
-        @Model.User.Description
-        <br />
+        <p class="Description">@Model.User.Description</p>
+        <button>
+
+            @Html.ActionLink("Edit Information", "Information", new { id = Model.Id })
+        </button>
     </div>
 
     <div class="Friends">

@@ -17,21 +17,17 @@
     }
 </div>
 
-<br />
-
-<div class="Border">
-
     <div class="Users">
-            @if (Model.Users.Count > 0)
+        @if (Model.Users.Count > 0)
+        {
+            <h2>Users</h2>
+
+            foreach (var user in Model.Users)
             {
-                <h2>Users</h2>
-
-                foreach (var user in Model.Users)
-                {
-                    <p>@Html.ActionLink(user.UserName, "UserWall", "Home", new { id = user.Id }, null)</p>
-                }
-
+                <p>@Html.ActionLink(user.UserName, "UserWall", "Home", new { id = user.Id }, null)</p>
             }
+
+        }
     </div>
 
     <div class="Recipe">
@@ -61,7 +57,6 @@
         }
     </div>
 
-</div>
 
 <div class="Footer">
     <hr/>
