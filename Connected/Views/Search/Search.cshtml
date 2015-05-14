@@ -1,117 +1,67 @@
 ﻿@using System.Web.Mvc.Html
+@using System.Web.UI.WebControls
 @model Connected.ViewModels.SearchViewModel
 
 @{
     ViewBag.Title = "Search";
+    <link href="~/Content/Search.css" rel="stylesheet" />
 }
 
 <!--Þetta er kóði sem er fundinn á netinu og inniheldur bara HTML/CSS-->
 <!--Á eftir að laga mikið til en þessi kóði er samt alveg keyranlegur-->
 <!--T.D. er hægt að cut-a þennan kóða yfir í RecipeList og sjá útlit og virkni þessa kóða-->
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Search Box Example 1</title>
-    <meta name="ROBOTS" content="NOINDEX, NOFOLLOW" />
-    <!-- CSS styles for standard search box -->
-    <style type="text/css">
-        #tfheader {
-            background-color: #c3dfef;
+
+<div>
+    <div class="Search">
+        @using (Html.BeginForm("Search", "Search", FormMethod.Get))
+        {
+            @Html.TextBox("search")
+            <input type="submit" value="Search"/>
+
         }
+    </div>
 
-        #tfnewsearch {
-            float: right;
-            padding: 20px;
-        }
-
-        .tftextinput {
-            margin: 0;
-            padding: 5px 15px;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 14px;
-            border: 1px solid #0076a3;
-            border-right: 0px;
-            border-top-left-radius: 5px 5px;
-            border-bottom-left-radius: 5px 5px;
-        }
-
-        .tfbutton {
-            margin: 0;
-            padding: 5px 15px;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 14px;
-            outline: none;
-            cursor: pointer;
-            text-align: center;
-            text-decoration: none;
-            color: #ffffff;
-            border: solid 1px #0076a3;
-            border-right: 0px;
-            background: #0095cd;
-            background: -webkit-gradient(linear, left top, left bottom, from(#00adee), to(#0078a5));
-            background: -moz-linear-gradient(top, #00adee, #0078a5);
-            border-top-right-radius: 5px 5px;
-            border-bottom-right-radius: 5px 5px;
-        }
-
-            .tfbutton:hover {
-                text-decoration: none;
-                background: #007ead;
-                background: -webkit-gradient(linear, left top, left bottom, from(#0095cc), to(#00678e));
-                background: -moz-linear-gradient(top, #0095cc, #00678e);
-            }
-            /* Fixes submit button height problem in Firefox */
-            .tfbutton::-moz-focus-inner {
-                border: 0;
-            }
-
-        .tfclear {
-            clear: both;
-        }
-    </style>
-</head>
-<body>
-    <!-- HTML for SEARCH BAR -->
-<div id="tfheader">
-    @using (Html.BeginForm("Search", "Search", FormMethod.Get))
-    {
-        @Html.TextBox("search") <input type="submit" value="Search"/>
-    }
-
-    @if (Model.Users.Count > 0)
-    {
-        <h2>Users</h2>
-        <ul>
-            @foreach (var user in Model.Users)
+        <div class="Users">
+            @if (Model.Users.Count > 0)
             {
-                <li>@user.UserName</li>
-            }
-        </ul>
-    }
-    
-    @if (Model.Recipes.Count > 0)
-    {
-        <h2>Recipes</h2>
-        <ul>
-            @foreach (var recipe in Model.Recipes)
-            {
-                <li>@recipe.Name</li>
-            }
-        </ul>
-    }
+                <h2>Users</h2>
 
+                foreach (var user in Model.Users)
+                {
+                    <p>@user.UserName</p> //link to userwall
+                }
+
+            }
+        </div>
+
+    <div class="Recipe">
+        @if (Model.Recipes.Count > 0)
+        {
+            <h2>Recipes</h2>
+
+            foreach (var recipe in Model.Recipes)
+            {
+                <p>@recipe.Name</p> //link to display recipe
+            }
+
+        }
+    </div>
+
+    <div class="Group">
         @if (Model.Groups.Count > 0)
-    {
-        <h2>Groups</h2>
-        <ul>
-            @foreach (var group in Model.Groups)
-            {
-                <li>@group.Name</li>
-            }
-        </ul>
-    }
-</div>
-</body>
-</html>
+        {
+            <h2>Groups</h2>
 
+            foreach (var group in Model.Groups)
+            {
+                <p>@group.Name</p> // link to display group
+            }
+        }
+    </div>
+</div>
+
+<div class="Footer">
+    <hr/>
+    <a href="javascript:history.go(-1)">Back</a>
+</div>

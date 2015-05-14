@@ -1,0 +1,29 @@
+﻿.Details {
+    margin-right: 60%;
+    margin-bottom: 5%;
+}
+
+.Posts {
+    float: right;
+    margin-right: 35%;
+    padding-right: 5%;
+}
+
+.Id {
+    font-weight: bold;
+}
+
+.Text {
+    margin-left: 10%;
+    margin-bottom: 5%;
+    margin-right: -10%;
+}
+
+.Friends {
+    margin-right: 60%;
+}
+
+.Footer {
+    margin-top: 20%;
+    clear: right;
+}

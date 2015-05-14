@@ -3,40 +3,32 @@
 
 @{
     ViewBag.Title = "Posts";
+    <link href="~/Content/FrontPage.css" rel="stylesheet" />
 }
 
-<h2>Posts</h2>
+<h2>Friend Posts</h2>
 
+<p>
+    @foreach (var r in Model.Requests)
+    {
+        <div class="Request">
+            @r.Friendship.User1.UserName @Html.ActionLink("Accept", "AcceptFriendRequest", new {FriendshipId = r.Friendship.Id}) @Html.ActionLink("Deny", "DenyFriendRequest", new {FriendshipId = r.Friendship.Id})
+        </div>
+     }
+</p>
 
-<div>
-    <h4>UserPost</h4>
-    <dl class="dl-horizontal">
+<div class="Posts">
         @foreach (var p in Model.Posts)
         {
-            <p>
-                @Html.ActionLink(p.Author.UserName, "UserWall", new {id = p.Author.Id})</p>
-            <dt>
-                @p.Id
-            </dt>
-
-            <dd>
-                @p.Body
-            </dd>
-
-            foreach (var c in p.Comments)
-            {
-                @c.Body
-                <br/>
-            }
+                <div class="Id">
+                    @Html.ActionLink(p.Author.UserName, "UserWall", new { id = p.Author.Id })
+                </div>
+                <div class="Text">
+                    @p.Body
+                </div>
+                <div class="Date">
+                    @p.DateTimePosted
+                </div>
         }
 
-    </dl>
-    <ul>
-        @foreach (var r in Model.Requests)
-        {
-            <li>@r.Friendship.User1.UserName @Html.ActionLink("Accept", "AcceptFriendRequest", new{FriendshipId = r.Friendship.Id})  @Html.ActionLink("Deny", "DenyFriendRequest", new { FriendshipId = r.Friendship.Id })</li>
-        }
-    </ul>
 </div>
-<p>
-</p>

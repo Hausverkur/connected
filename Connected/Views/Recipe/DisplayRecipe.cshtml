@@ -64,9 +64,7 @@
     @Html.ActionLink("Comment", "CreateRecipeComment",  new{id = Model.Id})
 
 </button>
-<i>Posts</i>
-<hr />
-<br /> <!--What is the problem here?-->
+<!--What is the problem here?-->
 @foreach (var comment in Model.Comments)
 {
     <p><b>@comment.Author.UserName</b></p>
