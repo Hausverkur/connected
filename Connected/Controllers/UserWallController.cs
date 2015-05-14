@@ -22,7 +22,7 @@ namespace Connected.Controllers
         {
             UserPostService postService = new UserPostService();
             CommentService commentService = new CommentService();
-            UserService userService = new UserService();
+            UserService userService = new UserService(null);
 
             var userId = this.User.Identity.GetUserId();
 
