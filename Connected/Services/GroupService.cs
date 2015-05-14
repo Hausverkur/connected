@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity.ModelConfiguration.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Web;
 using System.Web.Mvc;
 using Connected.Models;
@@ -18,11 +19,16 @@ namespace Connected.Services
     
     public class GroupService
     {
-        ApplicationDbContext db = new ApplicationDbContext();
+        private readonly IAppDataContext _db;
+
+        public GroupService(IAppDataContext context)
+        {
+            _db = context ?? new ApplicationDbContext();
+        }
 
         public List<Group> GetListOfGroups()
         {
-            var groups = (from g in db.Groups
+            var groups = (from g in _db.Groups
                           orderby g.NumberOfUsers descending
                           select g).ToList();
 
@@ -34,7 +40,7 @@ namespace Connected.Services
             if (id.HasValue)
             {
                 int theId = id.Value;
-                var group = (from g in db.Groups
+                var group = (from g in _db.Groups
                     where g.Id == theId
                     select g).First();
                 return group;
@@ -44,33 +50,44 @@ namespace Connected.Services
 
         public void AddGroup(Group group, string userId)
         {
-            Group g = new Group
+
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            var user = (from u in db.Users
+                        where u.Id == userId
+                        select u).FirstOrDefault();
+
+            if (user != null)
             {
-                Description = group.Description,
-                Id = group.Id,
-                Image = group.Image,
-                Name = group.Name,
-                NumberOfUsers = group.NumberOfUsers,
-            };
-            db.Groups.Add(g);
-            db.SaveChanges();
+                Group g = new Group
+                {
+                    Description = group.Description,
+                    Id = group.Id,
+                    Image = group.Image,
+                    Name = group.Name,
+                    NumberOfUsers = group.NumberOfUsers,
+                };
+                _db.Groups.Add(g);
+                _db.SaveChanges();
+           }
+            else return;
         }
 
         public void AddGroupMember(int groupId, string userId)
         {
-            db.GroupMembers.Add(new GroupMember
+            _db.GroupMembers.Add(new GroupMember
             {
                 GroupId = groupId,
                 UserId = userId,
             });
 
-            db.SaveChanges();
+            _db.SaveChanges();
             UpdateGroup(groupId);
         }
 
         public bool IsInGroup(int groupId, string userId)
         {
-            var inGroup = (from member in db.GroupMembers
+            var inGroup = (from member in _db.GroupMembers
                 where member.GroupId == groupId && member.UserId == userId
                 select member).ToList();
             if (inGroup.Count > 0)
@@ -82,11 +99,11 @@ namespace Connected.Services
 
         public void RemoveGroupMember(int groupId, string userId)
         {
-            var member = (from m in db.GroupMembers
+            var member = (from m in _db.GroupMembers
                 where m.GroupId == groupId && m.UserId == userId
                 select m).First();
-            db.GroupMembers.Remove(member);
-            db.SaveChanges();
+            _db.GroupMembers.Remove(member);
+            _db.SaveChanges();
             UpdateGroup(groupId);
         }
 
@@ -112,8 +129,8 @@ namespace Connected.Services
 
         public List<UserPostViewModel> GetGroupPostsById(int groupId)
         {
-            var posts = (from p in db.UserPosts
-                where p.GroupReference == groupId
+            var posts = (from p in _db.UserPosts
+                where p.GroupReference == groupId && p.GroupPost == true
                 select p).ToList();
             List<UserPostViewModel> groupPosts = new List<UserPostViewModel>();
             foreach (var post in posts)
@@ -138,27 +155,37 @@ namespace Connected.Services
         public void CreateGroupPost(string userId, int groupId, UserPost post)
         {
             DateTime now = DateTime.Now;
-            using (ApplicationDbContext db = new ApplicationDbContext())
+
+            var userInGroup = (from u in _db.GroupMembers
+                                where u.UserId == userId && u.GroupId == groupId 
+                                select u).FirstOrDefault();
+
+            if (userInGroup != null)
             {
-                db.UserPosts.Add(new UserPost
+                //using (ApplicationDbContext db = new ApplicationDbContext())
                 {
-                    UserId = userId,
-                    Body = post.Body,
-                    DateTimePosted = now,
-                    Likes = 0,
-                    Dislikes = 0,
-                    Shares = 0,
-                    GroupPost = true,
-                    GroupReference = groupId,
-                    ImageUrl = post.ImageUrl,
-                });
-                db.SaveChanges();
-            }
+                    _db.UserPosts.Add(new UserPost
+                    {
+                        UserId = userId,
+                        Body = post.Body,
+                        DateTimePosted = now,
+                        Likes = 0,
+                        Dislikes = 0,
+                        Shares = 0,
+                        GroupPost = true,
+                        GroupReference = groupId,
+                        ImageUrl = post.ImageUrl,
+                    });
+                    _db.SaveChanges();
+                }
+           }
+            else return;
+
         }
 
         public List<Group> GetGroupsForUser(string userId)
         {
-            var members = (from m in db.GroupMembers
+            var members = (from m in _db.GroupMembers
                               where m.UserId == userId
                               select m.GroupId).ToList();
 
@@ -166,7 +193,7 @@ namespace Connected.Services
 
             foreach (var member in members)
             {
-                var group = (from g in db.Groups
+                var group = (from g in _db.Groups
                     where g.Id == member
                     select g).FirstOrDefault();
                 model.Add(group);

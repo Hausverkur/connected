@@ -20,7 +20,7 @@ namespace Connected.Controllers
 
         public ActionResult UserWall(string id)
         {
-            UserPostService postService = new UserPostService();
+            UserPostService postService = new UserPostService(null);
             CommentService commentService = new CommentService();
             UserService userService = new UserService(null);
 
