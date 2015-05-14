@@ -151,7 +151,7 @@ namespace Connected.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Name, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -163,7 +163,7 @@ namespace Connected.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("UserWall", "Home");
                 }
                 AddErrors(result);
             }
@@ -422,6 +422,8 @@ namespace Connected.Controllers
 
             base.Dispose(disposing);
         }
+
+
 
         #region Helpers
         // Used for XSRF protection when adding external logins
