@@ -114,20 +114,6 @@ namespace Connected.Tests.Services
         }
         
         [TestMethod]
-        public void TestGetUserById()
-        {
-            //ARRANGE:
-            const string userId = "user4";
-            
-
-            //ACT:
-            var user = _service.GetUserInfo(userId);
-
-            //ASSERT:
-            Assert.AreEqual(userId, user.Id);
-        }
-
-        [TestMethod]
         public void TestGetFriendsForUser2()
         {
             //ARRANGE:
