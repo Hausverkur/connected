@@ -6,7 +6,7 @@
     <link href="~/Content/UserWall.css" rel="stylesheet" />
 }
 
-<h2>@Model.User.FullName</h2>
+<h2>@Model.User.UserName</h2>
 
 <div class="Posts">
     
@@ -19,7 +19,7 @@
     {
         <div class="UserPost">
             <div class="Id">
-                @p.Author.FullName
+                @p.Author.UserName
             </div>
             <div class="Text">
                 @p.Body

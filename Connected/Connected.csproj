@@ -297,6 +297,7 @@
     <Content Include="Views\Home\CreateComment.cshtml" />
     <Content Include="Views\Message\Messages.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\UserInformation.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
