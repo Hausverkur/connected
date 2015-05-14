@@ -1,4 +1,5 @@
 ﻿@using System.Web.Mvc.Html
+@model Connected.ViewModels.SearchViewModel
 
 @{
     ViewBag.Title = "Search";
@@ -72,12 +73,45 @@
 </head>
 <body>
     <!-- HTML for SEARCH BAR -->
-    <div id="tfheader">
-        <form id="tfnewsearch" method="get" action="http://www.google.com">
-            <input type="text" class="tftextinput" name="q" size="21" maxlength="120"><input type="submit" value="search" class="tfbutton">
-        </form>
-        <div class="tfclear"></div>
-    </div>
+<div id="tfheader">
+    @using (Html.BeginForm("Search", "Search", FormMethod.Get))
+    {
+        @Html.TextBox("search") <input type="submit" value="Search"/>
+    }
+
+    @if (Model.Users.Count > 0)
+    {
+        <h2>Users</h2>
+        <ul>
+            @foreach (var user in Model.Users)
+            {
+                <li>@user.UserName</li>
+            }
+        </ul>
+    }
+    
+    @if (Model.Recipes.Count > 0)
+    {
+        <h2>Recipes</h2>
+        <ul>
+            @foreach (var recipe in Model.Recipes)
+            {
+                <li>@recipe.Name</li>
+            }
+        </ul>
+    }
+
+        @if (Model.Groups.Count > 0)
+    {
+        <h2>Groups</h2>
+        <ul>
+            @foreach (var group in Model.Groups)
+            {
+                <li>@group.Name</li>
+            }
+        </ul>
+    }
+</div>
 </body>
 </html>
 

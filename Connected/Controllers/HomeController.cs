@@ -86,7 +86,6 @@ namespace Connected.Controllers
         public ActionResult CreateUserPost(FormCollection formData)
         {
             UserPostService postService = new UserPostService();
-            UserService userService = new UserService(null);
             UserPost post = new UserPost();
             UpdateModel(post);
             postService.AddUserPost(post, this.User.Identity.GetUserId());
@@ -103,7 +102,6 @@ namespace Connected.Controllers
         public ActionResult AddUserPost(FormCollection formData)
         {
             UserPostService postService = new UserPostService();
-            UserService userService = new UserService(null);
             UserPost post = new UserPost();
             UpdateModel(post);
             postService.AddUserPost(post, this.User.Identity.GetUserId());
@@ -224,6 +222,20 @@ namespace Connected.Controllers
         public ActionResult CreateComment()
         {
             return View(new Comment());
+        }
+
+        [HttpPost]
+        public ActionResult CreateComment(FormCollection formData, int? id, string returnPath)
+        {
+            if (id.HasValue)
+            {
+                UserPostService postService = new UserPostService();
+                Comment comment = new Comment();
+                UpdateModel(comment);
+                postService.AddComment(this.User.Identity.GetUserId(), id.Value, comment);
+                return RedirectToAction(returnPath);
+            }
+            return RedirectToAction("FrontPage");
         }
     }
 }

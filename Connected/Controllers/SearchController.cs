@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using Connected.Services;
@@ -42,9 +43,28 @@ namespace Connected.Controllers
             return View();
         }
 
-        public ActionResult Search()
+        public ActionResult Search(string search)
         {
-            return View();
+            SearchService service = new SearchService();
+            SearchViewModel model = new SearchViewModel();
+
+            model.Users = service.GetUsers(search);
+            model.Groups = service.GetGroups(search);
+            model.Recipes = service.GetRecipes(search);
+
+            return View(model);
         }
+
+        [HttpGet]
+        public ActionResult SearchForm()
+        {
+            return View(new SearchViewModel());
+        }
+
+        /*[HttpPost]
+        public ActionResult SearchForm(FormCollection formData)
+        {
+            
+        }*/
     }
 }

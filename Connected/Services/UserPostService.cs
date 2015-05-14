@@ -9,9 +9,9 @@ namespace Connected.Services
 {
     public class UserPostService
     {
+        ApplicationDbContext db = new ApplicationDbContext();
         public List<UserPostViewModel> GetPosts()
         {
-            ApplicationDbContext db = new ApplicationDbContext();
             var posts = (from p in db.UserPosts.OfType<UserPost>()
                          select p).ToList();
             List<UserPostViewModel> userPosts = new List<UserPostViewModel>();
@@ -32,7 +32,6 @@ namespace Connected.Services
         }
         public List<UserPostViewModel> GetPostsByUserId(string userId)
         {
-            ApplicationDbContext db = new ApplicationDbContext();
             var posts = (from p in db.UserPosts
                          where p.User.Id == userId
                          select p).ToList();
@@ -72,6 +71,18 @@ namespace Connected.Services
             });
                 db.SaveChanges();
             }
+        }
+
+        public void AddComment(string userId, int postId, Comment comment)
+        {
+            db.Comments.Add(new Comment
+            {
+                AuthorId = userId,
+                Body = comment.Body,
+                DateTimePosted = DateTime.Now,
+                PostId = postId,
+            });
+            db.SaveChanges();
         }
 
         /*public List<UserPostViewModel> GetFriendsPosts(List<ApplicationUser> friends)

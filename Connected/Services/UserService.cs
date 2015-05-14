@@ -18,6 +18,7 @@ namespace Connected.Services
             _db = context ?? new ApplicationDbContext();
         }
 
+
         
         public ApplicationUser GetUserInfo(string userId)
         {
