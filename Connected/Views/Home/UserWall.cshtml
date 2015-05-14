@@ -9,6 +9,11 @@
 <h2>@Model.User.UserName</h2>
 
 <div class="Posts">
+    
+    <button class="create">
+
+        @Html.ActionLink("Create A Post", "CreateUserPost", new {id = Model.Id})
+    </button>
 
     @foreach (var p in Model.Posts)
     {
@@ -49,16 +54,16 @@
                     ;
                     break;
                 case 1:
-                    <p>Pending</p>
+                    <p class="Pending">Pending</p>
                     break;
                 case 2:
-                    @Html.ActionLink("Unfriend", "RemoveFriend", new {userId = Model.User.Id}, null)
+                <p class="Unfriend">@Html.ActionLink("Unfriend", "RemoveFriend", new { userId = Model.User.Id }, null)</p>
                     ;
                     break;
                 case 4:
                     break;
             }
-        }
+}
 
         @foreach (var f in Model.Friends)
         {

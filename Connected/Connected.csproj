@@ -230,6 +230,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\Group.png" />
     <Content Include="Images\Logo.png" />
+    <Content Include="Images\Profile.png" />
     <Content Include="Images\sandwich.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -256,7 +257,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
@@ -279,9 +279,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\FrontPage.cshtml" />
-    <Content Include="Views\Home\AddPost.cshtml" />
     <Content Include="Views\Recipe\DisplayRecipe.cshtml" />
-    <Content Include="Views\Home\MyWall.cshtml" />
     <Content Include="Views\Home\Messages.cshtml" />
     <Content Include="Views\Recipe\CreateRecipe.cshtml" />
     <Content Include="Views\Recipe\ListOfRecipes.cshtml" />
@@ -296,10 +294,9 @@
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Group\CreateGroup.cshtml" />
     <Content Include="Views\Group\CreateGroupPost.cshtml" />
-    <Content Include="Views\Home\View.cshtml" />
-    <Content Include="Views\Home\AddUserPost.cshtml" />
     <Content Include="Views\Home\CreateComment.cshtml" />
     <Content Include="Views\Message\Messages.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

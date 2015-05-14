@@ -9,13 +9,17 @@
     padding-right: 5%;
 }
 
+.create {
+    margin-bottom: 3%;
+}
+
 .Id {
     font-weight: bold;
+    margin-top: 5%;
 }
 
 .Text {
     margin-left: 10%;
-    margin-bottom: 5%;
     margin-right: -10%;
 }
 
@@ -26,4 +30,16 @@
 .Footer {
     margin-top: 20%;
     clear: right;
+}
+
+.Pending {
+    float: left;
+    margin-left: 15%;
+    margin-top: -7%;
+}
+
+.Unfriend {
+    float: left;
+    margin-left: 15%;
+    margin-top: -7%;
 }
