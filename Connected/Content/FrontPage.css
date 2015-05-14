@@ -6,6 +6,12 @@
     margin-left: 10%;
 }
 
+.UserPost {
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    max-width: 45%;
+}
+
 .Id {
     font-weight: bold;
 }

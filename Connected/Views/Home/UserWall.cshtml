@@ -6,7 +6,7 @@
     <link href="~/Content/UserWall.css" rel="stylesheet" />
 }
 
-<h2>@Model.User.UserName</h2>
+<h2>@Model.User.FullName</h2>
 
 <div class="Posts">
     
@@ -17,11 +17,14 @@
 
     @foreach (var p in Model.Posts)
     {
-        <div class="Id">
-            @p.Author.UserName
-        </div>
-        <div class="Text">
-            @p.Body
+        <div class="UserPost">
+            <div class="Id">
+                @p.Author.FullName
+            </div>
+            <div class="Text">
+                @p.Body
+            </div>
+            @p.DateTimePosted
         </div>
         foreach (var c in p.Comments)
         {
@@ -33,12 +36,11 @@
 </div>
 <div>
     <div class="Details">
-        <h4>UserInfo</h4>
-        <p><b>Name:</b> @Model.User.UserName
-        </p>
+        <img src="@Model.User.ProfilePicture" class="Image" />
+
         <p><b>Email:</b> @Model.User.Email</p>
-        <p><b>Age:</b> @Model.User.Age
-        </p>
+        <p><b>Age:</b> @Model.User.Age</p>
+        <p><b>Gender:</b> @Model.User.Gender</p>
         <p><b>Description</b>
         </p>
         @Model.User.Description

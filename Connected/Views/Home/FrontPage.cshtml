@@ -20,6 +20,7 @@
 <div class="Posts">
         @foreach (var p in Model.Posts)
         {
+            <div class="UserPost"></div>
                 <div class="Id">
                     @Html.ActionLink(p.Author.UserName, "UserWall", new { id = p.Author.Id })
                 </div>
