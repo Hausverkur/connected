@@ -42,7 +42,7 @@ namespace Connected.Controllers
                 frontPage.Posts.AddRange(groupService.GetGroupPostsById(group.Id));
             }
 
-            frontPage.Posts.OrderByDescending(p => p.DateTimePosted);
+            frontPage.Posts =  frontPage.Posts.OrderByDescending(p => p.DateTimePosted).ToList();
 
             foreach (var post in frontPage.Posts)
             {
