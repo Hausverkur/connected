@@ -7,6 +7,8 @@
 }
 
 <h2>Friend Posts</h2>
+<br />
+
 
 <p>
     @foreach (var r in Model.Requests)
@@ -20,7 +22,8 @@
 <div class="Posts">
         @foreach (var p in Model.Posts)
         {
-            <div class="UserPost"></div>
+            <div class="UserPost">
+
                 <div class="Id">
                     @Html.ActionLink(p.Author.UserName, "UserWall", new { id = p.Author.Id })
                 </div>
@@ -28,8 +31,11 @@
                     @p.Body
                 </div>
                 <div class="Date">
-                    @p.DateTimePosted
+                    <i>@p.DateTimePosted</i>
                 </div>
+        
+            </div>
+            <br />
         }
 
 </div>

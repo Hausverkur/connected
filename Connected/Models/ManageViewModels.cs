@@ -12,6 +12,11 @@ namespace Connected.Models
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
+        public string Description { get; set; }
+        public string UserName { get; set; }
+        public int Age { get; set; }
+        public string Image { get; set; }
+        public string Gender { get; set; }
     }
 
     public class ManageLoginsViewModel
@@ -82,5 +87,41 @@ namespace Connected.Models
     {
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
+    }
+
+    public class AddDescription
+    {
+        [StringLength(30)]
+        [Display(Name = "Description")]
+        public string Description { get; set; }
+        
+    }
+
+    public class AddUserName
+    {
+        [Required]
+        [StringLength(30)]
+        [Display(Name = "Name")]
+        public string FullName { get; set; }
+
+    }
+
+    public class AddAge
+    {
+
+    }
+
+    public class AddGender
+    {
+        [StringLength(30)]
+        [Display(Name = "Gender")]
+        public string Gender { get; set; }
+    }
+
+    public class AddImage
+    {
+        [StringLength(1000)]
+        [Display(Name = "Image")]
+        public string Image { get; set; }
     }
 }

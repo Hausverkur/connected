@@ -1,12 +1,12 @@
 ﻿body {
-    padding-top: 0px;
-    padding-bottom: 20px;
+    padding-top: 0%;
+    padding-bottom: 0%;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 0%;
+    padding-right: 0%;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -20,7 +20,7 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    max-width: 280%;
 }
 
 /* navbar */
@@ -30,11 +30,12 @@ textarea {
 }
 
 /* navbar links */
-.navbar, .navbar-brand{
+.navbar-nav{
 	color: #000066 !important;
 	font-size: 140%;
-    margin-top: 35px;
+    margin-top: 2%;
     clear: right;  
+    float: right;
 }
 
 .navbar, .navbar-collapse collapse navbar-right{
@@ -56,11 +57,7 @@ textarea {
 /* navbar title */
 .navbar, .navbar-title {
 	color: #000066;
-	font-size: 200%;
-
-    
-/*fá title til að koma niður please*/
-
+	font-size: 150%;
 }
 .navbar, .navbar-title:hover{
 	color: white !important;
@@ -74,34 +71,32 @@ textarea {
 	color: white !important;
 }
 
-/* navbar logo */
-.navbar, .navbar-logo {
-	/*margin-left: -20px;
-    margin-top: 80px;*/
-   
-}
-
 /* navbar login */
-.navbar, #registerLink{
-	font-size: 100%;
+#registerLink{
+	font-size: 50%;
    margin-top: -25%;
     color: black;
 }
-.navbar, #loginLink{
-	font-size: 100%;
-    margin-top: -30%;
+#loginLink{
+	font-size: 50%;
+    margin-top: -31%;
     color: black;
 }
 
-.navbar, #Manage{
-	font-size: 100%;
+#Manage{
+	font-size: 50%;
     margin-top: -15%;
     color: black;
 }
-.navbar, .logOut{
-	font-size: 100%;
-    margin-top: -35%;
+.logOut{
+	font-size: 50%;
+    margin-top: -25%;
     color: black !important;
+}
+
+.LoginPartial {
+    margin-left: 50%;
+    clear: both;
 }
 
 .navbar, #registerLink:hover{
@@ -122,7 +117,7 @@ textarea {
 
 /* navbar header*/
 .navbar, .navbar-header {
-    margin-top: 0px;
+    margin-top: 0%;
     padding-top: 3%;
     width: auto;
     padding-left: auto;
