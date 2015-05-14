@@ -271,5 +271,11 @@ namespace Connected.Controllers
             }
             return RedirectToAction("FrontPage");
         }
+        [HttpGet]
+        public ActionResult Information(int id)
+        {
+            return View(new UserViewModel());
+        }
+
     }
 }

@@ -59,6 +59,10 @@
     /*background-color: hotpink;*/
 }
 
+.Description {
+    margin-right: 75%;
+}
+
 .Unfriend {
     float: left;
     margin-left: 15%;
