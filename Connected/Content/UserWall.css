@@ -1,0 +1,45 @@
+﻿.Details {
+    margin-right: 60%;
+    margin-bottom: 5%;
+}
+
+.Posts {
+    float: right;
+    margin-right: 35%;
+    padding-right: 5%;
+}
+
+.create {
+    margin-bottom: 3%;
+}
+
+.Id {
+    font-weight: bold;
+    margin-top: 5%;
+}
+
+.Text {
+    margin-left: 10%;
+    margin-right: -10%;
+}
+
+.Friends {
+    margin-right: 60%;
+}
+
+.Footer {
+    margin-top: 20%;
+    clear: right;
+}
+
+.Pending {
+    float: left;
+    margin-left: 15%;
+    margin-top: -7%;
+}
+
+.Unfriend {
+    float: left;
+    margin-left: 15%;
+    margin-top: -7%;
+}

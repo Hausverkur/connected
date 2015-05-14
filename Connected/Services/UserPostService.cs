@@ -40,6 +40,7 @@ namespace Connected.Services
         {
             var posts = (from p in _db.UserPosts
                          where p.User.Id == userId
+                         && p.GroupPost == false
                          select p).ToList();
             List<UserPostViewModel> userPosts = new List<UserPostViewModel>();
 
@@ -76,11 +77,18 @@ namespace Connected.Services
             });
                 _db.SaveChanges();
             }
-        }
 
-        /*public List<UserPostViewModel> GetFriendsPosts(List<ApplicationUser> friends)
+        public void AddComment(string userId, int postId, Comment comment)
         {
-            
-        }*/
+            _db.Comments.Add(new Comment
+            {
+                AuthorId = userId,
+                Body = comment.Body,
+                DateTimePosted = DateTime.Now,
+                PostId = postId,
+            });
+            _db.SaveChanges();
+        }
     }
+}
 

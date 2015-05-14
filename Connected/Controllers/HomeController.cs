@@ -19,18 +19,30 @@ namespace Connected.Controllers
             return View();
         }
 
-        public ActionResult Posts()
+        public ActionResult FrontPage()
         {
             UserPostService postService = new UserPostService(null);
             CommentService commentService = new CommentService();
             UserService userService = new UserService(null);
+            GroupService groupService = new GroupService(null);
 
-            var posts = postService.GetPosts();
+            var friends = userService.GetFriends(this.User.Identity.GetUserId());
 
-            FrontPageViewModel frontPage = new FrontPageViewModel
+            FrontPageViewModel frontPage = new FrontPageViewModel();
+            frontPage.Posts = new List<UserPostViewModel>();
+            foreach (var friend in friends)
             {
-                Posts = posts,
-            };
+                frontPage.Posts.AddRange(postService.GetPostsByUserId(friend.Id));
+            }
+
+            var groups = groupService.GetGroupsForUser(this.User.Identity.GetUserId());
+
+            foreach (var group in groups)
+            {
+                frontPage.Posts.AddRange(groupService.GetGroupPostsById(group.Id));
+            }
+
+            frontPage.Posts =  frontPage.Posts.OrderByDescending(p => p.DateTimePosted).ToList();
 
             foreach (var post in frontPage.Posts)
             {
@@ -44,7 +56,7 @@ namespace Connected.Controllers
                         Id = comment.Id,
                         DateTimePosted = comment.DateTimePosted,
                         Author = comment.Author,
-                    });                    
+                    });
                 }
                 post.Comments = commentViewModels;
             }
@@ -60,15 +72,15 @@ namespace Connected.Controllers
                 });
             }
 
-           return View(frontPage);
+            return View(frontPage);
         }
-
         public ActionResult AddPost()
         {
             return View();
         }
         public ActionResult MyWall()
         {
+            
             UserPostService postService = new UserPostService(null);
             CommentService commentService = new CommentService();
 
@@ -98,6 +110,8 @@ namespace Connected.Controllers
                 post.Comments = commentViewModels;
             }
             return View(frontPage);
+            //Hvar á þetta að vera!!!!
+            return RedirectToAction("UserWall", new { id = this.User.Identity.GetUserId() });
         }
 
         public ActionResult Messages()
@@ -138,7 +152,7 @@ namespace Connected.Controllers
         public ActionResult CreateUserPost(FormCollection formData)
         {
             UserPostService postService = new UserPostService(null);
-            UserService userService = new UserService(null);
+            
             UserPost post = new UserPost();
             UpdateModel(post);
             postService.AddUserPost(post, this.User.Identity.GetUserId());
@@ -155,7 +169,7 @@ namespace Connected.Controllers
         public ActionResult AddUserPost(FormCollection formData)
         {
             UserPostService postService = new UserPostService(null);
-            UserService userService = new UserService(null);
+            
             UserPost post = new UserPost();
             UpdateModel(post);
             postService.AddUserPost(post, this.User.Identity.GetUserId());
@@ -248,14 +262,14 @@ namespace Connected.Controllers
         {
             UserService userService = new UserService(null);
             userService.AcceptRequest(friendshipId);
-            return RedirectToAction("Posts");
+            return RedirectToAction("FrontPage");
         }
 
         public ActionResult DenyFriendRequest(int friendshipId)
         {
             UserService userService = new UserService(null);
             userService.RemoveFriendship(friendshipId);
-            return RedirectToAction("Posts");
+            return RedirectToAction("FrontPage");
         }
 
         public ActionResult RemoveFriend(string userId)
@@ -264,5 +278,32 @@ namespace Connected.Controllers
             userService.RemoveFriendship(userService.FindFriendship(userId, this.User.Identity.GetUserId()));
             return RedirectToAction("UserWall", new{id = userId});
         }
+
+        [HttpGet]
+        public ActionResult EditUserInfo(string userId)
+        {
+            
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult CreateComment()
+        {
+            return View(new Comment());
+        }
+
+        [HttpPost]
+        public ActionResult CreateComment(FormCollection formData, int? id, string returnPath)
+        {
+            if (id.HasValue)
+            {
+                UserPostService postService = new UserPostService(null);
+                Comment comment = new Comment();
+                UpdateModel(comment);
+                postService.AddComment(this.User.Identity.GetUserId(), id.Value, comment);
+                return RedirectToAction(returnPath);
+            }
+            return RedirectToAction("FrontPage");
+        }
     }
-   }
+}

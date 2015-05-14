@@ -51,22 +51,17 @@ namespace Connected.Services
             db.SaveChanges();
         }
 
-        public void CreateComment(string userId, int groupId, UserPost post)
+        public void CreateRecipeComment(string userId, int recipeId, RecipeComment comment)
         {
             DateTime now = DateTime.Now;
             using (ApplicationDbContext db = new ApplicationDbContext())
             {
-                db.UserPosts.Add(new UserPost
+                db.RecipeComments.Add(new RecipeComment
                 {
-                    UserId = userId,
-                    Body = post.Body,
+                    AuthorId = userId,
+                    Body = comment.Body,
                     DateTimePosted = now,
-                    Likes = 0,
-                    Dislikes = 0,
-                    Shares = 0,
-                    GroupPost = true,
-                    GroupReference = groupId,
-                    ImageUrl = post.ImageUrl,
+                    RecipeId = recipeId,
                 });
                 db.SaveChanges();
             }

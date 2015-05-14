@@ -1,0 +1,34 @@
+﻿@using System.Web.UI.WebControls
+@model Connected.ViewModels.FrontPageViewModel
+
+@{
+    ViewBag.Title = "Posts";
+    <link href="~/Content/FrontPage.css" rel="stylesheet" />
+}
+
+<h2>Friend Posts</h2>
+
+<p>
+    @foreach (var r in Model.Requests)
+    {
+        <div class="Request">
+            @r.Friendship.User1.UserName @Html.ActionLink("Accept", "AcceptFriendRequest", new {FriendshipId = r.Friendship.Id}) @Html.ActionLink("Deny", "DenyFriendRequest", new {FriendshipId = r.Friendship.Id})
+        </div>
+     }
+</p>
+
+<div class="Posts">
+        @foreach (var p in Model.Posts)
+        {
+                <div class="Id">
+                    @Html.ActionLink(p.Author.UserName, "UserWall", new { id = p.Author.Id })
+                </div>
+                <div class="Text">
+                    @p.Body
+                </div>
+                <div class="Date">
+                    @p.DateTimePosted
+                </div>
+        }
+
+</div>

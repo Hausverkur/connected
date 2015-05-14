@@ -3,67 +3,76 @@
 
 @{
     ViewBag.Title = Model.User.UserName;
+    <link href="~/Content/UserWall.css" rel="stylesheet" />
 }
 
 <h2>@Model.User.UserName</h2>
-@{
-    switch (Model.AreFriends)
+
+<div class="Posts">
+    
+    <button class="create">
+
+        @Html.ActionLink("Create A Post", "CreateUserPost", new {id = Model.Id})
+    </button>
+
+    @foreach (var p in Model.Posts)
     {
-        case 0:
-            @Html.ActionLink("Add friend", "AddFriend", new { userId = Model.User.Id }, null);
-            break;
-        case 1:
-            <p>Pending</p>
-            break;
-        case 2:
-            @Html.ActionLink("Unfriend", "RemoveFriend", new { userId = Model.User.Id }, null);
-            break;
-            case 4:
-        break;
+        <div class="Id">
+            @p.Author.UserName
+        </div>
+        <div class="Text">
+            @p.Body
+        </div>
+        foreach (var c in p.Comments)
+        {
+            @c.Body
+            <br/>
+        }
     }
 
-}
-    <div>
-        <h4>UserPost</h4>
-        <dl class="dl-horizontal">
-            @foreach (var p in Model.Posts)
-        {
-<p>@p.Author.UserName</p>
-            <dt>
-                @p.Id
-            </dt>
+</div>
+<div>
+    <div class="Details">
+        <h4>UserInfo</h4>
+        <p><b>Name:</b> @Model.User.UserName
+        </p>
+        <p><b>Email:</b> @Model.User.Email</p>
+        <p><b>Age:</b> @Model.User.Age
+        </p>
+        <p><b>Description</b>
+        </p>
+        @Model.User.Description
+    </div>
 
-            <dd>
-                @p.Body
-            </dd>
-            foreach (var c in p.Comments)
+    <div class="Friends">
+        <h4>Friends</h4>
+        @{
+            switch (Model.AreFriends)
             {
-                @c.Body
-                <br />
+                case 0:
+                    @Html.ActionLink("Add friend", "AddFriend", new {userId = Model.User.Id}, null)
+                    ;
+                    break;
+                case 1:
+                    <p class="Pending">Pending</p>
+                    break;
+                case 2:
+                <p class="Unfriend">@Html.ActionLink("Unfriend", "RemoveFriend", new { userId = Model.User.Id }, null)</p>
+                    ;
+                    break;
+                case 4:
+                    break;
             }
-        }
+}
 
-    </dl>
-</div>
-<div>
-    <h4>UserInfo</h4>
-    <dl class="dl-horizontal">
-        <p>Name: @Model.User.Age </p>
-        <p>Age: @Model.User.Description </p>
-        <p>Id: @Model.User.Id </p>
-        <p>Name: @Model.User.UserName </p>
-        <p>Name: @Model.User.Email </p>
-    </dl>
-</div>
-<div>
-    <h4>Friends</h4>
-    <dl class="dl-horizontal">
         @foreach (var f in Model.Friends)
         {
             <p>@Html.ActionLink(f.UserName, "UserWall", new {id = f.Id})</p>
         }
-
-    </dl>
+    </div>
 </div>
-<p>
-</p>
+
+<div class="Footer">
+    <hr />
+    <a href="javascript:history.go(-1)">Back</a>
+</div>

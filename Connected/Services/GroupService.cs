@@ -183,5 +183,24 @@ namespace Connected.Services
 
         }
 
+        public List<Group> GetGroupsForUser(string userId)
+        {
+            var members = (from m in _db.GroupMembers
+                              where m.UserId == userId
+                              select m.GroupId).ToList();
+
+            List<Group> model = new List<Group>();
+
+            foreach (var member in members)
+            {
+                var group = (from g in _db.Groups
+                    where g.Id == member
+                    select g).FirstOrDefault();
+                model.Add(group);
+            }
+
+            return model;
+        }
+
     }
 }
