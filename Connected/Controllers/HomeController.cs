@@ -24,6 +24,7 @@ namespace Connected.Controllers
             UserPostService postService = new UserPostService();
             CommentService commentService = new CommentService();
             UserService userService = new UserService(null);
+            GroupService groupService = new GroupService();
 
             var friends = userService.GetFriends(this.User.Identity.GetUserId());
 
@@ -34,7 +35,14 @@ namespace Connected.Controllers
                 frontPage.Posts.AddRange(postService.GetPostsByUserId(friend.Id));
             }
 
-            frontPage.Posts.OrderBy(p => p.DateTimePosted);
+            var groups = groupService.GetGroupsForUser(this.User.Identity.GetUserId());
+
+            foreach (var group in groups)
+            {
+                frontPage.Posts.AddRange(groupService.GetGroupPostsById(group.Id));
+            }
+
+            frontPage.Posts.OrderByDescending(p => p.DateTimePosted);
 
             foreach (var post in frontPage.Posts)
             {

@@ -85,7 +85,7 @@
         <ul>
             @foreach (var user in Model.Users)
             {
-                <li>@user.UserName</li>
+                <li>@Html.ActionLink(user.UserName, "UserWall", "Home", new {id = user.Id}, null)</li>
             }
         </ul>
     }
@@ -96,7 +96,7 @@
         <ul>
             @foreach (var recipe in Model.Recipes)
             {
-                <li>@recipe.Name</li>
+                <li>@Html.ActionLink(recipe.Name, "DisplayRecipe", "Recipe", new {id = recipe.Id}, null)</li>
             }
         </ul>
     }
@@ -107,7 +107,7 @@
         <ul>
             @foreach (var group in Model.Groups)
             {
-                <li>@group.Name</li>
+                <li>@Html.ActionLink(group.Name, "DisplayGroup", "Group", new {id = group.Id}, null)</li>
             }
         </ul>
     }
