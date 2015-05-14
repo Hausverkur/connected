@@ -8,12 +8,13 @@
 
 }
 
-<div class="Border">
-    <h2>@Html.DisplayFor(model => model.Name)</h2>
 
-    <br />
-    <div>
-        <p>
+<div>
+
+    <div class="Navbar">
+        <h2>@Html.DisplayFor(model => model.Name)</h2>
+        <hr />
+        <p class="Description">
             <b class="DescriptionName">
                 @Html.DisplayNameFor(model => model.Description)
             </b>
@@ -47,13 +48,15 @@
                 @Html.ActionLink("Add Group Post", "CreateGroupPost", new { @id = Model.Id })
 
             }
-
         </p>
-        <br/> <br/>
+        <br /> <br />
+    </div>
 
-        <i>Posts</i>
+    <div class="Post">
+
+        <i class="italic">Posts</i>
         <hr />
-        <br />
+        
         @foreach (var post in Model.Posts)
         {
             <p><b>@post.Author.UserName</b></p>
@@ -61,11 +64,13 @@
             <br />
         }
     </div>
-    <br />
 
 </div>
-<hr />
+    
 
-<div>
-    @Html.ActionLink("Back to List", "ListOfGroups")
+<div class="Footer">
+    <hr />
+    <div>
+        @Html.ActionLink("Back to List", "ListOfGroups")
+    </div>
 </div>
