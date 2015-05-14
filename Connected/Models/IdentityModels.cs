@@ -71,7 +71,9 @@ namespace Connected.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<Connected.ViewModels.UserMessageViewModel> UserMessageViewModels { get; set; }
+        //public System.Data.Entity.DbSet<Connected.ViewModels.UserMessageViewModel> UserMessageViewModels { get; set; }
+
+        //public System.Data.Entity.DbSet<Connected.Models.ApplicationUser> ApplicationUsers { get; set; }
 
        // public System.Data.Entity.DbSet<Connected.ViewModels.SearchViewModel> SearchViewModels { get; set; }
 

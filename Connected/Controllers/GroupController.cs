@@ -17,56 +17,76 @@ namespace Connected.Controllers
 
         public ActionResult ListOfGroups()
         {
-           List<GroupViewModel> groupList = new List<GroupViewModel>();
-
-            GroupService service = new GroupService(null);
-
-            var groupModels = service.GetListOfGroups();
-
-            foreach (var group in groupModels)
+            if (this.User.Identity.GetUserId() == null)
             {
-                groupList.Add(new GroupViewModel
-                {
-                    Description = group.Description,
-                    Id = group.Id,
-                    Image = group.Image,
-                    Name = group.Name,
-                    NumberOfUsers = group.NumberOfUsers,
-                });
+                return RedirectToAction("Index", "Home");
             }
+            else
+            {
+                List<GroupViewModel> groupList = new List<GroupViewModel>();
+                GroupService service = new GroupService(null);
+    
+                var groupModels = service.GetListOfGroups();
 
-            return View(groupList);
+                foreach (var group in groupModels)
+                {
+                    groupList.Add(new GroupViewModel
+                    {
+                        Description = group.Description,
+                        Id = group.Id,
+                        Image = group.Image,
+                        Name = group.Name,
+                        NumberOfUsers = group.NumberOfUsers,
+                    });
+                }
+
+                return View(groupList);
+            }
         }
 
         [HttpGet]
         public ActionResult DisplayGroup(int? id)
         {
-            if (id.HasValue)
+            if (this.User.Identity.GetUserId() == null)
             {
-                GroupService service = new GroupService(null);
-                int theId = id.Value;
-                var groupModel = service.GetGroupById(theId);
-                GroupViewModel group = new GroupViewModel
-                {
-                    Description = groupModel.Description,
-                    Id = groupModel.Id,
-                    Image = groupModel.Image,
-                    Name = groupModel.Name,
-                    NumberOfUsers = groupModel.NumberOfUsers,
-                    UserInGroup = service.IsInGroup(theId, this.User.Identity.GetUserId()),
-                };
-
-                group.Posts = service.GetGroupPostsById(theId);
-
-                return View(group);
+                return RedirectToAction("Index", "Home");
             }
-            return RedirectToAction("ListOfGroups");
+            else
+            {
+                if (id.HasValue)
+                {
+                    GroupService service = new GroupService(null);
+                    int theId = id.Value;
+                    var groupModel = service.GetGroupById(theId);
+                    GroupViewModel group = new GroupViewModel
+                    {
+                        Description = groupModel.Description,
+                        Id = groupModel.Id,
+                        Image = groupModel.Image,
+                        Name = groupModel.Name,
+                        NumberOfUsers = groupModel.NumberOfUsers,
+                        UserInGroup = service.IsInGroup(theId, this.User.Identity.GetUserId()),
+                    };
+
+                    group.Posts = service.GetGroupPostsById(theId);
+
+                    return View(group);
+                }
+                return RedirectToAction("ListOfGroups");
+            }
         }
 
         [HttpGet]
         public ActionResult CreateGroup()
         {
-            return View();
+            if (this.User.Identity.GetUserId() == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpPost]
@@ -106,7 +126,14 @@ namespace Connected.Controllers
         [HttpGet]
         public ActionResult CreateGroupPost()
         {
-            return View(new UserPost());
+            if (this.User.Identity.GetUserId() == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View(new UserPost());
+            }
         }
 
         [HttpPost]

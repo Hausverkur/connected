@@ -46,6 +46,7 @@ namespace Connected.Services
 
             var friends = friends1.Union(friends2).ToList();
 
+            
             return friends;
 
         }

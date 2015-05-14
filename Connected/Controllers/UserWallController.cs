@@ -12,67 +12,69 @@ namespace Connected.Controllers
 {
     public class UserWallController : Controller
     {
-        // GET: UserWall
-        public ActionResult Index()
-        {
-            return View();
-        }
 
         public ActionResult UserWall(string id)
         {
-            UserPostService postService = new UserPostService(null);
-            CommentService commentService = new CommentService(null);
-            UserService userService = new UserService(null);
-
-            var userId = this.User.Identity.GetUserId();
-
-            var posts = postService.GetPostsByUserId(userId);
-
-            UserWallViewModel model = new UserWallViewModel
+            if (this.User.Identity.GetUserId() == null)
             {
-                Posts = posts,
-            };
-
-            var user = userService.GetUserInfo(userId);
-            model.User = user;
-
-            foreach (var post in model.Posts)
+                return RedirectToAction("Index", "Home");
+            }
+            else
             {
-                var Comments = commentService.GetCommentsByPostId(post.Id);
-                List<CommentViewModel> commentViewModels = new List<CommentViewModel>();
-                foreach (var comment in Comments)
+                UserPostService postService = new UserPostService(null);
+                CommentService commentService = new CommentService(null);
+                UserService userService = new UserService(null);
+
+                var userId = this.User.Identity.GetUserId();
+
+                var posts = postService.GetPostsByUserId(userId);
+
+                UserWallViewModel model = new UserWallViewModel
                 {
-                    commentViewModels.Add(new CommentViewModel
+                    Posts = posts,
+                };
+
+                var user = userService.GetUserInfo(userId);
+                model.User = user;
+
+                foreach (var post in model.Posts)
+                {
+                    var Comments = commentService.GetCommentsByPostId(post.Id);
+                    List<CommentViewModel> commentViewModels = new List<CommentViewModel>();
+                    foreach (var comment in Comments)
                     {
-                        Body = comment.Body,
-                        Id = comment.Id,
+                        commentViewModels.Add(new CommentViewModel
+                        {
+                            Body = comment.Body,
+                            Id = comment.Id,
+                        });
+                    }
+                    post.Comments = commentViewModels;
+                }
+
+                var friends = userService.GetFriends(userId);
+                model.Friends = new List<UserViewModel>();
+
+                foreach (var u in friends)
+                {
+
+                    model.Friends.Add(new UserViewModel
+                    {
+                        Age = u.Age,
+                        Description = u.Description,
+                        Email = u.Email,
+                        Gender = u.Gender,
+                        ProfilePicture = u.ProfilePicture,
+                        UserName = u.UserName,
+                        Id = u.Id
+
                     });
                 }
-                post.Comments = commentViewModels;
+
+                model.AreFriends = userService.AreFriends(this.User.Identity.GetUserId(), model.User.Id);
+
+                return View(model);
             }
-
-            var friends = userService.GetFriends(userId);
-            model.Friends = new List<UserViewModel>();
-          
-            foreach (var u in friends)
-            {
-
-                model.Friends.Add(new UserViewModel
-                {
-                    Age = u.Age,
-                    Description = u.Description,
-                    Email = u.Email,
-                    Gender = u.Gender,
-                    ProfilePicture = u.ProfilePicture,
-                    UserName = u.UserName,
-                    Id = u.Id
-
-                });
-            }
-
-            model.AreFriends = userService.AreFriends(this.User.Identity.GetUserId(), model.User.Id);
-
-            return View(model);
         }
 
         public ActionResult AddFriend(string userId)

@@ -9,7 +9,14 @@
 <h2>@Model.User.UserName</h2> 
 
 
-
+@Html.ActionLink("Send Message", "CreateMessage", "Message", new {id = Model.User.Id}, null)
+    <div>
+        <h4>UserPost</h4>
+            @foreach (var p in Model.Posts)
+            {
+                <p>@p.Author.UserName</p>
+            }
+    </div>
 <div class="nav">
     <div class="Details">
         <img src="@Model.User.ProfilePicture" class="Image" />
@@ -45,7 +52,7 @@
                 default:
                     break;
             }
-}
+        }
 
         @foreach (var f in Model.Friends)
         {

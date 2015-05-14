@@ -39,25 +39,48 @@ namespace Connected.Services
             return messages;
         }
 
-        //Þetta fall sækir nýasta skilboð milli tveggja notanda
-        public UserMessageViewModel GetLatestMessageFromUser(string user1Id, string user2Id)
+        public List<UserMessageViewModel> GetRecievedMessages(string userId)
         {
-            var message = (from m in _db.UserMessages
-                where (m.AuthorId == user1Id && m.RecipientId == user2Id)
-                      || (m.AuthorId == user2Id && m.RecipientId == user2Id)
-                select m).OrderByDescending(m => m.DateTimePosted).FirstOrDefault();
-            if (message != null)
+            var messages = (from m in _db.UserMessages
+                where m.RecipientId == userId
+                select m).OrderByDescending(m => m.DateTimePosted).ToList();
+            
+            List<UserMessageViewModel> list = new List<UserMessageViewModel>();
+            foreach (var message in messages)
             {
-                return new UserMessageViewModel
+                list.Add(new UserMessageViewModel
                 {
-                    Author = message.Author,
-                    Body = message.Body,
-                    DateTimePosted = message.DateTimePosted,
                     Id = message.Id,
+                    Author = message.Author,
                     Recipient = message.Recipient,
-                };
+                    Body = message.Body,
+                    Title = message.Title,
+                    DateTimePosted = message.DateTimePosted,
+                });
             }
-            else return null;
+            return list;
+        }
+
+        public List<UserMessageViewModel> GetSentMessages(string userId)
+        {
+            var messages = (from m in _db.UserMessages
+                            where m.AuthorId == userId
+                            select m).OrderByDescending(m => m.DateTimePosted).ToList();
+
+            List<UserMessageViewModel> list = new List<UserMessageViewModel>();
+            foreach (var message in messages)
+            {
+                list.Add(new UserMessageViewModel
+                {
+                    Id = message.Id,
+                    Author = message.Author,
+                    Recipient = message.Recipient,
+                    Body = message.Body,
+                    Title = message.Title,
+                    DateTimePosted = message.DateTimePosted,
+                });
+            }
+            return list;
         }
 
         //Þetta falla sækir öll skilaboð sem send hafa verið á milli tveggja notanda
@@ -82,6 +105,20 @@ namespace Connected.Services
                 });
             }
             return list;
+        }
+
+        public void AddMessage(string senderId, string recipientId, UserMessage message)
+        {
+            _db.UserMessages.Add(new UserMessage
+            {
+                AuthorId = senderId,
+                RecipientId = recipientId,
+                Title = message.Title,
+                Body = message.Body,
+                DateTimePosted = DateTime.Now,
+                Id = message.Id,
+            });
+            _db.SaveChanges();
         }
     }
 }
