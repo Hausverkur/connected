@@ -113,6 +113,21 @@ namespace Connected.Tests.Services
             }
         }
         
+        //Virkar ekki vegna conflicta a ApplicationUser / User í mockDb og raunverulega Db
+        /*[TestMethod]
+        public void TestGetUserById()
+        {
+            //ARRANGE:
+            const string userId = "user4";
+            
+
+            //ACT:
+            var user = _service.GetUserInfo(userId);
+
+            //ASSERT:
+            Assert.AreEqual(userId, user.Id);
+        }*/
+
         [TestMethod]
         public void TestGetFriendsForUser2()
         {
