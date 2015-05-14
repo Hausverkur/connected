@@ -8,33 +8,8 @@
 
 <h2>@Model.User.UserName</h2>
 
-<div class="Posts">
-    
-    <button class="create">
 
-        @Html.ActionLink("Create A Post", "CreateUserPost", new {id = Model.Id})
-    </button>
-
-    @foreach (var p in Model.Posts)
-    {
-        <div class="UserPost">
-            <div class="Id">
-                @p.Author.UserName
-            </div>
-            <div class="Text">
-                @p.Body
-            </div>
-            @p.DateTimePosted
-        </div>
-        foreach (var c in p.Comments)
-        {
-            @c.Body
-            <br/>
-        }
-    }
-
-</div>
-<div>
+<div class="nav">
     <div class="Details">
         <img src="@Model.User.ProfilePicture" class="Image" />
 
@@ -63,6 +38,7 @@
                     ;
                     break;
                 case 4:
+                default:
                     break;
             }
 }
@@ -71,8 +47,39 @@
         {
             <p>@Html.ActionLink(f.UserName, "UserWall", new {id = f.Id})</p>
         }
+        <br />
+
     </div>
 </div>
+
+
+<div class="Posts">
+
+    <button class="create">
+
+        @Html.ActionLink("Create A Post", "CreateUserPost", new { id = Model.Id })
+    </button>
+
+    @foreach (var p in Model.Posts)
+    {
+        <div class="UserPost">
+            <div class="Id">
+                @p.Author.UserName
+            </div>
+            <div class="Text">
+                @p.Body
+            </div>
+            @p.DateTimePosted
+        </div>
+        foreach (var c in p.Comments)
+        {
+            @c.Body
+            <br />
+        }
+    }
+
+</div>
+
 
 <div class="Footer">
     <hr />

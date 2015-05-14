@@ -1,15 +1,9 @@
-﻿.Details {
-    margin-right: 60%;
-    margin-bottom: 5%;
-    background-color: pink;
-
-}
-
-.Posts {
-    float: left;
+﻿.Posts {
+    /*float: left;*/
     padding-right: 5%;
-    background-color: blue;
-    margin-left: 50%;
+    margin-left: 30%;
+    border: 2px solid darkgray;
+    /*background-color: blue;*/
 }
 
 .UserPost {
@@ -20,12 +14,13 @@
     padding-top: 5%;
     padding-bottom: 5%;
     margin-bottom: 5%;
-    background-color: red;
+
+    /*background-color: red;*/
     
 }
 
 .create {
-    margin-bottom: 10%;
+    margin-bottom: 5%;
 }
 
 .Id {
@@ -37,19 +32,31 @@
     margin-right: -10%;
 }
 
-.Friends {
-    margin-right: 60%;
-}
 
-.Footer {
-    margin-top: 20%;
-    clear: right;
-}
 
-.Pending {
+.nav {
     float: left;
-    margin-left: 15%;
-    margin-top: -7%;
+}
+
+
+.Details {
+    /*margin-right: 60%;*/
+    margin-bottom: 15%;
+
+    /*background-color: hotpink;*/
+
+}
+
+.Image {
+    height: 300px; 
+    width: 300px;
+    margin-bottom: 5%;
+}
+
+.Friends {
+    /*margin-right: 60%;*/
+
+    /*background-color: hotpink;*/
 }
 
 .Unfriend {
@@ -58,8 +65,13 @@
     margin-top: -7%;
 }
 
-.Image {
-    height: 400px; 
-    width: 400px;
-    margin-bottom: 5%;
+.Pending {
+    float: left;
+    margin-left: 15%;
+    margin-top: -7%;
+}
+
+
+.Footer {
+    clear: both;
 }
