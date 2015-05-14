@@ -45,7 +45,6 @@ namespace Connected.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IAppDataContext
     {
-        
         public IDbSet<Comment> Comments { get; set; }
         public IDbSet<Friendship> Friendships { get; set; }
         public IDbSet<Group> Groups { get; set; }

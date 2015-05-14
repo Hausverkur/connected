@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using Connected.Models;
 using Connected.ViewModels;
@@ -9,10 +10,20 @@ namespace Connected.Services
 {
     public class UserPostService
     {
-        ApplicationDbContext db = new ApplicationDbContext();
+        //Hér er skilgreint ef null er parameter í Serviceföllum þá er kallað í hinn raunverulega database
+        //Þetta er gert til þess að geta notað unit test á föll í mock-Database
+        private readonly IAppDataContext _db;
+
+        public UserPostService(IAppDataContext context)
+        {
+            _db = context ?? new ApplicationDbContext();
+        }
+
+        //Þetta fall nær í alla pósta úr gagnagrunni sem allir notendur hafa sett inn og skilar lista af þeim í UserPostViewModel.
+        //Þetta fall var notast við þegar unnið var að forritinu
         public List<UserPostViewModel> GetPosts()
         {
-            var posts = (from p in db.UserPosts.OfType<UserPost>()
+            var posts = (from p in _db.UserPosts.OfType<UserPost>()
                          select p).ToList();
             List<UserPostViewModel> userPosts = new List<UserPostViewModel>();
             
@@ -25,14 +36,15 @@ namespace Connected.Services
                     Author = post.User,
                 });
             }
-
-            CommentService commentService = new CommentService();
-
+            
             return userPosts;
         }
+
+        //Þetta fall nær í alla pósta sem tiltekinn notandi hefur sett inn og skilar þeim í lista af UserPostViewModelum
+        //ViewModelið er svo nýtt til þess að birta gögnin í gegnum FrontPageViewModel
         public List<UserPostViewModel> GetPostsByUserId(string userId)
         {
-            var posts = (from p in db.UserPosts
+            var posts = (from p in _db.UserPosts
                          where p.User.Id == userId
                          && p.GroupPost == false
                          select p).ToList();
@@ -48,17 +60,42 @@ namespace Connected.Services
                 });
             }
 
-            CommentService commentService = new CommentService();
+            CommentService commentService = new CommentService(null);
 
             return userPosts;
         }
 
+        //Þetta fall athugar hvort að urlið sem gefið er í Posts, Recipe og ProfilePicture sé ekki örugglega url á valid mynd -  skilar bool
+        public bool UrlExists(string url)
+        {
+            try
+            {
+                HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
+                
+                request.Method = "HEAD";
+                
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+               
+                return (response.StatusCode == HttpStatusCode.OK);
+            }
+            catch
+            {
+                
+                return false;
+            }
+        }
+        
+        //Þetta fall bætir inn UserPost sem berast frá notenduum í gagnagrunninn
         public void AddUserPost(UserPost post, string userId)
         {
             DateTime now = DateTime.Now;
-            using (ApplicationDbContext db = new ApplicationDbContext())
+
+            if (UrlExists(post.ImageUrl) == false)
             {
-                db.UserPosts.Add(new UserPost
+                post.ImageUrl = ".../Connected/Images/Profile.png";
+            }
+           
+                _db.UserPosts.Add(new UserPost
             {
                 UserId = userId,
                 Body = post.Body,
@@ -70,25 +107,23 @@ namespace Connected.Services
                 GroupReference = 0,
                 ImageUrl = post.ImageUrl,
             });
-                db.SaveChanges();
-            }
-        }
 
+            
+                _db.SaveChanges();
+            }
+
+        //Þetta fall bætir athugasemdum/comment-um við pósta í gagnagrunnin sem berast frá notendum.
         public void AddComment(string userId, int postId, Comment comment)
         {
-            db.Comments.Add(new Comment
+            _db.Comments.Add(new Comment
             {
                 AuthorId = userId,
                 Body = comment.Body,
                 DateTimePosted = DateTime.Now,
                 PostId = postId,
             });
-            db.SaveChanges();
+            _db.SaveChanges();
         }
-
-        /*public List<UserPostViewModel> GetFriendsPosts(List<ApplicationUser> friends)
-        {
-            
-        }*/
     }
 }
+

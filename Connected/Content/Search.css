@@ -1,0 +1,14 @@
+﻿.Search {
+    clear: both;
+    /*background-color: green;*/
+}
+
+.Border {
+    border: double black;
+    margin-right: 50%;
+}
+
+.Footer {
+    clear: both;
+    /*background-color: black;*/
+}

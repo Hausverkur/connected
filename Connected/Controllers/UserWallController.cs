@@ -21,8 +21,8 @@ namespace Connected.Controllers
             }
             else
             {
-                UserPostService postService = new UserPostService();
-                CommentService commentService = new CommentService();
+                UserPostService postService = new UserPostService(null);
+                CommentService commentService = new CommentService(null);
                 UserService userService = new UserService(null);
 
                 var userId = this.User.Identity.GetUserId();

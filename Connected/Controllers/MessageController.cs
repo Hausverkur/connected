@@ -21,7 +21,7 @@ namespace Connected.Controllers
             }
             else
             {
-                UserMessageService messageService = new UserMessageService();
+                UserMessageService messageService = new UserMessageService(null);
                 UserService userService = new UserService(null);
 
                 UserMessagesViewModel model = new UserMessagesViewModel();
@@ -49,7 +49,7 @@ namespace Connected.Controllers
         [HttpPost]
         public ActionResult CreateMessage(FormCollection formData, string id)
         {
-            UserMessageService service = new UserMessageService();
+            UserMessageService service = new UserMessageService(null);
             UserMessage message = new UserMessage
             {
                 Title = formData["Title"],

@@ -1,0 +1,77 @@
+﻿.Posts {
+    /*float: left;*/
+    padding-right: 5%;
+    margin-left: 30%;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    /*background-color: blue;*/
+}
+
+.UserPost {
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    padding-right: 10%;
+    padding-left: 10%;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    margin-bottom: 5%;
+    margin-left: 7%;
+
+    /*background-color: red;*/
+    
+}
+
+.create {
+    margin-bottom: 5%;
+}
+
+.Id {
+    font-weight: bold;
+}
+
+.Text {
+    margin-left: 10%;
+    margin-right: -10%;
+    margin-bottom: 1%;
+}
+
+
+
+.nav {
+    float: left;
+}
+
+
+.Details {
+    margin-bottom: 15%;
+
+    /*background-color: hotpink;*/
+
+}
+
+.Image {
+    height: 300px; 
+    width: 300px;
+    margin-bottom: 5%;
+}
+
+.Friends {
+    /*background-color: hotpink;*/
+}
+
+.Unfriend {
+    float: left;
+    margin-left: 15%;
+    margin-top: -7%;
+}
+
+.Pending {
+    float: left;
+    margin-left: 15%;
+    margin-top: -7%;
+}
+
+
+.Footer {
+    clear: both;
+}

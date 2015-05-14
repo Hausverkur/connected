@@ -9,19 +9,30 @@ namespace Connected.Services
 {
     public class UserMessageService
     {
-        ApplicationDbContext db = new ApplicationDbContext();
+        //Hér er skilgreint ef null er parameter í Serviceföllum þá er kallað í hinn raunverulega database
+        //Þetta er gert til þess að geta notað unit test á föll í mock-Database
+        private readonly IAppDataContext _db;
+
+        public UserMessageService(IAppDataContext context)
+        {
+            _db = context ?? new ApplicationDbContext();
+        }
+        
+        //Fallið nær í lista af öllum skilaboðum sem notandi hefur fengið send
         public List<UserMessage> GetUserRecievedMessages(string userId)
         {
             
-            var messages = (from p in db.UserMessages
+            var messages = (from p in _db.UserMessages
                          where p.Recipient.Id == userId
                          select p).ToList();
 
             return messages;
         }
+
+        //Fallið nær í lista af öllum skilaboðum sem notandinn hefur sent til annarra notanda
         public List<UserMessage> GetUserSentMessages(string userId)
         {
-            var messages = (from p in db.UserMessages
+            var messages = (from p in _db.UserMessages
                             where p.Author.Id == userId
                             select p).ToList();
 
@@ -30,7 +41,7 @@ namespace Connected.Services
 
         public List<UserMessageViewModel> GetRecievedMessages(string userId)
         {
-            var messages = (from m in db.UserMessages
+            var messages = (from m in _db.UserMessages
                 where m.RecipientId == userId
                 select m).OrderByDescending(m => m.DateTimePosted).ToList();
             
@@ -52,7 +63,7 @@ namespace Connected.Services
 
         public List<UserMessageViewModel> GetSentMessages(string userId)
         {
-            var messages = (from m in db.UserMessages
+            var messages = (from m in _db.UserMessages
                             where m.AuthorId == userId
                             select m).OrderByDescending(m => m.DateTimePosted).ToList();
 
@@ -72,9 +83,10 @@ namespace Connected.Services
             return list;
         }
 
-        public List<UserMessageViewModel> GEtConversation(string user1Id, string user2Id)
+        //Þetta falla sækir öll skilaboð sem send hafa verið á milli tveggja notanda
+        public List<UserMessageViewModel> GetConversation(string user1Id, string user2Id)
         {
-            var messages = (from m in db.UserMessages
+            var messages = (from m in _db.UserMessages
                 where (m.AuthorId == user1Id && m.RecipientId == user2Id)
                       || (m.AuthorId == user2Id && m.RecipientId == user2Id)
                 select m).OrderBy(m => m.DateTimePosted).ToList();
@@ -97,7 +109,7 @@ namespace Connected.Services
 
         public void AddMessage(string senderId, string recipientId, UserMessage message)
         {
-            db.UserMessages.Add(new UserMessage
+            _db.UserMessages.Add(new UserMessage
             {
                 AuthorId = senderId,
                 RecipientId = recipientId,
@@ -106,7 +118,7 @@ namespace Connected.Services
                 DateTimePosted = DateTime.Now,
                 Id = message.Id,
             });
-            db.SaveChanges();
+            _db.SaveChanges();
         }
     }
 }

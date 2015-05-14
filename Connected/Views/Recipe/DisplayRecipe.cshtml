@@ -6,7 +6,6 @@
     <link href="~/Content/DisplayRecipe.css" rel="stylesheet" />
 }
 
-<h2>DisplayRecipe</h2>
 
 <div class="RecipeArea">
     <h1 class="RecipeName">
@@ -14,6 +13,8 @@
     </h1>
     <div class="Image">
         @Html.DisplayFor(model => model.Image)
+        <img src="../../Images/sandwich.jpg" height="250px" width="250px" class="Image" alt="Logo" />
+
     </div>
 
     <p class="Description">
@@ -41,35 +42,20 @@
         Posted on: @Html.DisplayFor(model => model.DateTimePosted)
     </p>
 </div>
-    <p class="Likes">
-        <input type="button" name="btnLike" value="Like" class="glyphicon glyphicon-thumbs-up" />
-     
-        @Html.DisplayFor(model => model.Likes)
 
-        <input type="button" name="btnDislike" value="Dislike" class="glyphicon glyphicon-thumbs-down" />
-    
-        @Html.DisplayFor(model => model.Dislikes)
-
-         <a>Shares</a>
-
-    </p>
-
-
-<div>
-    @Html.ActionLink("Back to List", "ListOfRecipes")
-</div>
 
 <button class="create">
 
     @Html.ActionLink("Comment", "CreateRecipeComment",  new{id = Model.Id})
 
 </button>
-<i>Posts</i>
-<hr />
-<br /> <!--What is the problem here?-->
+<!--What is the problem here?-->
 @foreach (var comment in Model.Comments)
 {
     <p><b>@comment.Author.UserName</b></p>
     <p>@comment.Body</p>
     <br />
 }
+<div>
+    @Html.ActionLink("Back to Recipes", "ListOfRecipes")
+</div>

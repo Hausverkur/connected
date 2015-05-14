@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.Entity;
 using Connected.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Connected.Tests
 {
@@ -14,7 +15,9 @@ namespace Connected.Tests
         /// </summary>
         public MockDataContext()
         {
+            ApplicationUsers = new InMemoryDbSet<ApplicationUser>();
             // We're setting our DbSets to be InMemoryDbSets rather than using SQL Server.
+            IdentityUsers = new InMemoryDbSet<IdentityUser>();
             Comments = new InMemoryDbSet<Comment>();
             Friendships = new InMemoryDbSet<Friendship>();
             Groups = new InMemoryDbSet<Group>();
@@ -34,6 +37,8 @@ namespace Connected.Tests
 
         }
 
+        public IDbSet<ApplicationUser> ApplicationUsers { get; set; }
+        public IDbSet<IdentityUser> IdentityUsers { get; set; } 
         public IDbSet<Comment> Comments { get; set; }
         public IDbSet<Friendship> Friendships { get; set; }
         public IDbSet<Group> Groups { get; set; }

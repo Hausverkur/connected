@@ -1,0 +1,31 @@
+﻿.Request {
+    word-spacing: 5px;
+}
+
+.Posts {
+    margin-left: 10%;
+}
+
+.UserPost {
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    max-width: 45%;
+}
+
+.Id {
+    font-weight: bold;
+    margin-left: 2%;
+    margin-top: 1%;
+}
+
+.Text {
+    margin-left: 3%;
+    margin-right: 20%;
+    margin-bottom: 1%;
+}
+
+.Date {
+    margin-left: 3%;
+    margin-bottom: 3%;
+}
+

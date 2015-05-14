@@ -27,10 +27,10 @@ namespace Connected.Controllers
             }
             else
             {
-                UserPostService postService = new UserPostService();
-                CommentService commentService = new CommentService();
+                UserPostService postService = new UserPostService(null);
+                CommentService commentService = new CommentService(null);
                 UserService userService = new UserService(null);
-                GroupService groupService = new GroupService();
+                GroupService groupService = new GroupService(null);
 
                 var friends = userService.GetFriends(this.User.Identity.GetUserId());
 
@@ -120,7 +120,8 @@ namespace Connected.Controllers
         [HttpPost]
         public ActionResult CreateUserPost(FormCollection formData)
         {
-            UserPostService postService = new UserPostService();
+            UserPostService postService = new UserPostService(null);
+            
             UserPost post = new UserPost();
             UpdateModel(post);
             postService.AddUserPost(post, this.User.Identity.GetUserId());
@@ -139,8 +140,8 @@ namespace Connected.Controllers
                  {
                      id = this.User.Identity.GetUserId();
                  }
-                 UserPostService postService = new UserPostService();
-                 CommentService commentService = new CommentService();
+                 UserPostService postService = new UserPostService(null);
+                 CommentService commentService = new CommentService(null);
                  UserService userService = new UserService(null);
 
                  var posts = postService.GetPostsByUserId(id);
@@ -262,7 +263,7 @@ namespace Connected.Controllers
         {
             if (id.HasValue)
             {
-                UserPostService postService = new UserPostService();
+                UserPostService postService = new UserPostService(null);
                 Comment comment = new Comment();
                 UpdateModel(comment);
                 postService.AddComment(this.User.Identity.GetUserId(), id.Value, comment);

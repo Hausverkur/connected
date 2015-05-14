@@ -9,14 +9,15 @@ namespace Connected.Services
 {
     public class SearchService
     {
+        //Þetta fall sækir lista af notendum þar sem leitað er í UserName.
         public List<UserViewModel> GetUsers(string searchString)
         {
             ApplicationDbContext db = new ApplicationDbContext();
 
             var users = (from u in db.Users
-                select u)
-                .Where(u => u.UserName.Contains(searchString))
-                .ToList();
+                        select u)
+                        .Where(u => u.UserName.Contains(searchString))
+                        .ToList();
 
             List<UserViewModel> model = new List<UserViewModel>();
 
@@ -34,6 +35,7 @@ namespace Connected.Services
             return model;
         }
 
+        //Hér er leitað af hópum eftir nafni hópa
         public List<GroupViewModel> GetGroups(string searchString)
         {
             ApplicationDbContext db = new ApplicationDbContext();
@@ -60,6 +62,7 @@ namespace Connected.Services
             return model;
         }
 
+        //Hér er leitað af Uppskriftum eftir nafni uppskriftanna
         public List<RecipeViewModel> GetRecipes(string searchString)
         {
             ApplicationDbContext db = new ApplicationDbContext();
