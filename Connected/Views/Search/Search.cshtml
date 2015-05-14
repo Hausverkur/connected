@@ -6,22 +6,22 @@
     ViewBag.Title = "Search";
     <link href="~/Content/Search.css" rel="stylesheet"/>
 }
-<!--Þetta er kóði sem er fundinn á netinu og inniheldur bara HTML/CSS-->
-<!--Á eftir að laga mikið til en þessi kóði er samt alveg keyranlegur-->
-<!--T.D. er hægt að cut-a þennan kóða yfir í RecipeList og sjá útlit og virkni þessa kóða-->
 
 
-<div>
-    <div class="Search">
-        @using (Html.BeginForm("Search", "Search", FormMethod.Get))
-        {
-            @Html.TextBox("search")
-            <input type="submit" value="Search"/>
+<div class="Search">
+    @using (Html.BeginForm("Search", "Search", FormMethod.Get))
+    {
+        @Html.TextBox("search")
+        <input type="submit" value="Search" />
 
-        }
-    </div>
+    }
+</div>
 
-        <div class="Users">
+<br />
+
+<div class="Border">
+
+    <div class="Users">
             @if (Model.Users.Count > 0)
             {
                 <h2>Users</h2>
@@ -32,7 +32,7 @@
                 }
 
             }
-        </div>
+    </div>
 
     <div class="Recipe">
       

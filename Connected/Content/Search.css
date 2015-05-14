@@ -3,19 +3,9 @@
     /*background-color: green;*/
 }
 
-.Users {
-
-    /*background-color: red;*/
-}
-
-.Recipe {
-  
-   /* background-color: pink;*/
-}
-
-.Group {
-
-   /*background-color: blue;*/
+.Border {
+    border: double black;
+    margin-right: 50%;
 }
 
 .Footer {
