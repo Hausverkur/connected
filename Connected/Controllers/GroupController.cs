@@ -19,7 +19,7 @@ namespace Connected.Controllers
         {
            List<GroupViewModel> groupList = new List<GroupViewModel>();
 
-            GroupService service = new GroupService();
+            GroupService service = new GroupService(null);
 
             var groupModels = service.GetListOfGroups();
 
@@ -43,7 +43,7 @@ namespace Connected.Controllers
         {
             if (id.HasValue)
             {
-                GroupService service = new GroupService();
+                GroupService service = new GroupService(null);
                 int theId = id.Value;
                 var groupModel = service.GetGroupById(theId);
                 GroupViewModel group = new GroupViewModel
@@ -72,7 +72,7 @@ namespace Connected.Controllers
         [HttpPost]
         public ActionResult CreateGroup(FormCollection formData)
         {
-            GroupService service = new GroupService();
+            GroupService service = new GroupService(null);
             Group group = new Group();
             UpdateModel(group);
             service.AddGroup(group, this.User.Identity.GetUserId());
@@ -83,7 +83,7 @@ namespace Connected.Controllers
         {
             if (id.HasValue)
             {
-                GroupService service = new GroupService();
+                GroupService service = new GroupService(null);
                 service.AddGroupMember(id.Value, this.User.Identity.GetUserId());
 
                 return RedirectToAction("DisplayGroup", new { id = id.Value });
@@ -95,7 +95,7 @@ namespace Connected.Controllers
         {
             if (id.HasValue)
             {
-                GroupService service = new GroupService();
+                GroupService service = new GroupService(null);
                 service.RemoveGroupMember(id.Value, this.User.Identity.GetUserId());
 
                 return RedirectToAction("DisplayGroup", new { id = id.Value });
@@ -114,7 +114,7 @@ namespace Connected.Controllers
         {
             if (id.HasValue)
             {
-                GroupService groupService = new GroupService();
+                GroupService groupService = new GroupService(null);
                 UserPost post = new UserPost();
                 UpdateModel(post);
                 groupService.CreateGroupPost(this.User.Identity.GetUserId(), id.Value, post);

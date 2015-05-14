@@ -23,22 +23,23 @@ namespace Connected.Tests.Services
             {
                 Id = "user1",
             };
-
+            mockDb.ApplicationUsers.Add(u1);
             var u2 = new ApplicationUser
             {
                 Id = "user2",
             };
-
+            mockDb.ApplicationUsers.Add(u2);
             var u3 = new ApplicationUser
             {
                 Id = "user3",
             };
-
+            mockDb.ApplicationUsers.Add(u3);
             var u4 = new ApplicationUser
             {
                 Id = "user4",
             };
-            
+            mockDb.ApplicationUsers.Add(u4);
+           
             var p1 = new UserPost
             {
                 Id = 1,
@@ -187,7 +188,5 @@ namespace Connected.Tests.Services
             //ASSERT:
             Assert.AreEqual(7, userPosts.Count);
         }
-
-
     }
 }

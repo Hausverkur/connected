@@ -17,8 +17,7 @@ namespace Connected.Services
         {
             _db = context ?? new ApplicationDbContext();
         }
-
-        
+                
         public ApplicationUser GetUserInfo(string userId)
         {
             ApplicationDbContext db = new ApplicationDbContext();
@@ -32,11 +31,11 @@ namespace Connected.Services
         public List<ApplicationUser> GetFriends(string userId)
         {
             var friends1 = (from f in _db.Friendships
-                where f.User1.Id == userId
+                where f.User1.Id == userId && f.Comfirmed == true
                 select f.User2);
 
             var friends2 = (from f in _db.Friendships
-                where f.User2.Id == userId
+                where f.User2.Id == userId && f.Comfirmed == true
                 select f.User1);
 
             var friends = friends1.Union(friends2).ToList();

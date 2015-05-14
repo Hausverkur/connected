@@ -23,21 +23,22 @@ namespace Connected.Tests.Services
             {
                 Id = "user1",
             };
-
+            mockDb.ApplicationUsers.Add(u1);
             var u2 = new ApplicationUser
             {
                 Id = "user2",
             };
-
+            mockDb.ApplicationUsers.Add(u2);
             var u3 = new ApplicationUser
             {
                 Id = "user3",
             };
-
+            mockDb.ApplicationUsers.Add(u3);
             var u4 = new ApplicationUser
             {
                 Id = "user4",
             };
+            mockDb.ApplicationUsers.Add(u4);
             
             var f1 = new Friendship
             {
@@ -76,7 +77,7 @@ namespace Connected.Tests.Services
                 User1Id = "user3",
                 User2Id = "user2",
                 User1 = u3,
-                User2 = u1,
+                User2 = u2,
             };
             mockDb.Friendships.Add(f4);
             var f5 = new Friendship
@@ -85,44 +86,12 @@ namespace Connected.Tests.Services
                 Id = 5,
                 User1Id = "user1",
                 User2Id = "user4",
-                User1 = u3,
-                User2 = u1,
+                User1 = u1,
+                User2 = u4,
             };
             mockDb.Friendships.Add(f5);
-            var f6 = new Friendship
-            {
-                Comfirmed = false,
-                Id = 6,
-                User1Id = "user2",
-                User2Id = "user4",
-                User1 = u3,
-                User2 = u1,
-            };
-            mockDb.Friendships.Add(f6);
-            var p1 = new UserPost
-            {
-                Id = 1,
-                Body = "Halló",
-                User = u1,
-                UserId = "user1",
-                GroupReference = 1,
-                GroupPost = false,
-                DateTimePosted = DateTime.Now,
-            };
-            mockDb.UserPosts.Add(p1);
-            var p2 = new UserPost
-            {
-                Id = 2,
-                Body = "Halló",
-                User = u1,
-                UserId = "user1",
-                GroupReference = 1,
-                GroupPost = false,
-                DateTimePosted = DateTime.Now,
-            };
-            mockDb.UserPosts.Add(p2);
-
-
+           
+            
             _service = new UserService(mockDb); 
             
         }
@@ -142,6 +111,20 @@ namespace Connected.Tests.Services
             {
                 Assert.AreNotEqual(item, "user1");
             }
+        }
+        
+        [TestMethod]
+        public void TestGetUserById()
+        {
+            //ARRANGE:
+            const string userId = "user4";
+            
+
+            //ACT:
+            var user = _service.GetUserInfo(userId);
+
+            //ASSERT:
+            Assert.AreEqual(userId, user.Id);
         }
 
         [TestMethod]
@@ -180,7 +163,7 @@ namespace Connected.Tests.Services
         {
             //ARRANGE:
             const string user1 = "user4";
-            const string user2 = "user1";
+            const string user2 = "user2";
 
             //ACT:
             var friendship = _service.AreFriends(user1, user2);
@@ -194,7 +177,7 @@ namespace Connected.Tests.Services
         public void TestAreNotYetConfirmedFriends()
         {
             //ARRANGE:
-            const string user1 = "user2";
+            const string user1 = "user1";
             const string user2 = "user4";
 
             //ACT:
@@ -227,7 +210,7 @@ namespace Connected.Tests.Services
             var requests = _service.GetFriendRequests(user);
 
             //ASSERT:
-            Assert.AreEqual(2, requests.Count);
+            Assert.AreEqual(1, requests.Count);
         }
 
         [TestMethod]
@@ -261,14 +244,14 @@ namespace Connected.Tests.Services
         public void GetFriendshipIdForUsers2And4()
         {
             //ARRANGE:
-            const string user1 = "user2";
-            const string user2 = "user4";
+            const string user1 = "user1";
+            const string user2 = "user2";
 
             //ACT:
             var id = _service.FindFriendship(user1, user2);
 
             //ASSERT:
-            Assert.AreEqual(6, id);
+            Assert.AreEqual(1, id);
         }
     }
 }

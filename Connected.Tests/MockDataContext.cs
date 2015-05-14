@@ -15,6 +15,7 @@ namespace Connected.Tests
         public MockDataContext()
         {
             // We're setting our DbSets to be InMemoryDbSets rather than using SQL Server.
+            ApplicationUsers = new InMemoryDbSet<ApplicationUser>();
             Comments = new InMemoryDbSet<Comment>();
             Friendships = new InMemoryDbSet<Friendship>();
             Groups = new InMemoryDbSet<Group>();
@@ -34,6 +35,7 @@ namespace Connected.Tests
 
         }
 
+        public IDbSet<ApplicationUser> ApplicationUsers { get; set; } 
         public IDbSet<Comment> Comments { get; set; }
         public IDbSet<Friendship> Friendships { get; set; }
         public IDbSet<Group> Groups { get; set; }
