@@ -36,10 +36,13 @@
 </div>
 <div>
     <div class="Details">
+        <img src="@Model.User.ProfilePicture" class="Image" />
+
         <p><b>Email:</b> @Model.User.Email</p>
         <p><b>Age:</b> @Model.User.Age</p>
         <p><b>Gender:</b> @Model.User.Gender</p>
-        <p><b>Description</b></p>
+        <p><b>Description</b>
+        </p>
         @Model.User.Description
     </div>
 

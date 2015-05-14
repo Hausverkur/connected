@@ -1,5 +1,7 @@
 ﻿.Post {
    /* background-color: hotpink;*/
+   border: 1px solid lightgray;
+    border-radius: 10px;
 }
 
 .italic {
