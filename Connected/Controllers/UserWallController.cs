@@ -21,7 +21,7 @@ namespace Connected.Controllers
         public ActionResult UserWall(string id)
         {
             UserPostService postService = new UserPostService(null);
-            CommentService commentService = new CommentService();
+            CommentService commentService = new CommentService(null);
             UserService userService = new UserService(null);
 
             var userId = this.User.Identity.GetUserId();

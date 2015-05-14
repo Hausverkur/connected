@@ -22,7 +22,7 @@ namespace Connected.Controllers
         public ActionResult FrontPage()
         {
             UserPostService postService = new UserPostService(null);
-            CommentService commentService = new CommentService();
+            CommentService commentService = new CommentService(null);
             UserService userService = new UserService(null);
             GroupService groupService = new GroupService(null);
 
@@ -44,6 +44,7 @@ namespace Connected.Controllers
 
             frontPage.Posts =  frontPage.Posts.OrderByDescending(p => p.DateTimePosted).ToList();
 
+            
             foreach (var post in frontPage.Posts)
             {
                 var Comments = commentService.GetCommentsByPostId(post.Id);
@@ -124,7 +125,7 @@ namespace Connected.Controllers
                  id = this.User.Identity.GetUserId();
              }
             UserPostService postService = new UserPostService(null);
-            CommentService commentService = new CommentService();
+            CommentService commentService = new CommentService(null);
             UserService userService = new UserService(null);
 
             var posts = postService.GetPostsByUserId(id);

@@ -8,33 +8,38 @@ namespace Connected.Services
 {
     public class RecipeService
     {
+        //Hér er skilgreint ef null er parameter í Serviceföllum þá er kallað í hinn raunverulega database
+        //Þetta er gert til þess að geta notað unit test á föll í mock-Database
+        private readonly IAppDataContext _db;
+
+        public RecipeService(IAppDataContext context)
+        {
+            _db = context ?? new ApplicationDbContext();
+        }
+
+        //Þetta fall sækir lista af öllum uppskriftum í gagnagrunninum
         public List<Recipe> GetRecipes()
         {
-            ApplicationDbContext db = new ApplicationDbContext();
-
-            var recipes = (from recipe in db.Recipes
+            var recipes = (from recipe in _db.Recipes
                            select recipe).ToList();
 
             return recipes;
         }
 
+        //Þetta fall sækir tiltekna uppskrift eftir Id
         public Recipe GetRecipeById(int id)
         {
-            ApplicationDbContext db = new ApplicationDbContext();
-
-            var recipe = (from r in db.Recipes
+            var recipe = (from r in _db.Recipes
                           where r.Id == id
                           select r).First();
 
             return recipe;
         }
 
+        //Þetta fall bætir við uppskrift sem notandi býr til og setur í gagnagrunninn 
         public void AddRecipe(Recipe recipe)
         {
-            ApplicationDbContext db = new ApplicationDbContext();
-
-
-            db.Recipes.Add(new Recipe
+            _db.Recipes.Add(new Recipe
             {
                 DateTimePosted = DateTime.Now,
                 Description = recipe.Description,
@@ -48,9 +53,10 @@ namespace Connected.Services
                 //Author = recipe.Author
             });
 
-            db.SaveChanges();
+            _db.SaveChanges();
         }
 
+        //Þetta fall setur inn athugasemd/comment við uppskrift sem notandi hefur sett inn
         public void CreateRecipeComment(string userId, int recipeId, RecipeComment comment)
         {
             DateTime now = DateTime.Now;

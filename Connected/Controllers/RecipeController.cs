@@ -16,7 +16,7 @@ namespace Connected.Controllers
         // GET: Recipe
         public ActionResult ListOfRecipes()
         {
-            RecipeService service = new RecipeService();
+            RecipeService service = new RecipeService(null);
 
             var recipes = service.GetRecipes();
 
@@ -44,7 +44,7 @@ namespace Connected.Controllers
         [HttpGet]
         public ActionResult DisplayRecipe(int? id)
         {
-            RecipeService service = new RecipeService();
+            RecipeService service = new RecipeService(null);
             if (id.HasValue)
             {
                 int theId = id.Value;
@@ -78,7 +78,7 @@ namespace Connected.Controllers
         [HttpPost]
         public ActionResult CreateRecipe(FormCollection formData)
         {
-            RecipeService service = new RecipeService();
+            RecipeService service = new RecipeService(null);
             Recipe recipe = new Recipe();
             UpdateModel(recipe);
             service.AddRecipe(recipe);
@@ -130,7 +130,7 @@ namespace Connected.Controllers
         {
             if (id.HasValue)
             {
-                RecipeService recipeService = new RecipeService();
+                RecipeService recipeService = new RecipeService(null);
                 RecipeComment comment = new RecipeComment();
                 UpdateModel(comment);
                 recipeService.CreateRecipeComment(this.User.Identity.GetUserId(), id.Value, comment);
