@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using Connected.Models;
 using Connected.ViewModels;
@@ -59,10 +60,36 @@ namespace Connected.Services
             return userPosts;
         }
 
+        public bool UrlExists(string url)
+        {
+            try
+            {
+                //Creating the HttpWebRequest
+                HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
+                //Setting the Request method HEAD, you can also use GET too.
+                request.Method = "HEAD";
+                //Getting the Web Response.
+                HttpWebResponse response = request.GetResponse() as HttpWebResponse;
+                //Returns TURE if the Status code == 200
+                return (response.StatusCode == HttpStatusCode.OK);
+            }
+            catch
+            {
+                //Any exception will returns false.
+                return false;
+            }
+        }
+        
+
         public void AddUserPost(UserPost post, string userId)
         {
             DateTime now = DateTime.Now;
-            
+
+            if (UrlExists(post.ImageUrl) == false)
+            {
+                post.ImageUrl = ".../Connected/Images/Profile.png";
+            }
+           
                 _db.UserPosts.Add(new UserPost
             {
                 UserId = userId,
@@ -75,6 +102,8 @@ namespace Connected.Services
                 GroupReference = 0,
                 ImageUrl = post.ImageUrl,
             });
+
+            
                 _db.SaveChanges();
             }
 
