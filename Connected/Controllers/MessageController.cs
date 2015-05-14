@@ -14,7 +14,7 @@ namespace Connected.Controllers
         // GET: Message
         public ActionResult Messages()
         {
-            UserMessageService messageService = new UserMessageService();
+            UserMessageService messageService = new UserMessageService(null);
             UserService userService = new UserService(null);
 
             List<UserMessageViewModel> model = new List<UserMessageViewModel>();

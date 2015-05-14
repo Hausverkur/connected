@@ -10,6 +10,8 @@ namespace Connected.Services
 {
     public class UserPostService
     {
+        //Hér er skilgreint ef null er parameter í Serviceföllum þá er kallað í hinn raunverulega database
+        //Þetta er gert til þess að geta notað unit test á föll í mock-Database
         private readonly IAppDataContext _db;
 
         public UserPostService(IAppDataContext context)
@@ -17,6 +19,8 @@ namespace Connected.Services
             _db = context ?? new ApplicationDbContext();
         }
 
+        //Þetta fall nær í alla pósta úr gagnagrunni sem allir notendur hafa sett inn og skilar lista af þeim í UserPostViewModel.
+        //Þetta fall var notast við þegar unnið var að forritinu
         public List<UserPostViewModel> GetPosts()
         {
             var posts = (from p in _db.UserPosts.OfType<UserPost>()
@@ -32,11 +36,12 @@ namespace Connected.Services
                     Author = post.User,
                 });
             }
-
-            CommentService commentService = new CommentService();
-
+            
             return userPosts;
         }
+
+        //Þetta fall nær í alla pósta sem tiltekinn notandi hefur sett inn og skilar þeim í lista af UserPostViewModelum
+        //ViewModelið er svo nýtt til þess að birta gögnin í gegnum FrontPageViewModel
         public List<UserPostViewModel> GetPostsByUserId(string userId)
         {
             var posts = (from p in _db.UserPosts
@@ -55,32 +60,32 @@ namespace Connected.Services
                 });
             }
 
-            CommentService commentService = new CommentService();
+            CommentService commentService = new CommentService(null);
 
             return userPosts;
         }
 
+        //Þetta fall athugar hvort að urlið sem gefið er í Posts, Recipe og ProfilePicture sé ekki örugglega url á valid mynd -  skilar bool
         public bool UrlExists(string url)
         {
             try
             {
-                //Creating the HttpWebRequest
                 HttpWebRequest request = WebRequest.Create(url) as HttpWebRequest;
-                //Setting the Request method HEAD, you can also use GET too.
+                
                 request.Method = "HEAD";
-                //Getting the Web Response.
+                
                 HttpWebResponse response = request.GetResponse() as HttpWebResponse;
-                //Returns TURE if the Status code == 200
+               
                 return (response.StatusCode == HttpStatusCode.OK);
             }
             catch
             {
-                //Any exception will returns false.
+                
                 return false;
             }
         }
         
-
+        //Þetta fall bætir inn UserPost sem berast frá notenduum í gagnagrunninn
         public void AddUserPost(UserPost post, string userId)
         {
             DateTime now = DateTime.Now;
@@ -107,6 +112,7 @@ namespace Connected.Services
                 _db.SaveChanges();
             }
 
+        //Þetta fall bætir athugasemdum/comment-um við pósta í gagnagrunnin sem berast frá notendum.
         public void AddComment(string userId, int postId, Comment comment)
         {
             _db.Comments.Add(new Comment

@@ -11,6 +11,8 @@ namespace Connected.Services
 {
     public class UserService
     {
+        //Hér er skilgreint ef null er parameter í Serviceföllum þá er kallað í hinn raunverulega database
+        //Þetta er gert til þess að geta notað unit test á föll í mock-Database
         private readonly IAppDataContext _db;
 
         public UserService(IAppDataContext context)
@@ -18,6 +20,9 @@ namespace Connected.Services
             _db = context ?? new ApplicationDbContext();
         }
 
+        //Þetta fall nær í notanda eftir Id og skilar honum tilbaka til þess að geta nálgast upplýsingar sem birtast á MyWall/UserWall
+        //Kallað er í gagnagrunninn hér því ef vitnað er í _db.Users eða _db.ApplicationUsers þá kemur upp villa því miður náðist ekki að
+        //laga þetta
         public ApplicationUser GetUserInfo(string userId)
         {
             ApplicationDbContext db = new ApplicationDbContext();
@@ -28,6 +33,7 @@ namespace Connected.Services
             return information;
         }
 
+        //Þetta fall skilar lista af notendum sem eru búnir að staðfesta vinabeiðnir notandans
         public List<ApplicationUser> GetFriends(string userId)
         {
             var friends1 = (from f in _db.Friendships
@@ -43,6 +49,10 @@ namespace Connected.Services
             return friends;
 
         }
+
+        //Þetta fall athugar status á vináttu tveggja notanda, ef fallið skilar 2 þá eru notendur vinir
+        //ef fallið skilar 1 eru annar notandinn búinn að senda vinabeiðni en hinn notandinn ekki búinn að staðfesta beiðnina
+        //ef fallið skilar 0 eru þeir ekki vinir og engar vinabeiðnir hafa verið gerðar á milli notandanna
         public int AreFriends(string userId, string friendId)
         {
             var friends1 = (from f in _db.Friendships
@@ -61,6 +71,7 @@ namespace Connected.Services
             else return 0;
         }
 
+        //Þetta fall skilar lista af vinabeiðnum tiltekins notanda
         public List<Friendship> GetFriendRequests(string userId)
         {
             var friendships = (from requests in _db.Friendships
@@ -70,6 +81,7 @@ namespace Connected.Services
             return friendships;
         }
 
+       //Þetta fall staðfestir vinbeiðni notanda og því eru þeir nú miklir vinir
         public void AcceptRequest(int friendshipId)
         {
             ApplicationDbContext db = new ApplicationDbContext();
@@ -81,6 +93,7 @@ namespace Connected.Services
             db.SaveChanges();
         }
 
+        //Þetta fall eyðileggur/eyðir vináttu tveggja notanda
         public void RemoveFriendship(int friendshipId)
         {
             ApplicationDbContext db = new ApplicationDbContext();
@@ -91,6 +104,7 @@ namespace Connected.Services
             db.SaveChanges();
         }
 
+        //Þetta fall finnur vinatengls tveggja notanda, þetta er hjálparfall fyrir vinabeiðnir
         public int FindFriendship(string user1Id, string user2Id)
         {
             var friendship = (from f in _db.Friendships

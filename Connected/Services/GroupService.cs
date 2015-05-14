@@ -16,7 +16,6 @@ using WebGrease.Css.Ast.Selectors;
 
 namespace Connected.Services
 {
-    
     public class GroupService
     {
         private readonly IAppDataContext _db;
@@ -26,6 +25,7 @@ namespace Connected.Services
             _db = context ?? new ApplicationDbContext();
         }
 
+        //sækir lista af öllum hópum þeir raðast eftir stærð hópmeðlima - stærstu hóparnir efst
         public List<Group> GetListOfGroups()
         {
             var groups = (from g in _db.Groups
@@ -35,6 +35,7 @@ namespace Connected.Services
             return groups;
         }
 
+        //Sækir tiltekinn hóp eftir Id
         public Group GetGroupById(int? id)
         {
             if (id.HasValue)
@@ -48,6 +49,7 @@ namespace Connected.Services
             return null;
         }
 
+        //Fallið býr til nýjann hóp í gagnagrunni frá notanda
         public void AddGroup(Group group, string userId)
         {
 
@@ -73,6 +75,7 @@ namespace Connected.Services
             else return;
         }
 
+        //Fallið bætir notanda í hóp að beiðni notandans
         public void AddGroupMember(int groupId, string userId)
         {
             _db.GroupMembers.Add(new GroupMember
@@ -85,6 +88,7 @@ namespace Connected.Services
             UpdateGroup(groupId);
         }
 
+        //Þetta fall athugar hvort notandi er þegar í tilteknum hóp og skilar bool
         public bool IsInGroup(int groupId, string userId)
         {
             var inGroup = (from member in _db.GroupMembers
@@ -97,6 +101,7 @@ namespace Connected.Services
             return false;
         }
 
+        //Notandi fer úr tilteknum hóp með þessu falli
         public void RemoveGroupMember(int groupId, string userId)
         {
             var member = (from m in _db.GroupMembers
@@ -107,6 +112,7 @@ namespace Connected.Services
             UpdateGroup(groupId);
         }
 
+        //Þetta fall update-ar fjölda notanda í hópum
         public void UpdateGroup(int groupId)
         {
             SqlConnection con = new SqlConnection("Data Source=hrnem.ru.is;Initial Catalog=VERK2015_H45;Persist Security Info=True;User ID=VERK2015_H45_usr;Password=lumpysoup85");
@@ -127,6 +133,7 @@ namespace Connected.Services
             con.Close();
         }
 
+        //Þetta fall sækir lista af öllum þeim póstum sem notendur hafa deilt á vegg tiltekins hóps
         public List<UserPostViewModel> GetGroupPostsById(int groupId)
         {
             var posts = (from p in _db.UserPosts
@@ -152,6 +159,7 @@ namespace Connected.Services
             return groupPosts;
         }
 
+        //Þetta fall býr til póst tiltekins notanda á hópavegg og setur í gagnagrunninn
         public void CreateGroupPost(string userId, int groupId, UserPost post)
         {
             DateTime now = DateTime.Now;
@@ -162,7 +170,6 @@ namespace Connected.Services
 
             if (userInGroup != null)
             {
-                //using (ApplicationDbContext db = new ApplicationDbContext())
                 {
                     _db.UserPosts.Add(new UserPost
                     {
@@ -183,6 +190,7 @@ namespace Connected.Services
 
         }
 
+        //Sýnir lista af öllum hópum sem tiltekinn notandi er skráður í
         public List<Group> GetGroupsForUser(string userId)
         {
             var members = (from m in _db.GroupMembers
