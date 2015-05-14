@@ -16,63 +16,84 @@ namespace Connected.Controllers
         // GET: Recipe
         public ActionResult ListOfRecipes()
         {
-            RecipeService service = new RecipeService();
-
-            var recipes = service.GetRecipes();
-
-            List<RecipeViewModel> recipeList = new List<RecipeViewModel>();
-
-            foreach (var recipe in recipes)
+            if (this.User.Identity.GetUserId() == null)
             {
-                recipeList.Add(new RecipeViewModel
-                {
-                    DateTimePosted = recipe.DateTimePosted,
-                    Description = recipe.Description,
-                    Dislikes = recipe.Dislikes,
-                    Id = recipe.Id,
-                    Image = recipe.Image,
-                    Ingredients = recipe.Ingredients,
-                    Likes = recipe.Likes,
-                    Method = recipe.Method,
-                    Name = recipe.Name,
-                });
+                return RedirectToAction("Index", "Home");
             }
+            else
+            {
+                RecipeService service = new RecipeService();
 
-            return View(recipeList);
+                var recipes = service.GetRecipes();
+
+                List<RecipeViewModel> recipeList = new List<RecipeViewModel>();
+
+                foreach (var recipe in recipes)
+                {
+                    recipeList.Add(new RecipeViewModel
+                    {
+                        DateTimePosted = recipe.DateTimePosted,
+                        Description = recipe.Description,
+                        Dislikes = recipe.Dislikes,
+                        Id = recipe.Id,
+                        Image = recipe.Image,
+                        Ingredients = recipe.Ingredients,
+                        Likes = recipe.Likes,
+                        Method = recipe.Method,
+                        Name = recipe.Name,
+                    });
+                }
+
+                return View(recipeList);
+            }
         }
 
         [HttpGet]
         public ActionResult DisplayRecipe(int? id)
         {
-            RecipeService service = new RecipeService();
-            if (id.HasValue)
+            if (this.User.Identity.GetUserId() == null)
             {
-                int theId = id.Value;
-                var recipe = service.GetRecipeById(theId);
-                var theRecipe = new RecipeViewModel
-                {
-                    DateTimePosted = recipe.DateTimePosted,
-                    Description = recipe.Description,
-                    Dislikes = recipe.Dislikes,
-                    Id = recipe.Id,
-                    Image = recipe.Image,
-                    Ingredients = recipe.Ingredients,
-                    Likes = recipe.Likes,
-                    Method = recipe.Method,
-                    Name = recipe.Name,
-                    //Author = recipe.Author,
-                };
-                theRecipe.Comments = new List<RecipeCommentViewModel>();
-                return View(theRecipe);
+                return RedirectToAction("Index", "Home");
             }
+            else
+            {
+                RecipeService service = new RecipeService();
+                if (id.HasValue)
+                {
+                    int theId = id.Value;
+                    var recipe = service.GetRecipeById(theId);
+                    var theRecipe = new RecipeViewModel
+                    {
+                        DateTimePosted = recipe.DateTimePosted,
+                        Description = recipe.Description,
+                        Dislikes = recipe.Dislikes,
+                        Id = recipe.Id,
+                        Image = recipe.Image,
+                        Ingredients = recipe.Ingredients,
+                        Likes = recipe.Likes,
+                        Method = recipe.Method,
+                        Name = recipe.Name,
+                        //Author = recipe.Author,
+                    };
+                    theRecipe.Comments = new List<RecipeCommentViewModel>();
+                    return View(theRecipe);
+                }
 
-            return View();
+                return View();
+            }
         }
 
         [HttpGet]
         public ActionResult CreateRecipe()
         {
-            return View(new Recipe());
+            if (this.User.Identity.GetUserId() == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View(new Recipe());
+            }
         }
 
         [HttpPost]
@@ -122,7 +143,14 @@ namespace Connected.Controllers
         [HttpGet]
         public ActionResult CreateRecipeComment()
         {
-            return View(new RecipeComment());
+            if (this.User.Identity.GetUserId() == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View(new RecipeComment());
+            }
         }
 
         [HttpPost]

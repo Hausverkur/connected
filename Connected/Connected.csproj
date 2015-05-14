@@ -298,6 +298,7 @@
     <Content Include="Views\Home\AddUserPost.cshtml" />
     <Content Include="Views\Home\CreateComment.cshtml" />
     <Content Include="Views\Message\Messages.cshtml" />
+    <Content Include="Views\Message\CreateMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

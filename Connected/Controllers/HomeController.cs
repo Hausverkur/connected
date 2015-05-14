@@ -21,73 +21,100 @@ namespace Connected.Controllers
 
         public ActionResult FrontPage()
         {
-            UserPostService postService = new UserPostService();
-            CommentService commentService = new CommentService();
-            UserService userService = new UserService(null);
-            GroupService groupService = new GroupService();
-
-            var friends = userService.GetFriends(this.User.Identity.GetUserId());
-
-            FrontPageViewModel frontPage = new FrontPageViewModel();
-            frontPage.Posts = new List<UserPostViewModel>();
-            foreach (var friend in friends)
+            if (this.User.Identity.GetUserId() == null)
             {
-                frontPage.Posts.AddRange(postService.GetPostsByUserId(friend.Id));
+                return RedirectToAction("Index", "Home");
             }
-
-            var groups = groupService.GetGroupsForUser(this.User.Identity.GetUserId());
-
-            foreach (var group in groups)
+            else
             {
-                frontPage.Posts.AddRange(groupService.GetGroupPostsById(group.Id));
-            }
+                UserPostService postService = new UserPostService();
+                CommentService commentService = new CommentService();
+                UserService userService = new UserService(null);
+                GroupService groupService = new GroupService();
 
-            frontPage.Posts =  frontPage.Posts.OrderByDescending(p => p.DateTimePosted).ToList();
+                var friends = userService.GetFriends(this.User.Identity.GetUserId());
 
-            foreach (var post in frontPage.Posts)
-            {
-                var Comments = commentService.GetCommentsByPostId(post.Id);
-                List<CommentViewModel> commentViewModels = new List<CommentViewModel>();
-                foreach (var comment in Comments)
+                FrontPageViewModel frontPage = new FrontPageViewModel();
+                frontPage.Posts = new List<UserPostViewModel>();
+                foreach (var friend in friends)
                 {
-                    commentViewModels.Add(new CommentViewModel
+                    frontPage.Posts.AddRange(postService.GetPostsByUserId(friend.Id));
+                }
+
+                var groups = groupService.GetGroupsForUser(this.User.Identity.GetUserId());
+
+                foreach (var group in groups)
+                {
+                    frontPage.Posts.AddRange(groupService.GetGroupPostsById(group.Id));
+                }
+
+                frontPage.Posts = frontPage.Posts.OrderByDescending(p => p.DateTimePosted).ToList();
+
+                foreach (var post in frontPage.Posts)
+                {
+                    var Comments = commentService.GetCommentsByPostId(post.Id);
+                    List<CommentViewModel> commentViewModels = new List<CommentViewModel>();
+                    foreach (var comment in Comments)
                     {
-                        Body = comment.Body,
-                        Id = comment.Id,
-                        DateTimePosted = comment.DateTimePosted,
-                        Author = comment.Author,
+                        commentViewModels.Add(new CommentViewModel
+                        {
+                            Body = comment.Body,
+                            Id = comment.Id,
+                            DateTimePosted = comment.DateTimePosted,
+                            Author = comment.Author,
+                        });
+                    }
+                    post.Comments = commentViewModels;
+                }
+                var friendRequests = userService.GetFriendRequests(this.User.Identity.GetUserId());
+
+                frontPage.Requests = new List<RequestViewModel>();
+
+                foreach (var request in friendRequests)
+                {
+                    frontPage.Requests.Add(new RequestViewModel
+                    {
+                        Friendship = request,
                     });
                 }
-                post.Comments = commentViewModels;
+
+                return View(frontPage);
             }
-            var friendRequests = userService.GetFriendRequests(this.User.Identity.GetUserId());
-
-            frontPage.Requests = new List<RequestViewModel>();
-
-            foreach (var request in friendRequests)
-            {
-                frontPage.Requests.Add(new RequestViewModel
-                {
-                    Friendship = request,
-                });
-            }
-
-            return View(frontPage);
         }
         public ActionResult AddPost()
         {
-            return View();
+            if (this.User.Identity.GetUserId() == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
         }
         public ActionResult MyWall()
         {
-            
-            return RedirectToAction("UserWall", new{id = this.User.Identity.GetUserId()});
+            if (this.User.Identity.GetUserId() == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return RedirectToAction("UserWall", new {id = this.User.Identity.GetUserId()});
+            }
         }
 
         [HttpGet]
         public ActionResult CreateUserPost()
         {
-            return View(new UserPost());
+            if (this.User.Identity.GetUserId() == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View(new UserPost());
+            }
         }
 
         [HttpPost]
@@ -100,87 +127,78 @@ namespace Connected.Controllers
             return RedirectToAction("MyWall");
         }
 
-        [HttpGet]
-        public ActionResult AddUserPost()
-        {
-            return View(new FrontPageViewModel());
-        }
-
-        [HttpPost]
-        public ActionResult AddUserPost(FormCollection formData)
-        {
-            UserPostService postService = new UserPostService();
-            UserPost post = new UserPost();
-            UpdateModel(post);
-            postService.AddUserPost(post, this.User.Identity.GetUserId());
-            return RedirectToAction("MyWall");
-        }
-
          public ActionResult UserWall(string id)
         {
-             if (id == null)
+             if (this.User.Identity.GetUserId() == null)
              {
-                 id = this.User.Identity.GetUserId();
-             }
-            UserPostService postService = new UserPostService();
-            CommentService commentService = new CommentService();
-            UserService userService = new UserService(null);
-
-            var posts = postService.GetPostsByUserId(id);
-
-
-
-            UserWallViewModel model = new UserWallViewModel
-            {
-                Posts = posts,
-            };
-
-            var user = userService.GetUserInfo(id);
-            model.User = user;
-
-            foreach (var post in model.Posts)
-            {
-                var Comments = commentService.GetCommentsByPostId(post.Id);
-                List<CommentViewModel> commentViewModels = new List<CommentViewModel>();
-                foreach (var comment in Comments)
-                {
-                    commentViewModels.Add(new CommentViewModel
-                    {
-                        Body = comment.Body,
-                        Id = comment.Id,
-                    });
-                }
-                post.Comments = commentViewModels;
-            }
-
-            var friends = userService.GetFriends(id);
-            model.Friends = new List<UserViewModel>();
-          
-            foreach (var u in friends)
-            {
-
-                model.Friends.Add(new UserViewModel
-                {
-                    Age = u.Age,
-                    Description = u.Description,
-                    Email = u.Email,
-                    Gender = u.Gender,
-                    ProfilePicture = u.ProfilePicture,
-                    UserName = u.UserName,
-                    Id = u.Id
-
-                });
-            }
-             if (id == this.User.Identity.GetUserId())
-             {
-                 model.AreFriends = 4;
+                 return RedirectToAction("Index", "Home");
              }
              else
              {
-                 model.AreFriends = userService.AreFriends(this.User.Identity.GetUserId(), id);
-             }
+                 if (id == null)
+                 {
+                     id = this.User.Identity.GetUserId();
+                 }
+                 UserPostService postService = new UserPostService();
+                 CommentService commentService = new CommentService();
+                 UserService userService = new UserService(null);
 
-            return View(model);
+                 var posts = postService.GetPostsByUserId(id);
+
+
+
+                 UserWallViewModel model = new UserWallViewModel
+                 {
+                     Posts = posts,
+                 };
+
+                 var user = userService.GetUserInfo(id);
+                 model.User = user;
+
+                 foreach (var post in model.Posts)
+                 {
+                     var Comments = commentService.GetCommentsByPostId(post.Id);
+                     List<CommentViewModel> commentViewModels = new List<CommentViewModel>();
+                     foreach (var comment in Comments)
+                     {
+                         commentViewModels.Add(new CommentViewModel
+                         {
+                             Body = comment.Body,
+                             Id = comment.Id,
+                         });
+                     }
+                     post.Comments = commentViewModels;
+                 }
+
+                 var friends = userService.GetFriends(id);
+                 model.Friends = new List<UserViewModel>();
+
+                 foreach (var u in friends)
+                 {
+
+                     model.Friends.Add(new UserViewModel
+                     {
+                         Age = u.Age,
+                         Description = u.Description,
+                         Email = u.Email,
+                         Gender = u.Gender,
+                         ProfilePicture = u.ProfilePicture,
+                         UserName = u.UserName,
+                         Id = u.Id
+
+                     });
+                 }
+                 if (id == this.User.Identity.GetUserId())
+                 {
+                     model.AreFriends = 4;
+                 }
+                 else
+                 {
+                     model.AreFriends = userService.AreFriends(this.User.Identity.GetUserId(), id);
+                 }
+
+                 return View(model);
+             }
         }
 
         public ActionResult AddFriend(string userId)
@@ -229,7 +247,14 @@ namespace Connected.Controllers
         [HttpGet]
         public ActionResult CreateComment()
         {
-            return View(new Comment());
+            if (this.User.Identity.GetUserId() == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View(new Comment());
+            }
         }
 
         [HttpPost]
