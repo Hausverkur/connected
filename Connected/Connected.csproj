@@ -274,7 +274,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\Posts.cshtml" />
+    <Content Include="Views\Home\FrontPage.cshtml" />
     <Content Include="Views\Home\AddPost.cshtml" />
     <Content Include="Views\Recipe\DisplayRecipe.cshtml" />
     <Content Include="Views\Home\MyWall.cshtml" />
@@ -289,12 +289,13 @@
     <Content Include="Views\UserMessage\Index.cshtml" />
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\Home\PostAPost.cshtml" />
-    <Content Include="Views\Recipe\CreateComment.cshtml" />
+    <Content Include="Views\Recipe\CreateRecipeComment.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Group\CreateGroup.cshtml" />
     <Content Include="Views\Group\CreateGroupPost.cshtml" />
     <Content Include="Views\Home\View.cshtml" />
     <Content Include="Views\Home\AddUserPost.cshtml" />
+    <Content Include="Views\Home\CreateComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

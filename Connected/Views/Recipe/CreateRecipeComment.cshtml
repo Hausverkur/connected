@@ -1,4 +1,4 @@
-﻿@model Connected.Models.UserPost
+﻿@model Connected.Models.RecipeComment
 
 @{
     ViewBag.Title = "CreateRecipeComment";
@@ -29,7 +29,6 @@
             <input type="submit" value="Create" class="btn btn-default"/>
         </div>
     </div>
-    @Html.ActionLink("Comment", "CreateRecipe", new { @id = Model.Id })
 }
 
 @section Scripts {

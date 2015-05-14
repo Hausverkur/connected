@@ -120,23 +120,25 @@ namespace Connected.Controllers
         }*/
 
         [HttpGet]
-        public ActionResult CreateComment()
+        public ActionResult CreateRecipeComment()
         {
-            return View(new UserPost());
+            return View(new RecipeComment());
         }
 
         [HttpPost]
-        public ActionResult CreateComment(FormCollection formData, int? id)
+        public ActionResult CreateRecipeComment(FormCollection formData, int? id)
         {
             if (id.HasValue)
             {
                 RecipeService recipeService = new RecipeService();
-                UserPost post = new UserPost();
-                UpdateModel(post);
-                recipeService.CreateComment(this.User.Identity.GetUserId(), id.Value, post);
+                RecipeComment comment = new RecipeComment();
+                UpdateModel(comment);
+                recipeService.CreateRecipeComment(this.User.Identity.GetUserId(), id.Value, comment);
                 return RedirectToAction("DisplayRecipe", id);
             }
-            return RedirectToAction("DisplayRecipe");
+            return RedirectToAction("ListOfRecipes");
         }
+
+        
     }
 }

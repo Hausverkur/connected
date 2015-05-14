@@ -25,10 +25,12 @@ namespace Connected.Services
         {
             var friends1 = (from f in db.Friendships
                 where f.User1.Id == userId
+                && f.Comfirmed == true
                 select f.User2);
 
             var friends2 = (from f in db.Friendships
                 where f.User2.Id == userId
+                && f.Comfirmed == true
                 select f.User1);
 
             var friends = friends1.Union(friends2).ToList();
