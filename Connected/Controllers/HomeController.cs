@@ -250,7 +250,7 @@ namespace Connected.Controllers
             return RedirectToAction("FrontPage");
         }
         [HttpGet]
-        public ActionResult Information(int id)
+        public ActionResult Information()
         {
             return View(new UserViewModel());
         }
