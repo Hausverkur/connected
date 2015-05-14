@@ -149,6 +149,8 @@ namespace Connected.Controllers
                     {
                         Body = comment.Body,
                         Id = comment.Id,
+                        Author = comment.Author,
+                        DateTimePosted = comment.DateTimePosted,
                     });
                 }
                 post.Comments = commentViewModels;

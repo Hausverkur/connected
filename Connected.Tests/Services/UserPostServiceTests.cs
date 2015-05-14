@@ -178,6 +178,7 @@ namespace Connected.Tests.Services
                 Id = 7,
                 User = u5,
                 UserId = "user5",
+
             };
 
             //ADD:
@@ -187,6 +188,34 @@ namespace Connected.Tests.Services
 
             //ASSERT:
             Assert.AreEqual(7, userPosts.Count);
+        }
+
+        [TestMethod]
+        public void TestIfUrlValid()
+        {
+            //ARRANGE:
+            const string imageUrl = "http://www.jpl.nasa.gov/spaceimages/images/mediumsize/PIA17011_ip.jpg";
+            
+
+            //ADD:
+            var isValid = _service.UrlExists(imageUrl);
+            
+            //ASSERT:
+            Assert.AreEqual(true, isValid);
+        }
+
+        [TestMethod]
+        public void TestIfUrlIsNotValid()
+        {
+            //ARRANGE:
+            const string imageUrl = "www.google.com";
+
+
+            //ADD:
+            var isValid = _service.UrlExists(imageUrl);
+
+            //ASSERT:
+            Assert.AreEqual(false, isValid);
         }
     }
 }
