@@ -43,16 +43,20 @@
 
 
 .Details {
-    margin-bottom: 15%;
+    margin-bottom: 7%;
 
     /*background-color: hotpink;*/
 
 }
 
 .Image {
-    height: 300px; 
+    height: 350px; 
     width: 300px;
     margin-bottom: 5%;
+}
+
+.Messages {
+    margin-bottom: 7%;
 }
 
 .Friends {
