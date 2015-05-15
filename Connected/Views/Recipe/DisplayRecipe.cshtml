@@ -55,10 +55,10 @@
 
 </button>
 <!--What is the problem here?-->
-@foreach (var comment in Model.Comments)
+@foreach (var r in Model.Comments)
 {
-    <p><b>@comment.Author.UserName</b></p>
-    <p>@comment.Body</p>
+    <p><b>@r.Author.UserName</b></p>
+    <p>@r.Body</p>
     <br />
 }
 <div>
