@@ -11,14 +11,17 @@
         <h2>Sent</h2>
         @if (Model.SentMessages.Count > 0)
         {
+           
+                foreach (var item in Model.SentMessages)
+                {
+                    <div class="border">
+                        <p class="User"><b>@Html.ActionLink(item.Recipient.FullName, "UserWall", "Home", new { id = item.Recipient.Id }, null)</b></p>
+                        <p class="Title"><b>@Html.DisplayFor(modelItem => item.Title)</b></p>
+                        <p class="Text">@Html.DisplayFor(modelItem => item.Body)</p>
+                        <p class="Date"> Posted on: @item.DateTimePosted</p>
+                    </div>
+                }
 
-            foreach (var item in Model.SentMessages)
-            {
-                <p class="User"><b>@Html.ActionLink(item.Recipient.FullName, "UserWall", "Home", new { id = item.Recipient.Id }, null)</b></p>
-                <p class="Title"><b>@Html.DisplayFor(modelItem => item.Title)</b></p>
-                <p class="Text">@Html.DisplayFor(modelItem => item.Body)</p>
-
-            }
 
         }
     </div>
@@ -30,11 +33,15 @@
 
             foreach (var item in Model.RecievedMessages)
             {
-                <p class="User"><b>@Html.ActionLink(item.Author.FullName, "UserWall", "Home", new { id = item.Author.Id }, null) </b></p> 
-               
-                <p class="Title"><b>@Html.DisplayFor(modelItem => item.Title)</b></p>
-                <p> @Html.DisplayFor(modelItem => item.Body)</p>
-                @Html.ActionLink("Reply", "CreateMessage", new { id = item.Author.Id })
+                <div class="border">
+                    <p class="User"><b>@Html.ActionLink(item.Author.FullName, "UserWall", "Home", new {id = item.Author.Id}, null)</b> 
+                    @Html.ActionLink("Reply", "CreateMessage", new { id = item.Author.Id })</p>
+
+                    <p class="Title"><b>@Html.DisplayFor(modelItem => item.Title)</b></p>
+                    <p class="Text"> @Html.DisplayFor(modelItem => item.Body)</p>
+                    <p class="Date"> Posted on: @item.DateTimePosted</p>
+                    
+                </div>
             }
 
         }
