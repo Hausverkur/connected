@@ -63,9 +63,16 @@
     @foreach (var post in Model.Posts)
     {
         <div class="border">
+            @if (post.Author.FullName == null)
+            {
+            <p>@post.Author.Email</p>
+            }
+            else
+            {
             <p>
-                <b>@post.Author.UserName</b>
-            </p><!--Link to user wall-->
+                <b>@post.Author.FullName</b>
+            </p>
+            }
             <p class="Text">@post.Body</p>
             <p class="Date">@post.DateTimePosted</p>
 
