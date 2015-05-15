@@ -1,4 +1,4 @@
-﻿@model Connected.Models.ApplicationUser
+﻿@model Connected.ViewModels.InfoViewModel
 
 @{
     ViewBag.Title = "Information";
@@ -32,10 +32,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ProfilePicture, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBoxFor(model => model.ProfilePicture, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ProfilePicture, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -43,8 +43,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Gender, htmlAttributes: new {@class = "control-label col-md-2"})
             <div class="col-md-10">
-               male @Html.RadioButtonFor(model => model.Gender, "False", new {htmlAttributes = new {@class = "form-control"}})
-               female @Html.RadioButtonFor(model => model.Gender, "True", new { htmlAttributes = new { @class = "form-control" } })
+               male @Html.RadioButtonFor(model => model.Gender, "male", new {htmlAttributes = new {@class = "form-control"}})
+               female @Html.RadioButtonFor(model => model.Gender, "female", new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Gender, "", new {@class = "text-danger"})
             </div>
         </div>

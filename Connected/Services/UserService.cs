@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using Connected.Models;
@@ -114,6 +116,27 @@ namespace Connected.Services
                 select f.Id).FirstOrDefault();
 
             return friendship;
+        }
+
+        public void UpdateUserInfo(InfoViewModel info)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+
+            ApplicationUser user = db.Users.Find(info.Id);
+            user.FullName = info.FullName;
+            user.ProfilePicture = info.Image;
+            user.Gender = info.Gender;
+            user.Age = info.Age;
+            user.Description = info.Description;
+            
+            db.Entry(user).State = EntityState.Modified;
+            db.SaveChanges();
+            /*
+            Friendship friendship = new Friendship();
+            friendship = db.Friendships.Find(friendshipId);
+            friendship.Comfirmed = true;
+            db.Entry(friendship).State = EntityState.Modified;
+            db.SaveChanges();*/
         }
     }
 }
