@@ -3,12 +3,9 @@
 @using System.Diagnostics.Eventing.Reader
 @using Connected.Services;
 @{
-    ViewBag.Title = @Html.DisplayFor(model => model.Name);
-    <link href="~/Content/DisplayGroup.css" rel="stylesheet" />
-
+    ViewBag.Title = @Html.DisplayFor(model => model.Name); 
+    <link href="~/Content/UserPostLayout.css" rel="stylesheet" />
 }
-
-
 
 
     <div class="Navbar">
@@ -52,10 +49,10 @@
         <br /> <br />
     </div>
 
-
-    <div>
     <i class="italic">Posts</i>
     <hr />
+
+    <div class="Posts">
     
     @foreach (var post in Model.Posts)
     {
