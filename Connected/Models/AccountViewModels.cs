@@ -49,9 +49,8 @@ namespace Connected.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "Name")]
+        public string Name { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -60,6 +59,7 @@ namespace Connected.Models
 
         [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
+
     }
 
     public class RegisterViewModel
@@ -80,6 +80,9 @@ namespace Connected.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
+        [Required]
+        [Display(Name = "Username")]
+        public string Name { get; set; }
     }
 
     public class ResetPasswordViewModel
