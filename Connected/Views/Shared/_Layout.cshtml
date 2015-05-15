@@ -32,7 +32,7 @@ ALWAYS ADD !important AFTER EACH CHANGE I.E. border-color: #777777 !important;
             <div class="navbar-collapse collapse navbar-right">
                 @Html.Partial("_LoginPartial")
                 <ul class="nav navbar-nav">
-                    <li >@Html.ActionLink("Home", "FrontPage", "Home", new { area = "" }, new { @class = "navbar-brand" }) </li> 
+                    
                     <li >@Html.ActionLink("MyWall", "UserWall", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
                     <li >@Html.ActionLink("Messages", "Messages", "Message", new { area = "" }, new { @class = "navbar-brand" })</li>
                     <li >@Html.ActionLink("Groups", "ListOfGroups", "Group", new { area = "" }, new { @class = "navbar-brand" })</li>
