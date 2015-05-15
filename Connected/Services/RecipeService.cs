@@ -87,5 +87,28 @@ namespace Connected.Services
                 db.SaveChanges();
             }
         }
+
+        public List<RecipeCommentViewModel> GetRecipeComments(int recipeId)
+        {
+            var comments = (from comment in _db.RecipeComments
+                where comment.RecipeId == recipeId
+                select comment).ToList();
+
+            List<RecipeCommentViewModel> recipeComments = new List<RecipeCommentViewModel>();
+
+            foreach (var comment in comments)
+            {
+                recipeComments.Add(new RecipeCommentViewModel
+                {
+                    Body = comment.Body,
+                    Author = comment.Author,
+                    DateTimePosted = comment.DateTimePosted,
+                    Id = comment.Id,
+                    Recipe = comment.RecipeReference,
+
+                });
+            }
+            return recipeComments;
+        }
     }
 }
