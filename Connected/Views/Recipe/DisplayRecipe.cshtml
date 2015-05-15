@@ -1,4 +1,5 @@
-﻿@using Connected.Services
+﻿@using System.ComponentModel
+@using Connected.Services
 @model Connected.ViewModels.RecipeViewModel
 
 @{
@@ -14,7 +15,7 @@
     <div class="Image">
         <img src=@Model.Image  height="250" alt="Logo" />
 
-
+        @Html.ActionLink("Post this recipe", "PostRecipe", new{id = Model.Id})
     </div>
 
     <p class="Description">
@@ -63,12 +64,12 @@
         <hr class="cLine"/>
         @if (r.Author.FullName == null)
         {
-            <p>@Html.ActionLink(r.Author.Email, "UserWall", new {id = r.Author.Id})</p>
+            <p>@Html.ActionLink(r.Author.Email, "UserWall", "Home", new {id = r.Author.Id}, null)</p>
         }
         else
         {
             <p>
-                <b>@Html.ActionLink(r.Author.FullName, "UserWall", new {id = r.Author.Id})</b>
+                <b>@Html.ActionLink(r.Author.FullName, "UserWall", "Home", new {id = r.Author.Id}, null)</b>
             </p>
         }
     </div>
