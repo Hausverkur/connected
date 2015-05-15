@@ -73,6 +73,8 @@ namespace Connected.Models
 
         //public System.Data.Entity.DbSet<Connected.Models.ApplicationUser> ApplicationUsers { get; set; }
 
+        //public System.Data.Entity.DbSet<Connected.Models.ApplicationUser> ApplicationUsers { get; set; }
+
         //public System.Data.Entity.DbSet<Connected.ViewModels.UserMessageViewModel> UserMessageViewModels { get; set; }
 
         //public System.Data.Entity.DbSet<Connected.Models.ApplicationUser> ApplicationUsers { get; set; }

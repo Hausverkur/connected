@@ -30,9 +30,9 @@
 
             foreach (var item in Model.RecievedMessages)
             {
-                <p class="User">@Html.ActionLink(item.Author.FullName, "UserWall", "Home", new { id = item.Author.Id }, null) </p> 
+                <p class="User"><b>@Html.ActionLink(item.Author.FullName, "UserWall", "Home", new { id = item.Author.Id }, null) </b></p> 
                
-                <p class="Title">@Html.DisplayFor(modelItem => item.Title)</p>
+                <p class="Title"><b>@Html.DisplayFor(modelItem => item.Title)</b></p>
                 <p> @Html.DisplayFor(modelItem => item.Body)</p>
                 @Html.ActionLink("Reply", "CreateMessage", new { id = item.Author.Id })
             }
