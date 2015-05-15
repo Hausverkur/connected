@@ -21,9 +21,6 @@
 
         <p class="DescriptionText">@Html.DisplayFor(model => model.Description)</p>
 
-        </p>
-        <br />
-
         <section class="Image">
             @Html.DisplayFor(model => model.Image)
 
@@ -65,12 +62,12 @@
         <div class="border">
             @if (post.Author.FullName == null)
             {
-            <p>@post.Author.Email</p>
+            <p>@Html.ActionLink(post.Author.Email, "UserWall", new { id = post.Author.Id })</p>
             }
             else
             {
             <p>
-                <b>@post.Author.FullName</b>
+                <b>@Html.ActionLink(post.Author.FullName, "UserWall", new { id = post.Author.Id })</b>
             </p>
             }
             <p class="Text">@post.Body</p>
@@ -89,12 +86,13 @@
                     <hr class="cLine"/>
                     if (c.Author.FullName == null)
                     {
-                        <p>@c.Author.Email</p>
+                        
+                        <p>@Html.ActionLink(c.Author.Email, "UserWall", new { id = c.Author.Id })</p>
                     }
                     else
                     {
                         <p>
-                            <b>@c.Author.FullName</b>
+                            <b>@Html.ActionLink(c.Author.FullName, "UserWall", new { id = c.Author.Id })</b>
                         </p>
                     }
 
