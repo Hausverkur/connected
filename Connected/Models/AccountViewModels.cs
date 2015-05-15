@@ -81,7 +81,7 @@ namespace Connected.Models
         public string ConfirmPassword { get; set; }
 
         [Required]
-        [Display(Name = "Full name")]
+        [Display(Name = "Username")]
         public string Name { get; set; }
     }
 
