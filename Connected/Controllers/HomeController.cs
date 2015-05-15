@@ -250,7 +250,7 @@ namespace Connected.Controllers
         }
 
         [HttpGet]
-        public ActionResult CreateComment()
+        public ActionResult CreateComment(int id)
         {
             if (this.User.Identity.GetUserId() == null)
             {
@@ -258,24 +258,20 @@ namespace Connected.Controllers
             }
             else
             {
-                return View(new Comment());
+                return View(new Comment{Id = id});
             }
         }
 
         [HttpPost]
-        public ActionResult CreateComment(FormCollection formData, int? id, string returnPath)
+        public ActionResult CreateComment(FormCollection formData, string returnPath)
         {
-            if (id.HasValue)
-            {
-                UserPostService postService = new UserPostService(null);
-                Comment comment = new Comment();
-                UpdateModel(comment);
-                postService.AddComment(this.User.Identity.GetUserId(), id.Value, comment);
-                return RedirectToAction(returnPath);
-            }
-            return RedirectToAction("FrontPage");
+            UserPostService postService = new UserPostService(null);
+            Comment comment = new Comment();
+            UpdateModel(comment);
+            postService.AddComment(this.User.Identity.GetUserId(), comment);
+            return RedirectToAction(returnPath);
         }
-        [HttpGet]
+
         public ActionResult Information()
         {
             UserService userService = new UserService(null);

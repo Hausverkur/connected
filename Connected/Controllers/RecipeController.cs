@@ -79,7 +79,7 @@ namespace Connected.Controllers
                     return View(theRecipe);
                 }
 
-                return View();
+                return RedirectToAction("ListOfRecipes");
             }
         }
 
@@ -162,7 +162,7 @@ namespace Connected.Controllers
                 RecipeComment comment = new RecipeComment();
                 UpdateModel(comment);
                 recipeService.CreateRecipeComment(this.User.Identity.GetUserId(), id.Value, comment);
-                return RedirectToAction("DisplayRecipe", id);
+                return RedirectToAction("DisplayRecipe", id.Value);
             }
             return RedirectToAction("ListOfRecipes");
         }

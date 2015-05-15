@@ -63,7 +63,9 @@
         {
             <p><b>@post.Author.UserName</b></p><!--Link to user wall-->
             <p>@post.Body</p>
-            <br />
+            <br/>
+            
+            @Html.ActionLink("Comment", "CreateComment", "Home", new { id = post.Id, returnPath = "Display", returnController = "Group" }, null);
         }
     </div>
 
