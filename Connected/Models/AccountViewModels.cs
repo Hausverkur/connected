@@ -80,9 +80,6 @@ namespace Connected.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
-        [Display(Name = "Username")]
-        public string Name { get; set; }
     }
 
     public class ResetPasswordViewModel
