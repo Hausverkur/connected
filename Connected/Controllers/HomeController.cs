@@ -12,7 +12,7 @@ using Microsoft.AspNet.Identity;
 
 namespace Connected.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()
