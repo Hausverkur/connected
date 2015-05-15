@@ -37,7 +37,7 @@
 
             foreach (var item in Model.RecievedMessages)
             {
-                <p class="User">@Html.ActionLink(item.Author.FullName, "UserWall", new { id = item.Author.Id }) @Html.ActionLink("Reply", "CreateMessage")</p> 
+                <p class="User">@Html.ActionLink(item.Author.FullName, "UserWall", "Home", new { id = item.Author.Id }, null) @Html.ActionLink("Reply", "CreateMessage", new {id = item.Author.Id})</p> 
                
                 <p class="Title">@Html.DisplayFor(modelItem => item.Title)</p>
                 <p> @Html.DisplayFor(modelItem => item.Body)</p>
