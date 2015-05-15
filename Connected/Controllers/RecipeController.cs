@@ -73,7 +73,7 @@ namespace Connected.Controllers
                         Likes = recipe.Likes,
                         Method = recipe.Method,
                         Name = recipe.Name,
-                        //Author = recipe.Author,
+                        Author = recipe.Author,
                     };
                     theRecipe.Comments = new List<RecipeCommentViewModel>();
                     return View(theRecipe);
@@ -102,7 +102,7 @@ namespace Connected.Controllers
             RecipeService service = new RecipeService(null);
             Recipe recipe = new Recipe();
             UpdateModel(recipe);
-            service.AddRecipe(recipe);
+            service.AddRecipe(recipe, this.User.Identity.GetUserId());
             return RedirectToAction("ListOfRecipes");
         }
 

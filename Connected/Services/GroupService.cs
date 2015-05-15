@@ -67,12 +67,12 @@ namespace Connected.Services
                 {
                     if (postService.UrlExists(group.Image) == false)
                     {
-                        group.Image = ".../Connected/Images/Group.png";
+                        group.Image = "../../Images/Group.png";
                     }
                 }
                 else if (group.Image == null)
                 {
-                    group.Image = ".../Connected/Images/Group.png";
+                    group.Image = "../../Images/Group.png";
                 }
                 Group g = new Group
                 {

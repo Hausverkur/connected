@@ -38,7 +38,7 @@ namespace Connected.Services
         }
 
         //Þetta fall bætir við uppskrift sem notandi býr til og setur í gagnagrunninn 
-        public void AddRecipe(Recipe recipe)
+        public void AddRecipe(Recipe recipe, string userId)
         {
             UserPostService postService = new UserPostService(null);
 
@@ -46,12 +46,12 @@ namespace Connected.Services
             {
                 if (postService.UrlExists(recipe.Image) == false)
                 {
-                    recipe.Image = ".../Connected/Images/RecipeWithInvalidImage.jpg";
+                    recipe.Image = "../../Images/RecipeWithInvalidImage.jpg";
                 }
             }
             else if (recipe.Image == null)
             {
-                recipe.Image = ".../Connected/Images/RecipeWithOutImage.jpg";
+                recipe.Image = "../../Images/RecipeWithOutImage.jpg";
             }
 
             _db.Recipes.Add(new Recipe
@@ -65,7 +65,7 @@ namespace Connected.Services
                 Likes = recipe.Likes,
                 Method = recipe.Method,
                 Name = recipe.Name,
-                //Author = recipe.Author
+                AuthorId = userId,
             });
 
             _db.SaveChanges();

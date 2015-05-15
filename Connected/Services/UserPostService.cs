@@ -99,7 +99,7 @@ namespace Connected.Services
             {
                 if (UrlExists(post.ImageUrl) == false)
                 {
-                    post.ImageUrl = ".../Connected/Images/NoImage.png";
+                    post.ImageUrl = "../../Images/NoImage.png";
                 }
             }
             

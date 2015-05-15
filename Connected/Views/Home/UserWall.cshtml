@@ -6,7 +6,14 @@
     <link href="~/Content/UserWall.css" rel="stylesheet" />
 }
 
-<h2>@Model.User.UserName</h2> 
+@if (Model.User.FullName == null)
+{
+    <h2>@Model.User.UserName</h2>
+}
+else
+{
+    <h2>@Model.User.FullName</h2>
+}
 
 
 

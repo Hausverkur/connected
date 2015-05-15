@@ -120,10 +120,22 @@ namespace Connected.Services
 
         public void UpdateUserInfo(InfoViewModel info)
         {
+            UserPostService postService = new UserPostService(null);
             ApplicationDbContext db = new ApplicationDbContext();
 
             ApplicationUser user = db.Users.Find(info.Id);
             user.FullName = info.FullName;
+            if (info.Image != null)
+            {
+                if (postService.UrlExists(info.Image) == false)
+                {
+                    info.Image = "../../Images/Profile.png";
+                }
+            }
+            else if (info.Image == null)
+            {
+                info.Image = "../../Images/Profile.png";
+            }
             user.ProfilePicture = info.Image;
             user.Gender = info.Gender;
             user.Age = info.Age;
