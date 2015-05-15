@@ -19,11 +19,7 @@ namespace Connected.ViewModels
         public int Dislikes { get; set; }
 
         public virtual ApplicationUser Author { get; set; }
-
-        //can remove
         public List<RecipeCommentViewModel> Comments { get; set; }
-
-        //public virtual ApplicationUser Author { get; set; }
         public List<ApplicationUser> Users { get; set; }
     
 
