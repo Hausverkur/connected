@@ -303,5 +303,6 @@ namespace Connected.Controllers
             return RedirectToAction("UserWall", new{id = this.User.Identity.GetUserId()});
         }
 
+       
     }
 }
