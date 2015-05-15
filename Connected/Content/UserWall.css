@@ -1,9 +1,9 @@
 ﻿.Posts {
-    /*float: left;*/
     padding-right: 5%;
     margin-left: 30%;
     border: 1px solid lightgray;
     border-radius: 10px;
+
     /*background-color: blue;*/
 }
 
@@ -18,11 +18,32 @@
     margin-left: 7%;
 
     /*background-color: red;*/
-    
 }
 
 .create {
     margin-bottom: 5%;
+}
+
+.DateTimePosted {
+    margin-left: 60%;
+}
+
+.Commentlink {
+    margin-left: 60%;
+}
+
+.cLine {
+    margin-right: 30%;
+}
+
+.cText {
+    word-break: break-all;
+    margin-left: 5%;
+}
+
+.cDate {
+    font-style: italic;
+    margin-left: 50%;
 }
 
 .Id {

@@ -17,7 +17,7 @@ namespace Connected.Models
         public int Dislikes { get; set; }
         public int Shares { get; set; }
         public string ImageUrl { get; set; }
-        public virtual Recipe Recipe { get; set; }
+        public int RecipeId { get; set; }
 
         public bool GroupPost { get; set; }
         public int GroupReference { get; set; }

@@ -88,6 +88,20 @@ namespace Connected.Services
             }
         }
 
+        public void CreateRecipePost(string userId, UserPost post)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            db.UserPosts.Add(new UserPost
+            {
+                Body = post.Body,
+                DateTimePosted = DateTime.Now,
+                GroupPost = false,
+                User = post.User,
+                RecipeId = post.Id,
+            });
+            db.SaveChanges();
+        }
+
         public List<RecipeCommentViewModel> GetRecipeComments(int recipeId)
         {
             var comments = (from comment in _db.RecipeComments

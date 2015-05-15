@@ -29,7 +29,7 @@
 }
 
 .Date {
-    margin-left: 60%;
+    margin-left: 45%;
     font-style: italic;
 }
 
@@ -45,6 +45,7 @@
     word-break: break-all;
     margin-left: 5%;
 }
+
 .Comment {
     text-indent: 10%;
 
@@ -52,7 +53,7 @@
 
 .cDate {
     font-style: italic;
-    margin-left: 50%;
+    margin-left: 35%;
 }
 
 .cLine {
@@ -67,7 +68,7 @@
     margin-left: 60%;
 }
 .Image {
-     height: 200px;
+    height: 200px;
     width: 200px; 
 }
 

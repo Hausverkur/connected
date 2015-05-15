@@ -48,6 +48,7 @@ namespace Connected.Controllers
             }
         }
 
+
         [HttpGet]
         public ActionResult DisplayRecipe(int? id)
         {
@@ -131,6 +132,5 @@ namespace Connected.Controllers
                 recipeService.CreateRecipeComment(this.User.Identity.GetUserId(), comment);
                 return RedirectToAction("DisplayRecipe", comment.Id);
         }
-
     }
 }
