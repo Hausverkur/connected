@@ -129,6 +129,5 @@ namespace Connected.Controllers
                 return RedirectToAction("DisplayRecipe", comment.Id);
         }
 
-        
     }
 }
