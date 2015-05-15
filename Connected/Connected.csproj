@@ -223,6 +223,7 @@
     <Content Include="Content\FrontPage.css" />
     <Content Include="Content\ListOfGroup.css" />
     <Content Include="Content\ListOfRecipes.css" />
+    <Content Include="Content\Messsage.css" />
     <Content Include="Content\Search.css" />
     <Content Include="Content\UserWall.css" />
     <Content Include="favicon.ico" />

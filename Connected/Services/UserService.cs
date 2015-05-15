@@ -131,12 +131,6 @@ namespace Connected.Services
             
             db.Entry(user).State = EntityState.Modified;
             db.SaveChanges();
-            /*
-            Friendship friendship = new Friendship();
-            friendship = db.Friendships.Find(friendshipId);
-            friendship.Comfirmed = true;
-            db.Entry(friendship).State = EntityState.Modified;
-            db.SaveChanges();*/
         }
     }
 }

@@ -2,30 +2,48 @@
 
 @{
     ViewBag.Title = "Messages";
+    <link href="~/Content/Messsage.css" rel="stylesheet" />
 }
+<div class="Messages">
+    <h2>Messages</h2>
+    <button class="Create">
+        @Html.ActionLink("Create New", "CreateMessage")
+        </button>
+</div>
 
-<h2>Messages</h2>
+<div class="MessageArea">
+    <div class="Recieved">
+        <h2>Recieved</h2>
+        @if (Model.RecievedMessages.Count > 0)
+        {
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<h2>Recieved</h2>
-@if (Model.RecievedMessages.Count > 0)
-{
-    <ul>
-        @foreach (var item in Model.RecievedMessages)
-        {
-            <li><b>@Html.DisplayFor(modelItem => item.Title)</b> @Html.DisplayFor(modelItem => item.Body)</li>
+            foreach (var item in Model.RecievedMessages)
+            {
+                <p class="User">@item.Author.UserName
+                Reply comes here</p>
+                <p class="Title">@Html.DisplayFor(modelItem => item.Title)</p>
+                <p> @Html.DisplayFor(modelItem => item.Body)</p>
+
+            }
+
         }
-    </ul>
-}
-<h2>Sent</h2>
-@if (Model.SentMessages.Count > 0)
-{
-    <ul>
-        @foreach (var item in Model.SentMessages)
+    </div>
+    <div class="Sent">
+        <h2>Sent</h2>
+        @if (Model.SentMessages.Count > 0)
         {
-            <li><b>@Html.DisplayFor(modelItem => item.Title)</b> @Html.DisplayFor(modelItem => item.Body)</li>
+
+            foreach (var item in Model.SentMessages)
+            {
+                <p class="User">@item.Author.UserName</p>
+                <p class="Title">@Html.DisplayFor(modelItem => item.Title)</p>
+                <p>@Html.DisplayFor(modelItem => item.Body)</p>
+
+            }
+
         }
-    </ul>
-}
+    </div>
+</div>
+<div class="Footer">
+    <a href="javascript:history.go(-1)">Back</a>
+</div>
