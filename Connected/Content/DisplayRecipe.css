@@ -24,7 +24,10 @@
 
 .DescriptionName {
     font-size: 115%;
+    word-break: break-all;
 }
+
+
 
 .Ingredients {
     margin-left: 20%;
@@ -35,7 +38,10 @@
 .IngredientsName {
     font-size: 115%;
     margin-top: 10%;
+    word-break: break-all;
 }
+
+
 
 .Method {
     margin-left: 20%;
@@ -45,7 +51,10 @@
 
 .MethodName {
     font-size: 115%;
+    word-break: break-all;
 }
+
+
 
 .Date {
     margin-left: 20%;

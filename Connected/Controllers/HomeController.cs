@@ -54,8 +54,19 @@ namespace Connected.Controllers
 
                 foreach (var post in frontPage.Posts)
                 {
-                    var comments = commentService.GetCommentsByPostId(post.Id);
-                    post.Comments = commentService.AddCommentsToViewModel(comments);
+                    var Comments = commentService.GetCommentsByPostId(post.Id);
+                    List<CommentViewModel> commentViewModels = new List<CommentViewModel>();
+                    foreach (var comment in Comments)
+                    {
+                        commentViewModels.Add(new CommentViewModel
+                        {
+                            Body = comment.Body,
+                            Id = comment.Id,
+                            DateTimePosted = comment.DateTimePosted,
+                            Author = comment.Author,
+                        });
+                    }
+                    post.Comments = commentViewModels;
                 }
                 var friendRequests = userService.GetFriendRequests(this.User.Identity.GetUserId());
 
@@ -151,8 +162,17 @@ namespace Connected.Controllers
 
                  foreach (var post in model.Posts)
                  {
-                     var comments = commentService.GetCommentsByPostId(post.Id);
-                     post.Comments = commentService.AddCommentsToViewModel(comments);
+                     var Comments = commentService.GetCommentsByPostId(post.Id);
+                     List<CommentViewModel> commentViewModels = new List<CommentViewModel>();
+                     foreach (var comment in Comments)
+                     {
+                         commentViewModels.Add(new CommentViewModel
+                         {
+                             Body = comment.Body,
+                             Id = comment.Id,
+                         });
+                     }
+                     post.Comments = commentViewModels;
                  }
 
                  var friends = userService.GetFriends(id);
@@ -230,7 +250,7 @@ namespace Connected.Controllers
         }
 
         [HttpGet]
-        public ActionResult CreateComment()
+        public ActionResult CreateComment(int id)
         {
             if (this.User.Identity.GetUserId() == null)
             {
@@ -238,24 +258,20 @@ namespace Connected.Controllers
             }
             else
             {
-                return View(new Comment());
+                return View(new Comment{Id = id});
             }
         }
 
         [HttpPost]
-        public ActionResult CreateComment(FormCollection formData, int? id, string returnPath)
+        public ActionResult CreateComment(FormCollection formData, string returnPath, string returnController)
         {
-            if (id.HasValue)
-            {
-                UserPostService postService = new UserPostService(null);
-                Comment comment = new Comment();
-                UpdateModel(comment);
-                postService.AddComment(this.User.Identity.GetUserId(), id.Value, comment);
-                return RedirectToAction(returnPath);
-            }
-            return RedirectToAction("FrontPage");
+            UserPostService postService = new UserPostService(null);
+            Comment comment = new Comment();
+            UpdateModel(comment);
+            postService.AddComment(this.User.Identity.GetUserId(), comment);
+            return RedirectToAction(returnPath, returnController);
         }
-        [HttpGet]
+
         public ActionResult Information()
         {
             UserService userService = new UserService(null);
