@@ -20,7 +20,7 @@
             foreach (var item in Model.RecievedMessages)
             {
                 <p class="User">@item.Author.UserName
-                Reply comes here</p>
+                @Html.ActionLink("Reply", "CreateMessage")</p> <!--Fix the reply-->
                 <p class="Title">@Html.DisplayFor(modelItem => item.Title)</p>
                 <p> @Html.DisplayFor(modelItem => item.Body)</p>
 

@@ -58,10 +58,7 @@
 
         <i class="italic">Posts</i>
         <hr />
-        
-        @foreach (var post in Model.Posts)
-        {
-            <p><b>@post.Author.UserName</b></p><!--Link to user wall-->
+
             <p>@post.Body</p>
             <br />
         }
