@@ -19,6 +19,14 @@
     margin-right: 30%;
 }
 
+.Text {
+     word-break: break-all;
+}
+
+.DescriptionText {
+     word-break: break-all;
+}
+
 .Footer {
     /*margin-top: 5%;*/
     clear: both;

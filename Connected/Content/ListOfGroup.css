@@ -14,11 +14,13 @@
 .GroupName {
     font-weight: bold;
     margin-left: 15%;
+    word-break: break-all;
 }
 
 .Description {
       margin-right: 20%;
       margin-left: 15%;
+      word-break: break-all;
 }
 
 .Image { /*This needs to be fixed*/

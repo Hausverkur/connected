@@ -33,6 +33,7 @@
     margin-left: 10%;
     margin-right: -10%;
     margin-bottom: 1%;
+    word-break: break-all;
 }
 
 
@@ -65,19 +66,10 @@
 
 .Description {
     margin-right: 75%;
+    word-break: break-all;
 }
 
-.Unfriend {
-    float: left;
-    margin-left: 15%;
-    margin-top: -7%;
-}
 
-.Pending {
-    float: left;
-    margin-left: 15%;
-    margin-top: -7%;
-}
 
 
 .Footer {

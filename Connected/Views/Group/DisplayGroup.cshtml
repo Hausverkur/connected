@@ -18,8 +18,8 @@
             <b class="DescriptionName">
                 @Html.DisplayNameFor(model => model.Description)
             </b>
-            <br />
-            @Html.DisplayFor(model => model.Description)
+            
+            <p class="DescriptionText">@Html.DisplayFor(model => model.Description)</p>
 
         </p>
         <br />
@@ -62,10 +62,26 @@
         @foreach (var post in Model.Posts)
         {
             <p><b>@post.Author.UserName</b></p><!--Link to user wall-->
-            <p>@post.Body</p>
+            <p class="Text">@post.Body</p>
             <br/>
             
             @Html.ActionLink("Comment", "CreateComment", "Home", new { id = post.Id, returnPath = "Display", returnController = "Group" }, null);
+            <div>
+                @foreach (var c in post.Comments)
+                {
+                    if (c.Author.FullName == null)
+                     {
+                         <p>@c.Author.Email</p>
+                     }
+                    else
+                    {
+                        <p>@c.Author.FullName</p>
+                    }
+
+                <p>@c.Body</p>
+                <p>@c.DateTimePosted</p>
+                }
+            </div>
         }
     </div>
 

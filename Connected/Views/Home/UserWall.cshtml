@@ -86,7 +86,7 @@
             @c.Body
             <br />
         }
-        @Html.ActionLink("Comment", "CreateComment", new {id = p.Id, returnPath = "UserWall"});
+        @Html.ActionLink("Comment", "CreateComment", new {id = p.Id, returnPath = "UserWall", returnController = "Home"});
     }
 
 </div>

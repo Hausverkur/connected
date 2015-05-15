@@ -263,13 +263,13 @@ namespace Connected.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateComment(FormCollection formData, string returnPath)
+        public ActionResult CreateComment(FormCollection formData, string returnPath, string returnController)
         {
             UserPostService postService = new UserPostService(null);
             Comment comment = new Comment();
             UpdateModel(comment);
             postService.AddComment(this.User.Identity.GetUserId(), comment);
-            return RedirectToAction(returnPath);
+            return RedirectToAction(returnPath, returnController);
         }
 
         public ActionResult Information()

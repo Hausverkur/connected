@@ -20,6 +20,7 @@
 .Description {
   margin-right: 20%;
   margin-left: 15%;
+  word-break: break-all;
 }
 
 .Details{
