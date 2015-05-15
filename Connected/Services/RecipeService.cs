@@ -94,10 +94,10 @@ namespace Connected.Services
             db.UserPosts.Add(new UserPost
             {
                 Body = post.Body,
-                DateTimePosted = post.DateTimePosted,
+                DateTimePosted = DateTime.Now,
                 GroupPost = false,
-                Recipe = post.Recipe,
                 User = post.User,
+                RecipeId = post.Id,
             });
             db.SaveChanges();
         }
