@@ -87,5 +87,19 @@ namespace Connected.Services
                 db.SaveChanges();
             }
         }
+
+        public void CreateRecipePost(string userId, UserPost post)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            db.UserPosts.Add(new UserPost
+            {
+                Body = post.Body,
+                DateTimePosted = post.DateTimePosted,
+                GroupPost = false,
+                Recipe = post.Recipe,
+                User = post.User,
+            });
+            db.SaveChanges();
+        }
     }
 }
