@@ -1,24 +1,30 @@
-﻿.Recieved {
-   
-    margin-left: 20%;
-    width: 40%;
+﻿.MessageArea {
+    
 }
 
+
 .Messages {
-    float: left;
+    position: absolute;
 }
 
 .Create {
     border-left: 20px;  
     font-size: 125%;
     text-decoration: none;
+    padding-top: 5%;
+}
+
+.Recieved {
+    margin-left: 20%;
+    width: 29%;
+    position: absolute;
+   
 }
 
 .Sent {
     margin-left: 60%;
     width: 40%;
-    margin-top: -19.8%;
-    padding-top: -5%;
+    float: right;
 }
 
 .User {
