@@ -48,7 +48,9 @@ namespace Connected.Controllers
                     frontPage.Posts.AddRange(groupService.GetGroupPostsById(group.Id));
                 }
 
-                frontPage.Posts = frontPage.Posts.OrderByDescending(p => p.DateTimePosted).ToList();
+                frontPage.Posts.AddRange(postService.GetPostsByUserId(this.User.Identity.GetUserId()));
+
+                frontPage.Posts = frontPage.Posts.OrderByDescending(p => p.Id).ToList();
 
                 foreach (var post in frontPage.Posts)
                 {
@@ -123,9 +125,11 @@ namespace Connected.Controllers
             UserPostService postService = new UserPostService(null);
             
             UserPost post = new UserPost();
+            
             UpdateModel(post);
             postService.AddUserPost(post, this.User.Identity.GetUserId());
             return RedirectToAction("MyWall");
+            
         }
 
          public ActionResult UserWall(string id)
@@ -274,8 +278,11 @@ namespace Connected.Controllers
         [HttpGet]
         public ActionResult Information()
         {
-            return View(new UserViewModel());
+            UserService userService = new UserService(null);
+            ApplicationUser user = userService.GetUserInfo(this.User.Identity.GetUserId());
+            return View(user);
         }
+
 
     }
 }

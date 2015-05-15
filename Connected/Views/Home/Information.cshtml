@@ -1,4 +1,4 @@
-﻿@model Connected.ViewModels.UserViewModel
+﻿@model Connected.Models.ApplicationUser
 
 @{
     ViewBag.Title = "Information";
@@ -65,6 +65,10 @@
         </div>
     </div>
 }
+
+<div>
+    <a href="javascript:history.go(-1)">Back to MyWall</a>
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

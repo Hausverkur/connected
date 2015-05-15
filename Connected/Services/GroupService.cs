@@ -43,7 +43,7 @@ namespace Connected.Services
                 int theId = id.Value;
                 var group = (from g in _db.Groups
                     where g.Id == theId
-                    select g).First();
+                    select g).FirstOrDefault();
                 return group;
             }
             return null;
@@ -152,6 +152,8 @@ namespace Connected.Services
                     Shares = post.Shares,
                     Id = post.Id,
                     ImageUrl = post.ImageUrl,
+                    GroupPost = post.GroupPost,
+                    TheGroup = GetGroupById(post.GroupReference),
                     Comments = new List<CommentViewModel>(),
                 });
 
