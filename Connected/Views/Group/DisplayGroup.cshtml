@@ -62,7 +62,28 @@
         @foreach (var post in Model.Posts)
         {
             <p><b>@post.Author.UserName</b></p><!--Link to user wall-->
+<<<<<<< HEAD
             <p class="Text">@post.Body</p>
+=======
+            <p>@post.Body</p>
+            <div>
+                @foreach (var c in post.Comments)
+                {
+                    if (c.Author.FullName == null)
+                     {
+                         <p>@c.Author.Email</p>
+                     }
+                    else
+                    {
+                        <p>@c.Author.FullName</p>
+                    }
+
+                <p>@c.Body</p>
+                <p>@c.DateTimePosted</p>
+                }
+            </div>
+            
+>>>>>>> 495c531087cfb198eb47b90eb4fd38f277e4f273
             <br />
         }
     </div>

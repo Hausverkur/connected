@@ -54,19 +54,8 @@ namespace Connected.Controllers
 
                 foreach (var post in frontPage.Posts)
                 {
-                    var Comments = commentService.GetCommentsByPostId(post.Id);
-                    List<CommentViewModel> commentViewModels = new List<CommentViewModel>();
-                    foreach (var comment in Comments)
-                    {
-                        commentViewModels.Add(new CommentViewModel
-                        {
-                            Body = comment.Body,
-                            Id = comment.Id,
-                            DateTimePosted = comment.DateTimePosted,
-                            Author = comment.Author,
-                        });
-                    }
-                    post.Comments = commentViewModels;
+                    var comments = commentService.GetCommentsByPostId(post.Id);
+                    post.Comments = commentService.AddCommentsToViewModel(comments);
                 }
                 var friendRequests = userService.GetFriendRequests(this.User.Identity.GetUserId());
 
@@ -162,17 +151,8 @@ namespace Connected.Controllers
 
                  foreach (var post in model.Posts)
                  {
-                     var Comments = commentService.GetCommentsByPostId(post.Id);
-                     List<CommentViewModel> commentViewModels = new List<CommentViewModel>();
-                     foreach (var comment in Comments)
-                     {
-                         commentViewModels.Add(new CommentViewModel
-                         {
-                             Body = comment.Body,
-                             Id = comment.Id,
-                         });
-                     }
-                     post.Comments = commentViewModels;
+                     var comments = commentService.GetCommentsByPostId(post.Id);
+                     post.Comments = commentService.AddCommentsToViewModel(comments);
                  }
 
                  var friends = userService.GetFriends(id);
@@ -280,9 +260,28 @@ namespace Connected.Controllers
         {
             UserService userService = new UserService(null);
             ApplicationUser user = userService.GetUserInfo(this.User.Identity.GetUserId());
-            return View(user);
+            InfoViewModel model = new InfoViewModel
+            {
+                Id = user.Id,
+                FullName = user.FullName,
+                Age = user.Age,
+                Description = user.Description,
+                Gender = user.Gender,
+                Image = user.ProfilePicture
+            };
+            return View(model);
         }
 
+        [HttpPost]
+        public ActionResult Information(FormCollection formdata)
+        {
+            UserService userService = new UserService(null);
+            InfoViewModel model = new InfoViewModel();
+            UpdateModel(model);
+            model.Id = this.User.Identity.GetUserId();
+            userService.UpdateUserInfo(model);
+            return RedirectToAction("UserWall", new{id = this.User.Identity.GetUserId()});
+        }
 
     }
 }

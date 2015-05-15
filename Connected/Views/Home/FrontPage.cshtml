@@ -25,7 +25,15 @@
             <div class="UserPost">
 
                 <div class="Id">
-                    @Html.ActionLink(p.Author.FullName, "UserWall", new { id = p.Author.Id })
+                    @if (p.Author.FullName == null)
+                    {
+                        @Html.ActionLink(p.Author.UserName, "UserWall", new { id = p.Author.Id })
+                    }
+                    else
+                    {
+                        @Html.ActionLink(p.Author.FullName, "UserWall", new { id = p.Author.Id })
+                    }
+                    
                     @if (p.GroupPost == true)
                     {
                         <p>posted in @p.TheGroup.Name</p>
