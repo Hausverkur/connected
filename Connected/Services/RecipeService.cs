@@ -100,6 +100,8 @@ namespace Connected.Services
                 User = post.User,
             });
             db.SaveChanges();
+        }
+
         public List<RecipeCommentViewModel> GetRecipeComments(int recipeId)
         {
             var comments = (from comment in _db.RecipeComments
