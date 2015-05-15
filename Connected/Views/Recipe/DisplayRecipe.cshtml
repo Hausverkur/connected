@@ -54,13 +54,28 @@
         @Html.ActionLink("Comment", "CreateRecipeComment", new {id = Model.Id}, null)
 
 </button>
-<!--What is the problem here?-->
+@if (Model.Comments.Count > 0)
+{
+    <h4>Comments</h4>}
 @foreach (var r in Model.Comments)
 {
-    <p><b>@r.Author.UserName</b></p>
-    <p>@r.Body</p>
-    <br />
+    <div class="Comment">
+        <hr class="cLine"/>
+        @if (r.Author.FullName == null)
+        {
+            <p>@Html.ActionLink(r.Author.Email, "UserWall", new {id = r.Author.Id})</p>
+        }
+        else
+        {
+            <p>
+                <b>@Html.ActionLink(r.Author.FullName, "UserWall", new {id = r.Author.Id})</b>
+            </p>
+        }
+    </div>
+    <p class="Text">@r.Body</p>
+    <p class="cDate">Posted on: @r.DateTimePosted</p>
+    
 }
-<div>
+<div class="footer">
     @Html.ActionLink("Back to Recipes", "ListOfRecipes")
 </div>

@@ -68,7 +68,7 @@
             </p>
             }
             <p class="Text">@post.Body</p>
-            <p class="Date">@post.DateTimePosted</p>
+            <p class="Date">Posted on: @post.DateTimePosted</p>
 
             <div class="link">
                 @Html.ActionLink("Comment", "CreateComment", "Home", new { id = post.Id, returnPath = "DisplayGroup", returnController = "Group" }, null)
@@ -95,7 +95,7 @@
 
 
                     <p class="cText">@c.Body</p>
-                    <p class="cDate">@c.DateTimePosted</p>
+                    <p class="cDate">Posted on: @c.DateTimePosted</p>
 
                 }
             </div>
