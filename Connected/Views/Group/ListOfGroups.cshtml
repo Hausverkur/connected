@@ -1,5 +1,5 @@
 ﻿@using System.Activities.Expressions
-@model IEnumerable<Connected.ViewModels.GroupViewModel>
+@model Connected.ViewModels.GroupListViewModel
 
 @{
     ViewBag.Title = "ListOfGroups";
@@ -12,40 +12,79 @@
 <button class="Create">
     @Html.ActionLink("Create Group", "CreateGroup")
 </button>
-    <div class="GroupArea">
-        @foreach (var item in Model)
-        {
+<div class="GroupArea">
+    @foreach (var item in Model.ListOfAllGroups)
+    {
 
-            <h3 class="GroupName">
+        <h3 class="GroupName">
 
-                @Html.ActionLink(item.Name, "DisplayGroup", new {id = item.Id})
+            @Html.ActionLink(item.Name, "DisplayGroup", new {id = item.Id})
 
-            </h3>
-            <div class="Image">
-                <img src="../../Images/Group.png" height="70px" width="70px" class="Image"  alt="Logo" />
-                <!--Html.DisplayFor(modelItem => item.Image)-->
-            </div>
-            <p class="Description">
-                @Html.DisplayFor(modelItem => item.Description)
-            </p>
+        </h3>
+        <div class="Image">
+            <img src="../../Images/Group.png" height="70px" width="70px" class="Image" alt="Logo"/>
+            <!--Html.DisplayFor(modelItem => item.Image)-->
+        </div>
+        <p class="Description">
+            @Html.DisplayFor(modelItem => item.Description)
+        </p>
 
-            <p class="Users">
-                <b>
-                    Number Of Users:
-                </b>
-                @Html.DisplayFor(modelItem => item.NumberOfUsers)
+        <p class="Users">
+            <b>
+                Number Of Users:
+            </b>
+            @Html.DisplayFor(modelItem => item.NumberOfUsers)
 
-               
-                    @if (item.UserInGroup)
-                    {
-                        @Html.ActionLink("Leave", "RemoveGroupMember", new {id = item.Id})
-                    }
-                    else
-                    {
-                        @Html.ActionLink("Join", "AddGroupMember", new {id = item.Id})
-                    }
-                
-            </p>
+
+            @if (item.UserInGroup)
+            {
+                @Html.ActionLink("Leave", "RemoveGroupMember", new {id = item.Id})
+            }
+            else
+            {
+                @Html.ActionLink("Join", "AddGroupMember", new {id = item.Id})
+            }
+
+        </p>
+        <br/>
+    }
+</div>
+
+<h2>ListOfMyGroups</h2>
+<div class="GroupArea">
+    @foreach (var item in Model.MyGroups)
+    {
+
+        <h3 class="GroupName">
+
+            @Html.ActionLink(item.Name, "DisplayGroup", new { id = item.Id })
+
+        </h3>
+        <div class="Image">
+            <img src="../../Images/Group.png" height="70px" width="70px" class="Image" alt="Logo" />
+            <!--Html.DisplayFor(modelItem => item.Image)-->
+        </div>
+        <p class="Description">
+            @Html.DisplayFor(modelItem => item.Description)
+        </p>
+
+        <p class="Users">
+            <b>
+                Number Of Users:
+            </b>
+            @Html.DisplayFor(modelItem => item.NumberOfUsers)
+
+
+            @if (item.UserInGroup)
+            {
+                @Html.ActionLink("Leave", "RemoveGroupMember", new { id = item.Id })
+            }
+            else
+            {
+                @Html.ActionLink("Join", "AddGroupMember", new { id = item.Id })
+            }
+
+        </p>
         <br />
-        }
-    </div>
+    }
+</div>

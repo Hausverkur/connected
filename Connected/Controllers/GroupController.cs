@@ -23,24 +23,23 @@ namespace Connected.Controllers
             }
             else
             {
-                List<GroupViewModel> groupList = new List<GroupViewModel>();
+                GroupListViewModel groupViewModels = new GroupListViewModel();
+                
                 GroupService service = new GroupService(null);
-    
-                var groupModels = service.GetListOfGroups();
 
-                foreach (var group in groupModels)
-                {
-                    groupList.Add(new GroupViewModel
-                    {
-                        Description = group.Description,
-                        Id = group.Id,
-                        Image = group.Image,
-                        Name = group.Name,
-                        NumberOfUsers = group.NumberOfUsers,
-                    });
-                }
+                var allGroups = service.GetListOfGroups();
 
-                return View(groupList);
+                groupViewModels.ListOfAllGroups = new List<GroupViewModel>();
+
+                groupViewModels.ListOfAllGroups.AddRange(service.AddGroupModelToVewModel(allGroups));
+
+                var myGroups = service.GetGroupsForUser(this.User.Identity.GetUserId());
+
+                groupViewModels.MyGroups = new List<GroupViewModel>();
+
+                groupViewModels.MyGroups.AddRange(service.AddGroupModelToVewModel(myGroups));
+                
+                return View(groupViewModels);
             }
         }
 

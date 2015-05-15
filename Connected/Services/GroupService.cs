@@ -212,5 +212,25 @@ namespace Connected.Services
             return model;
         }
 
+        //Bætir lista af Group Modelum í GroupViewModel
+        public List<GroupViewModel> AddGroupModelToVewModel(List<Group> groups)
+        {
+            List<GroupViewModel> groupsViewModel = new List<GroupViewModel>();
+
+            foreach (var group in groups)
+            {
+                groupsViewModel.Add(new GroupViewModel
+                {
+                    Description = group.Description,
+                    Id = group.Id,
+                    Image = group.Image,
+                    Name = group.Name,
+                    NumberOfUsers = group.NumberOfUsers,
+                });
+            }
+
+            return groupsViewModel;
+        }
+
     }
 }
