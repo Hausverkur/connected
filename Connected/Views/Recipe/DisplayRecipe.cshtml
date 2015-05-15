@@ -51,8 +51,10 @@
 
 
 <button class="create">
-
-    @Html.ActionLink("Comment", "CreateRecipeComment",  new{id = Model.Id})
+    @if (Model.Id != null)
+    {
+        Html.ActionLink("Comment", "CreateRecipeComment", new {id = Model.Id}, null);
+    }
 
 </button>
 <!--What is the problem here?-->

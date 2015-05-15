@@ -26,7 +26,7 @@
 
         <section class="Image">
             <!--Html.DisplayFor(model => model.Image)-->
-            <img src="../../Images/Group.png" height="300px" width="300px" class="Image" alt="Logo" />
+            
         </section>
         <br /> <br />
 
@@ -55,37 +55,41 @@
     </div>
 
 
-    <div class="Post">
+    <div>
         <i class="italic">Posts</i>
         <hr />
-
-
-        <div>
-            @foreach (var post in Model.Posts)
-            {
-                <div class="border">
-                    @if (post.Author.FullName == null)
+        
+        @foreach (var post in Model.Posts)
+        {
+            <div class="border">
+                <p><b>@post.Author.UserName</b>
+                </p><!--Link to user wall-->
+                <p class="Text">@post.Body</p>
+                <p class="Date">@post.DateTimePosted</p>
+            </div>
+            
+            @Html.ActionLink("Comment", "CreateComment", "Home", new { id = post.Id, returnPath = "DisplayGroup", returnController = "Group" }, null)
+            <div class="Comment">
+                
+                @foreach (var c in post.Comments)
+                {
+                    <hr class="cLine"/>
+                    if (c.Author.FullName == null)
                     {
-                        <p>
-                            <b>@post.Author.UserName</b>
-                        </p>
+                        <p>@c.Author.Email</p>
                     }
                     else
                     {
                         <p>
-                            <b>@post.Author.FullName</b>
+                            <b>@c.Author.FullName</b>
                         </p>
                     }
 
-                    <p class="Text">@post.Body</p>
-
-                    <p class="Date">@post.DateTimePosted</p>
-                </div>
-            }
-
-            <br />
-
-        </div>
+                    <p class="cText">@c.Body</p>
+                    <p class="cDate">@c.DateTimePosted</p>
+                }
+            </div>
+        }
     </div>
 
 

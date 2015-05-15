@@ -121,14 +121,14 @@ namespace Connected.Services
             }
 
         //Þetta fall bætir athugasemdum/comment-um við pósta í gagnagrunnin sem berast frá notendum.
-        public void AddComment(string userId, int postId, Comment comment)
+        public void AddComment(string userId, Comment comment)
         {
             _db.Comments.Add(new Comment
             {
                 AuthorId = userId,
                 Body = comment.Body,
                 DateTimePosted = DateTime.Now,
-                PostId = postId,
+                PostId = comment.Id,
             });
             _db.SaveChanges();
         }

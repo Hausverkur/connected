@@ -1,10 +1,4 @@
-﻿.Post {
-   /* background-color: hotpink;*/
-    /*border: 1px solid lightgray;*/
-    /*border-radius: 10px;*/
-}
-
-.italic {
+﻿.italic {
     font-size: 28pt;
 }
 
@@ -13,6 +7,7 @@
     border-radius: 10px;
     float: right;
     width: 35%;
+    padding-left: 1%;
 }
 
 .Description {
@@ -35,10 +30,28 @@
 .Date {
     margin-left: 60%;
 }
+
 .border {
     border: 2px solid lightgray;
     border-radius: 10px;
-    margin-bottom: 3%;
     margin-right: 60%;
     padding: 1%;
+    margin-top: 3%;
+}
+
+.cText {
+    word-break: break-all;
+    margin-left: 5%;
+}
+.Comment {
+    margin-top: 2%;
+
+}
+
+.cDate {
+    margin-left: 25%;
+}
+
+.cLine {
+    margin-right: 60%;
 }
