@@ -16,6 +16,10 @@ namespace Connected.Controllers
     {
         public ActionResult Index()
         {
+            if (this.User.Identity.GetUserId() != null)
+            {
+                return RedirectToAction("FrontPage");
+            }
             return View();
         }
 

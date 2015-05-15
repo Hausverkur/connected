@@ -115,7 +115,7 @@ namespace Connected.Controllers
             }
             else
             {
-                return View(new RecipeComment{Id = id,});
+                return View(new CommentViewModel{Id = id,});
             }
         }
 
@@ -123,7 +123,7 @@ namespace Connected.Controllers
         public ActionResult CreateRecipeComment(FormCollection formData)
         {
                 RecipeService recipeService = new RecipeService(null);
-                RecipeComment comment = new RecipeComment();
+                CommentViewModel comment = new CommentViewModel();
                 UpdateModel(comment);
                 recipeService.CreateRecipeComment(this.User.Identity.GetUserId(), comment);
                 return RedirectToAction("DisplayRecipe", comment.Id);

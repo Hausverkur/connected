@@ -195,6 +195,7 @@
     <Compile Include="Services\GroupService.cs" />
     <Compile Include="Services\SearchService.cs" />
     <Compile Include="Services\UserMessageService.cs" />
+    <Compile Include="ViewModels\GroupListViewModel.cs" />
     <Compile Include="ViewModels\InfoViewModel.cs" />
     <Compile Include="ViewModels\RecipeCommentViewModel.cs" />
     <Compile Include="ViewModels\RecipeListViewModel.cs" />
