@@ -77,6 +77,9 @@ namespace Connected.Controllers
                         Author = recipe.Author,
                     };
                     theRecipe.Comments = new List<RecipeCommentViewModel>();
+
+                    theRecipe.Comments = service.GetRecipeComments(theId);
+
                     return View(theRecipe);
                 }
 
