@@ -12,14 +12,33 @@
     border: 2px solid lightgray;
     border-radius: 10px;
     float: right;
-    /*background-color: red;*/
+    width: 35%;
 }
 
 .Description {
     margin-right: 30%;
 }
 
+.Text {
+     word-break: break-all;
+}
+
+.DescriptionText {
+     word-break: break-all;
+}
+
 .Footer {
     /*margin-top: 5%;*/
     clear: both;
+}
+
+.Date {
+    margin-left: 60%;
+}
+.border {
+    border: 2px solid lightgray;
+    border-radius: 10px;
+    margin-bottom: 3%;
+    margin-right: 60%;
+    padding: 1%;
 }

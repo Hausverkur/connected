@@ -18,14 +18,15 @@
             <b class="DescriptionName">
                 @Html.DisplayNameFor(model => model.Description)
             </b>
-            <br />
-            @Html.DisplayFor(model => model.Description)
+
+        <p class="DescriptionText">@Html.DisplayFor(model => model.Description)</p>
 
         </p>
         <br />
 
         <section class="Image">
-            @Html.DisplayFor(model => model.Image)
+            <!--Html.DisplayFor(model => model.Image)-->
+            <img src="../../Images/Group.png" height="300px" width="300px" class="Image" alt="Logo" />
         </section>
         <br /> <br />
 
@@ -55,17 +56,38 @@
 
 
     <div class="Post">
-
         <i class="italic">Posts</i>
         <hr />
 
-            <p>@post.Body</p>
+
+        <div>
+            @foreach (var post in Model.Posts)
+            {
+                <div class="border">
+                    @if (post.Author.FullName == null)
+                    {
+                        <p>
+                            <b>@post.Author.UserName</b>
+                        </p>
+                    }
+                    else
+                    {
+                        <p>
+                            <b>@post.Author.FullName</b>
+                        </p>
+                    }
+
+                    <p class="Text">@post.Body</p>
+
+                    <p class="Date">@post.DateTimePosted</p>
+                </div>
+            }
+
             <br />
-        }
+
+        </div>
     </div>
 
-
-    
 
 <div class="Footer">
     
