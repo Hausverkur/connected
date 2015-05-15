@@ -57,7 +57,7 @@ namespace Connected.Services
         }
 
         //Þetta fall setur inn athugasemd/comment við uppskrift sem notandi hefur sett inn
-        public void CreateRecipeComment(string userId, int recipeId, RecipeComment comment)
+        public void CreateRecipeComment(string userId, RecipeComment comment)
         {
             DateTime now = DateTime.Now;
             using (ApplicationDbContext db = new ApplicationDbContext())
@@ -67,7 +67,7 @@ namespace Connected.Services
                     AuthorId = userId,
                     Body = comment.Body,
                     DateTimePosted = now,
-                    RecipeId = recipeId,
+                    RecipeId = comment.RecipeId,
                 });
                 db.SaveChanges();
             }
