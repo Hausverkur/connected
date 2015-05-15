@@ -18,5 +18,8 @@ namespace Connected.ViewModels
         public int Shares { get; set; }
         public List<CommentViewModel> Comments { get; set; }
         public virtual ApplicationUser Author { get; set; }
+
+        public bool GroupPost { get; set; }
+        public virtual Group TheGroup { get; set; }
     }
 }
