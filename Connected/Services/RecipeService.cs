@@ -39,6 +39,20 @@ namespace Connected.Services
         //Þetta fall bætir við uppskrift sem notandi býr til og setur í gagnagrunninn 
         public void AddRecipe(Recipe recipe)
         {
+            UserPostService postService = new UserPostService(null);
+
+            if (recipe.Image != null)
+            {
+                if (postService.UrlExists(recipe.Image) == false)
+                {
+                    recipe.Image = ".../Connected/Images/RecipeWithInvalidImage.jpg";
+                }
+            }
+            else if (recipe.Image == null)
+            {
+                recipe.Image = ".../Connected/Images/RecipeWithOutImage.jpg";
+            }
+
             _db.Recipes.Add(new Recipe
             {
                 DateTimePosted = DateTime.Now,
