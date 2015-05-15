@@ -39,6 +39,20 @@ namespace Connected.Services
         //Þetta fall bætir við uppskrift sem notandi býr til og setur í gagnagrunninn 
         public void AddRecipe(Recipe recipe)
         {
+            UserPostService postService = new UserPostService(null);
+
+            if (recipe.Image != null)
+            {
+                if (postService.UrlExists(recipe.Image) == false)
+                {
+                    recipe.Image = ".../Connected/Images/RecipeWithInvalidImage.jpg";
+                }
+            }
+            else if (recipe.Image == null)
+            {
+                recipe.Image = ".../Connected/Images/RecipeWithOutImage.jpg";
+            }
+
             _db.Recipes.Add(new Recipe
             {
                 DateTimePosted = DateTime.Now,
@@ -57,7 +71,7 @@ namespace Connected.Services
         }
 
         //Þetta fall setur inn athugasemd/comment við uppskrift sem notandi hefur sett inn
-        public void CreateRecipeComment(string userId, int recipeId, RecipeComment comment)
+        public void CreateRecipeComment(string userId, RecipeComment comment)
         {
             DateTime now = DateTime.Now;
             using (ApplicationDbContext db = new ApplicationDbContext())
@@ -67,7 +81,7 @@ namespace Connected.Services
                     AuthorId = userId,
                     Body = comment.Body,
                     DateTimePosted = now,
-                    RecipeId = recipeId,
+                    RecipeId = comment.RecipeId,
                 });
                 db.SaveChanges();
             }

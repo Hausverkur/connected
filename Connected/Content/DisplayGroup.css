@@ -1,5 +1,6 @@
-﻿.italic {
-    font-size: 28pt;
+
+.DateTimePosted {
+    font-family: italic;
 }
 
 .Navbar {
@@ -29,6 +30,7 @@
 
 .Date {
     margin-left: 60%;
+    font-style: italic;
 }
 
 .border {
@@ -44,14 +46,23 @@
     margin-left: 5%;
 }
 .Comment {
-    margin-top: 2%;
+    text-indent: 10%;
 
 }
 
 .cDate {
-    margin-left: 25%;
+    font-style: italic;
+    margin-left: 50%;
 }
 
 .cLine {
-    margin-right: 60%;
+    margin-right: 30%;
+}
+
+.footer {
+    margin-top: 5%;
+}
+
+.link {
+    margin-left: 60%;
 }

@@ -25,8 +25,9 @@
         <br />
 
         <section class="Image">
-            <!--Html.DisplayFor(model => model.Image)-->
-            
+            @Html.DisplayFor(model => model.Image)
+
+            <img src="~/Images/Group.png" />
         </section>
         <br /> <br />
 
@@ -56,23 +57,28 @@
 
 
     <div>
-        <i class="italic">Posts</i>
-        <hr />
-        
-        @foreach (var post in Model.Posts)
-        {
-            <div class="border">
-                <p><b>@post.Author.UserName</b>
-                </p><!--Link to user wall-->
-                <p class="Text">@post.Body</p>
-                <p class="Date">@post.DateTimePosted</p>
+    <i class="italic">Posts</i>
+    <hr />
+    
+    @foreach (var post in Model.Posts)
+    {
+        <div class="border">
+            <p>
+                <b>@post.Author.UserName</b>
+            </p><!--Link to user wall-->
+            <p class="Text">@post.Body</p>
+            <p class="Date">@post.DateTimePosted</p>
+
+            <div class="link">
+                @Html.ActionLink("Comment", "CreateComment", "Home", new { id = post.Id, returnPath = "DisplayGroup", returnController = "Group" }, null)
             </div>
-            
-            @Html.ActionLink("Comment", "CreateComment", "Home", new { id = post.Id, returnPath = "DisplayGroup", returnController = "Group" }, null)
             <div class="Comment">
-                
+                @if (post.Comments.Count > 0)
+                {
+                <h4>Comments</h4>}
                 @foreach (var c in post.Comments)
                 {
+
                     <hr class="cLine"/>
                     if (c.Author.FullName == null)
                     {
@@ -85,11 +91,15 @@
                         </p>
                     }
 
+
                     <p class="cText">@c.Body</p>
                     <p class="cDate">@c.DateTimePosted</p>
+
                 }
             </div>
-        }
+        </div>
+
+    }
     </div>
 
 
