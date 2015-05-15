@@ -38,7 +38,12 @@
                 <div class="Date">
                     <i>@p.DateTimePosted</i>
                 </div>
-        
+                @foreach (var c in p.Comments)
+                {
+                    <p>@c.Author.FullName</p>
+                    <p>@c.Body</p>
+                    <p>@c.DateTimePosted</p>
+                }
             </div>
             <br />
         }
