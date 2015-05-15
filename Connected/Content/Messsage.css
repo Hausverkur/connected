@@ -15,7 +15,6 @@
 }
 
 .Sent {
-
     margin-left: 60%;
     width: 40%;
     margin-top: -19.8%;
@@ -29,7 +28,13 @@
 
 .Title {
     margin-top: -3%;
+    word-break: break-all;
 }
+
+.Text {
+     word-break: break-all;
+}
+
 
 .Footer {
     clear: left;

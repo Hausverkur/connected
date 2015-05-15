@@ -22,6 +22,7 @@
     margin-left: 3%;
     margin-right: 20%;
     margin-bottom: 1%;
+    word-break: break-all;
 }
 
 .Date {

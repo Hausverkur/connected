@@ -18,8 +18,8 @@
             <b class="DescriptionName">
                 @Html.DisplayNameFor(model => model.Description)
             </b>
-            <br />
-            @Html.DisplayFor(model => model.Description)
+            
+            <p class="DescriptionText">@Html.DisplayFor(model => model.Description)</p>
 
         </p>
         <br />
@@ -62,7 +62,7 @@
         @foreach (var post in Model.Posts)
         {
             <p><b>@post.Author.UserName</b></p><!--Link to user wall-->
-            <p>@post.Body</p>
+            <p class="Text">@post.Body</p>
             <br />
         }
     </div>
