@@ -8,15 +8,7 @@
 
 <h2>@Model.User.UserName</h2> 
 
-
-@Html.ActionLink("Send Message", "CreateMessage", "Message", new {id = Model.User.Id}, null)
-    <div>
-        <h4>UserPost</h4>
-            @foreach (var p in Model.Posts)
-            {
-                <p>@p.Author.UserName</p>
-            }
-    </div>
+    
 <div class="nav">
     <div class="Details">
         <img src="@Model.User.ProfilePicture" class="Image" />
@@ -27,10 +19,15 @@
         <p><b>Description:</b></p>
         <p class="Description">@Model.User.Description</p>
         <button>
-
             @Html.ActionLink("Edit Information", "Information", new { id = Model.Id })
         </button>
     </div>
+
+    <div class="Messages">
+        <h4>Messages</h4>
+        @Html.ActionLink("Send Message", "CreateMessage", "Message", new { id = Model.User.Id }, null)
+    </div>
+    
 
     <div class="Friends">
         <h4>Friends</h4>
@@ -53,6 +50,7 @@
                     break;
             }
         }
+
 
         @foreach (var f in Model.Friends)
         {
