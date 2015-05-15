@@ -14,7 +14,12 @@
 
             foreach (var item in Model.SentMessages)
             {
+<<<<<<< HEAD
                 <p class="User">@item.Author.UserName</p>
+=======
+                <p class="User">@item.Author.UserName
+                @Html.ActionLink("Reply", "CreateMessage")</p> <!--Fix the reply-->
+>>>>>>> 952ec0d67951a6b9f8d02619eb57eec288398b5e
                 <p class="Title">@Html.DisplayFor(modelItem => item.Title)</p>
                 <p class="Text">@Html.DisplayFor(modelItem => item.Body)</p>
 

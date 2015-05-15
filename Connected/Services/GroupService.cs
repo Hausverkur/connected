@@ -61,6 +61,19 @@ namespace Connected.Services
 
             if (user != null)
             {
+                UserPostService postService = new UserPostService(null);
+
+                if (group.Image != null)
+                {
+                    if (postService.UrlExists(group.Image) == false)
+                    {
+                        group.Image = ".../Connected/Images/Group.png";
+                    }
+                }
+                else if (group.Image == null)
+                {
+                    group.Image = ".../Connected/Images/Group.png";
+                }
                 Group g = new Group
                 {
                     Description = group.Description,

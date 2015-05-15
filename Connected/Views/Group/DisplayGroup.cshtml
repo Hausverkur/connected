@@ -18,14 +18,16 @@
             <b class="DescriptionName">
                 @Html.DisplayNameFor(model => model.Description)
             </b>
-            
-            <p class="DescriptionText">@Html.DisplayFor(model => model.Description)</p>
+
+        <p class="DescriptionText">@Html.DisplayFor(model => model.Description)</p>
 
         </p>
         <br />
 
         <section class="Image">
             @Html.DisplayFor(model => model.Image)
+
+            <img src="~/Images/Group.png" />
         </section>
         <br /> <br />
 
@@ -54,6 +56,7 @@
     </div>
 
 
+<<<<<<< HEAD
     <div class="Post">
 
         <i class="italic">Posts</i>
@@ -64,8 +67,22 @@
             <p><b>@post.Author.UserName</b></p><!--Link to user wall-->
 
 
+=======
+    <div>
+    <i class="italic">Posts</i>
+    <hr />
+    
+    @foreach (var post in Model.Posts)
+    {
+        <div class="border">
+            <p>
+                <b>@post.Author.UserName</b>
+            </p><!--Link to user wall-->
+>>>>>>> 952ec0d67951a6b9f8d02619eb57eec288398b5e
             <p class="Text">@post.Body</p>
+            <p class="Date">@post.DateTimePosted</p>
 
+<<<<<<< HEAD
             <p>@post.Body</p>
 
             <p class="Text">@post.Body</p>
@@ -74,32 +91,50 @@
             @Html.ActionLink("Comment", "CreateComment", "Home", new { id = post.Id, returnPath = "Display", returnController = "Group" }, null);
 
             <div>
+=======
+            <div class="link">
+                @Html.ActionLink("Comment", "CreateComment", "Home", new { id = post.Id, returnPath = "DisplayGroup", returnController = "Group" }, null)
+            </div>
+            <div class="Comment">
+                @if (post.Comments.Count > 0)
+                {
+                <h4>Comments</h4>}
+>>>>>>> 952ec0d67951a6b9f8d02619eb57eec288398b5e
                 @foreach (var c in post.Comments)
                 {
+
+                    <hr class="cLine"/>
                     if (c.Author.FullName == null)
-                     {
-                         <p>@c.Author.Email</p>
-                     }
+                    {
+                        <p>@c.Author.Email</p>
+                    }
                     else
                     {
-                        <p>@c.Author.FullName</p>
+                        <p>
+                            <b>@c.Author.FullName</b>
+                        </p>
                     }
 
-                <p>@c.Body</p>
-                <p class="DateTimePosted">@c.DateTimePosted</p>
-                    <br />
+
+                    <p class="cText">@c.Body</p>
+                    <p class="cDate">@c.DateTimePosted</p>
+
                 }
             </div>
+<<<<<<< HEAD
 
             
 
             <br />
 
         }
+=======
+        </div>
+
+    }
+>>>>>>> 952ec0d67951a6b9f8d02619eb57eec288398b5e
     </div>
 
-
-    
 
 <div class="Footer">
     

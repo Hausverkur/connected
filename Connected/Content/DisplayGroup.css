@@ -1,22 +1,14 @@
-﻿.Post {
-   /* background-color: hotpink;*/
-    /*border: 1px solid lightgray;*/
-    /*border-radius: 10px;*/
-}
 
 .DateTimePosted {
     font-family: italic;
-}
-
-.italic {
-    font-size: 28pt;
 }
 
 .Navbar {
     border: 2px solid lightgray;
     border-radius: 10px;
     float: right;
-    /*background-color: red;*/
+    width: 35%;
+    padding-left: 1%;
 }
 
 .Description {
@@ -34,4 +26,43 @@
 .Footer {
     /*margin-top: 5%;*/
     clear: both;
+}
+
+.Date {
+    margin-left: 60%;
+    font-style: italic;
+}
+
+.border {
+    border: 2px solid lightgray;
+    border-radius: 10px;
+    margin-right: 60%;
+    padding: 1%;
+    margin-top: 3%;
+}
+
+.cText {
+    word-break: break-all;
+    margin-left: 5%;
+}
+.Comment {
+    text-indent: 10%;
+
+}
+
+.cDate {
+    font-style: italic;
+    margin-left: 50%;
+}
+
+.cLine {
+    margin-right: 30%;
+}
+
+.footer {
+    margin-top: 5%;
+}
+
+.link {
+    margin-left: 60%;
 }

@@ -233,8 +233,10 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\Group.png" />
     <Content Include="Images\Logo.png" />
+    <Content Include="Images\NoImage.png" />
     <Content Include="Images\Profile.png" />
-    <Content Include="Images\sandwich.jpg" />
+    <Content Include="Images\RecipeWithInvalidImage.jpg" />
+    <Content Include="Images\RecipeWithOutImage.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
