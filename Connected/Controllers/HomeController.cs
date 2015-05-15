@@ -54,19 +54,8 @@ namespace Connected.Controllers
 
                 foreach (var post in frontPage.Posts)
                 {
-                    var Comments = commentService.GetCommentsByPostId(post.Id);
-                    List<CommentViewModel> commentViewModels = new List<CommentViewModel>();
-                    foreach (var comment in Comments)
-                    {
-                        commentViewModels.Add(new CommentViewModel
-                        {
-                            Body = comment.Body,
-                            Id = comment.Id,
-                            DateTimePosted = comment.DateTimePosted,
-                            Author = comment.Author,
-                        });
-                    }
-                    post.Comments = commentViewModels;
+                    var comments = commentService.GetCommentsByPostId(post.Id);
+                    post.Comments = commentService.AddCommentsToViewModel(comments);
                 }
                 var friendRequests = userService.GetFriendRequests(this.User.Identity.GetUserId());
 
@@ -162,17 +151,8 @@ namespace Connected.Controllers
 
                  foreach (var post in model.Posts)
                  {
-                     var Comments = commentService.GetCommentsByPostId(post.Id);
-                     List<CommentViewModel> commentViewModels = new List<CommentViewModel>();
-                     foreach (var comment in Comments)
-                     {
-                         commentViewModels.Add(new CommentViewModel
-                         {
-                             Body = comment.Body,
-                             Id = comment.Id,
-                         });
-                     }
-                     post.Comments = commentViewModels;
+                     var comments = commentService.GetCommentsByPostId(post.Id);
+                     post.Comments = commentService.AddCommentsToViewModel(comments);
                  }
 
                  var friends = userService.GetFriends(id);

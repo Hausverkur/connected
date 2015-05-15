@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Connected.Models;
+using Connected.ViewModels;
 
 namespace Connected.Services
 {
@@ -23,8 +24,26 @@ namespace Connected.Services
             var comments = (from comment in _db.Comments
                 where comment.Post.Id == postId
                 select comment).ToList();
-        
+            
             return comments;
+        }
+
+        //Þetta fall tekur Lista af kommentum og setur listann í CommentViewModel
+        public List<CommentViewModel> AddCommentsToViewModel(List<Comment> comments)
+        {
+            List<CommentViewModel> commentViewModels = new List<CommentViewModel>();
+            foreach (var comment in comments)
+            {
+                commentViewModels.Add(new CommentViewModel
+                {
+                    Body = comment.Body,
+                    Id = comment.Id,
+                    DateTimePosted = comment.DateTimePosted,
+                    Author = comment.Author,
+                });
+            }
+
+            return commentViewModels;
         }
     }
 }

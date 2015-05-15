@@ -63,6 +63,23 @@
         {
             <p><b>@post.Author.UserName</b></p><!--Link to user wall-->
             <p>@post.Body</p>
+            <div>
+                @foreach (var c in post.Comments)
+                {
+                    if (c.Author.FullName == null)
+                     {
+                         <p>@c.Author.Email</p>
+                     }
+                    else
+                    {
+                        <p>@c.Author.FullName</p>
+                    }
+
+                <p>@c.Body</p>
+                <p>@c.DateTimePosted</p>
+                }
+            </div>
+            
             <br />
         }
     </div>

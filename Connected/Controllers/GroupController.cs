@@ -70,6 +70,16 @@ namespace Connected.Controllers
 
                     group.Posts = service.GetGroupPostsById(theId);
 
+                    group.Posts = group.Posts.OrderByDescending(p => p.Id).ToList();
+
+                    CommentService commentService = new CommentService(null);
+
+                    foreach (var post in group.Posts)
+                    {
+                        var comments = commentService.GetCommentsByPostId(post.Id);
+                        post.Comments = commentService.AddCommentsToViewModel(comments);
+                    }
+
                     return View(group);
                 }
                 return RedirectToAction("ListOfGroups");
