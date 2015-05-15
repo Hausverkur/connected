@@ -38,7 +38,7 @@ namespace Connected.Services
         }
 
         //Þetta fall bætir við uppskrift sem notandi býr til og setur í gagnagrunninn 
-        public void AddRecipe(Recipe recipe)
+        public void AddRecipe(Recipe recipe, string userId)
         {
             UserPostService postService = new UserPostService(null);
 
@@ -46,12 +46,12 @@ namespace Connected.Services
             {
                 if (postService.UrlExists(recipe.Image) == false)
                 {
-                    recipe.Image = ".../Connected/Images/RecipeWithInvalidImage.jpg";
+                    recipe.Image = "../../Images/RecipeWithInvalidImage.jpg";
                 }
             }
             else if (recipe.Image == null)
             {
-                recipe.Image = ".../Connected/Images/RecipeWithOutImage.jpg";
+                recipe.Image = "../../Images/RecipeWithOutImage.jpg";
             }
 
             _db.Recipes.Add(new Recipe
@@ -65,7 +65,7 @@ namespace Connected.Services
                 Likes = recipe.Likes,
                 Method = recipe.Method,
                 Name = recipe.Name,
-                //Author = recipe.Author
+                AuthorId = userId,
             });
 
             _db.SaveChanges();
@@ -86,6 +86,43 @@ namespace Connected.Services
                 });
                 db.SaveChanges();
             }
+        }
+
+        public void CreateRecipePost(string userId, UserPost post)
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            db.UserPosts.Add(new UserPost
+            {
+                Body = post.Body,
+                DateTimePosted = post.DateTimePosted,
+                GroupPost = false,
+                Recipe = post.Recipe,
+                User = post.User,
+            });
+            db.SaveChanges();
+        }
+
+        public List<RecipeCommentViewModel> GetRecipeComments(int recipeId)
+        {
+            var comments = (from comment in _db.RecipeComments
+                where comment.RecipeId == recipeId
+                select comment).ToList();
+
+            List<RecipeCommentViewModel> recipeComments = new List<RecipeCommentViewModel>();
+
+            foreach (var comment in comments)
+            {
+                recipeComments.Add(new RecipeCommentViewModel
+                {
+                    Body = comment.Body,
+                    Author = comment.Author,
+                    DateTimePosted = comment.DateTimePosted,
+                    Id = comment.Id,
+                    Recipe = comment.RecipeReference,
+
+                });
+            }
+            return recipeComments;
         }
     }
 }

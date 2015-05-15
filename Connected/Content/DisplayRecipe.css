@@ -55,11 +55,26 @@
 }
 
 
-
 .Date {
     margin-left: 20%;
+}
+.cDate {
+    font-style: italic;
+    margin-left: 15%;
 }
 
 .create {
      margin-left: 32%;
+}
+
+.Comment {
+    text-indent: 5%;
+    font-weight: bold;
+}
+.Text {
+    margin-left: 5%;
+}
+
+.footer {
+    margin-top: 5%;
 }

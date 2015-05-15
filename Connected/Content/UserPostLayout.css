@@ -1,11 +1,3 @@
-.italic {
-    font-size: 28pt;
-}
-
-.Posts {
-    width: 150%;
-}
-
 .DateTimePosted {
     font-family: italic;
 }
@@ -24,6 +16,7 @@
 
 .Text {
      word-break: break-all;
+     margin-bottom: 2%;
 }
 
 .DescriptionText {
@@ -36,7 +29,7 @@
 }
 
 .Date {
-    margin-left: 60%;
+    margin-left: 45%;
     font-style: italic;
 }
 
@@ -60,7 +53,7 @@
 
 .cDate {
     font-style: italic;
-    margin-left: 50%;
+    margin-left: 35%;
 }
 
 .cLine {
@@ -73,4 +66,13 @@
 
 .link {
     margin-left: 60%;
+}
+.Image {
+    height: 200px;
+    width: 200px; 
+}
+
+.Id {
+    font-weight: bold;
+    margin-top: 1%;
 }

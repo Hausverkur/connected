@@ -219,9 +219,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\DisplayGroup.css" />
+    <Content Include="Content\UserPostLayout.css" />
     <Content Include="Content\DisplayRecipe.css" />
-    <Content Include="Content\FrontPage.css" />
     <Content Include="Content\ListOfGroup.css" />
     <Content Include="Content\ListOfRecipes.css" />
     <Content Include="Content\Messsage.css" />
@@ -305,6 +304,7 @@
     <Content Include="Views\Account\UserInformation.cshtml" />
     <Content Include="Views\Home\Information.cshtml" />
     <Content Include="Views\Home\View.cshtml" />
+    <Content Include="Views\Recipe\PostRecipe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

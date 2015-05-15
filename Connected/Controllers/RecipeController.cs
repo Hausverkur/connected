@@ -48,6 +48,7 @@ namespace Connected.Controllers
             }
         }
 
+
         [HttpGet]
         public ActionResult DisplayRecipe(int? id)
         {
@@ -73,9 +74,12 @@ namespace Connected.Controllers
                         Likes = recipe.Likes,
                         Method = recipe.Method,
                         Name = recipe.Name,
-                        //Author = recipe.Author,
+                        Author = recipe.Author,
                     };
                     theRecipe.Comments = new List<RecipeCommentViewModel>();
+
+                    theRecipe.Comments = service.GetRecipeComments(theId);
+
                     return View(theRecipe);
                 }
 
@@ -102,7 +106,7 @@ namespace Connected.Controllers
             RecipeService service = new RecipeService(null);
             Recipe recipe = new Recipe();
             UpdateModel(recipe);
-            service.AddRecipe(recipe);
+            service.AddRecipe(recipe, this.User.Identity.GetUserId());
             return RedirectToAction("ListOfRecipes");
         }
 
@@ -129,6 +133,21 @@ namespace Connected.Controllers
                 return RedirectToAction("DisplayRecipe", comment.Id);
         }
 
-        
+        [HttpGet]
+        public ActionResult PostRecipe(int id)
+        {
+            RecipeService service = new RecipeService(null);
+            return View(new UserPost {Recipe = service.GetRecipeById(id)});
+        }
+
+        [HttpPost]
+        public ActionResult PostRecipe(FormCollection formData)
+        {
+            RecipeService recipeService = new RecipeService(null);
+            UserPost post = new UserPost();
+            UpdateModel(post);
+            recipeService.CreateRecipePost(this.User.Identity.GetUserId(), post);
+            return RedirectToAction("DisplayRecipe", new{id = post.Recipe.Id});
+        }
     }
 }

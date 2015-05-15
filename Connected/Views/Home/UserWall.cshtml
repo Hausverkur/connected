@@ -6,7 +6,14 @@
     <link href="~/Content/UserWall.css" rel="stylesheet" />
 }
 
-<h2>@Model.User.UserName</h2> 
+@if (Model.User.FullName == null)
+{
+    <h2>@Model.User.UserName</h2>
+}
+else
+{
+    <h2>@Model.User.FullName</h2>
+}
 
 
 
@@ -19,9 +26,12 @@
         <p><b>Gender:</b> @Model.User.Gender</p>
         <p><b>Description:</b></p>
         <p class="Description">@Model.User.Description</p>
-        <button>
-            @Html.ActionLink("Edit Information", "Information", new { id = Model.Id })
-        </button>
+        @if (Model.AreFriends == 4)
+        {
+            <button>
+                @Html.ActionLink("Edit Information", "Information", new {id = Model.Id});
+            </button>
+        }
     </div>
 
     <div class="Messages">
@@ -55,7 +65,15 @@
 
         @foreach (var f in Model.Friends)
         {
-            <p>@Html.ActionLink(f.UserName, "UserWall", new {id = f.Id})</p>
+            if (f.FullName == null)
+            {
+                <p>@Html.ActionLink(f.UserName, "UserWall", new { id = f.Id })</p>
+            }
+            else
+            {
+                <p>@Html.ActionLink(f.FullName, "UserWall", new { id = f.Id })</p>
+            }
+
         }
         <br />
 
@@ -79,6 +97,7 @@
             <div class="Text">
                 @p.Body
             </div>
+
             <i class="DateTimePosted">@p.DateTimePosted</i>
 
             <div class="Commentlink">
@@ -115,6 +134,7 @@
        
            </div>
                        
+
     }
 
 </div>

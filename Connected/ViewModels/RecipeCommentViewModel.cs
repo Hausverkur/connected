@@ -13,5 +13,6 @@ namespace Connected.ViewModels
         public string Body { get; set; }
         public DateTime DateTimePosted { get; set; }
         public virtual ApplicationUser Author { get; set; }
+        public virtual Recipe Recipe { get; set; }
     }
 }

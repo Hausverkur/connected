@@ -12,8 +12,8 @@
         @Html.DisplayFor(model => model.Name)
     </h1>
     <div class="Image">
-        @Html.DisplayFor(model => model.Image)
-        <img src="../../Images/sandwich.jpg" height="250px" width="250px" class="Image" alt="Logo" />
+        <img src=@Model.Image  height="250" alt="Logo" />
+
 
     </div>
 
@@ -54,13 +54,28 @@
         @Html.ActionLink("Comment", "CreateRecipeComment", new {id = Model.Id}, null)
 
 </button>
-<!--What is the problem here?-->
-@foreach (var comment in Model.Comments)
+@if (Model.Comments.Count > 0)
 {
-    <p><b>@comment.Author.UserName</b></p>
-    <p>@comment.Body</p>
-    <br />
+    <h4>Comments</h4>}
+@foreach (var r in Model.Comments)
+{
+    <div class="Comment">
+        <hr class="cLine"/>
+        @if (r.Author.FullName == null)
+        {
+            <p>@Html.ActionLink(r.Author.Email, "UserWall", new {id = r.Author.Id})</p>
+        }
+        else
+        {
+            <p>
+                <b>@Html.ActionLink(r.Author.FullName, "UserWall", new {id = r.Author.Id})</b>
+            </p>
+        }
+    </div>
+    <p class="Text">@r.Body</p>
+    <p class="cDate">Posted on: @r.DateTimePosted</p>
+    
 }
-<div>
+<div class="footer">
     @Html.ActionLink("Back to Recipes", "ListOfRecipes")
 </div>

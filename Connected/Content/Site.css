@@ -74,29 +74,31 @@ textarea {
 /* navbar login */
 #registerLink{
 	font-size: 50%;
-   margin-top: -25%;
+   /*margin-top: -25%;*/
     color: black;
 }
 #loginLink{
 	font-size: 50%;
-    margin-top: -31%;
+    /*margin-top: -31%;*/
     color: black;
 }
 
 #Manage{
 	font-size: 50%;
-    margin-top: -15%;
+    /*margin-top: -15%;*/
     color: black;
 }
 .logOut{
 	font-size: 50%;
-    margin-top: -25%;
+    /*margin-top: -25%;*/
     color: black !important;
 }
 
 .LoginPartial {
     margin-left: 50%;
     clear: both;
+    margin-top: auto;
+    
 }
 
 .navbar, #registerLink:hover{
