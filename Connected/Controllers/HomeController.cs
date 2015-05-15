@@ -276,10 +276,13 @@ namespace Connected.Controllers
             return RedirectToAction("FrontPage");
         }
         [HttpGet]
-        public ActionResult Information(int id)
+        public ActionResult Information()
         {
-            return View(new UserViewModel());
+            UserService userService = new UserService(null);
+            ApplicationUser user = userService.GetUserInfo(this.User.Identity.GetUserId());
+            return View(user);
         }
+
 
     }
 }
