@@ -154,11 +154,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Content\App_Start\BundleConfig.cs" />
+    <Compile Include="Content\App_Start\FilterConfig.cs" />
+    <Compile Include="Content\App_Start\IdentityConfig.cs" />
+    <Compile Include="Content\App_Start\RouteConfig.cs" />
+    <Compile Include="Content\App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -195,6 +195,7 @@
     <Compile Include="Services\GroupService.cs" />
     <Compile Include="Services\SearchService.cs" />
     <Compile Include="Services\UserMessageService.cs" />
+    <Compile Include="ViewModels\GroupListViewModel.cs" />
     <Compile Include="ViewModels\InfoViewModel.cs" />
     <Compile Include="ViewModels\RecipeCommentViewModel.cs" />
     <Compile Include="ViewModels\RecipeListViewModel.cs" />
