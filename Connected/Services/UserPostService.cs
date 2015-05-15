@@ -44,10 +44,12 @@ namespace Connected.Services
         //ViewModelið er svo nýtt til þess að birta gögnin í gegnum FrontPageViewModel
         public List<UserPostViewModel> GetPostsByUserId(string userId)
         {
+            GroupService groupService = new GroupService(null);
+
             var posts = (from p in _db.UserPosts
                          where p.User.Id == userId
                          && p.GroupPost == false
-                         select p).ToList();
+                         select p).ToList().OrderByDescending(p=>p.Id);
             List<UserPostViewModel> userPosts = new List<UserPostViewModel>();
 
             foreach (var post in posts)
@@ -57,6 +59,10 @@ namespace Connected.Services
                     Id = post.Id,
                     Body = post.Body,
                     Author = post.User,
+                    DateTimePosted = post.DateTimePosted,
+                    ImageUrl = post.ImageUrl,
+                    GroupPost = post.GroupPost,
+                    TheGroup = groupService.GetGroupById(post.GroupReference),
                 });
             }
 
@@ -89,12 +95,14 @@ namespace Connected.Services
         public void AddUserPost(UserPost post, string userId)
         {
             DateTime now = DateTime.Now;
-
-            if (UrlExists(post.ImageUrl) == false)
+            if (post.ImageUrl != null)
             {
-                post.ImageUrl = ".../Connected/Images/Profile.png";
+                if (UrlExists(post.ImageUrl) == false)
+                {
+                    post.ImageUrl = ".../Connected/Images/NoImage.png";
+                }
             }
-           
+            
                 _db.UserPosts.Add(new UserPost
             {
                 UserId = userId,
