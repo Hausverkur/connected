@@ -97,14 +97,44 @@ else
             <div class="Text">
                 @p.Body
             </div>
-            <i>Posted on: @p.DateTimePosted</i>
-        </div>
-        foreach (var c in p.Comments)
-        {
-            @c.Body
-            <br />
-        }
-        @Html.ActionLink("Comment", "CreateComment", new {id = p.Id, returnPath = "UserWall", returnController = "Home"});
+
+            <i class="DateTimePosted">@p.DateTimePosted</i>
+
+            <div class="Commentlink">
+                @Html.ActionLink("Comment", "CreateComment", new { id = p.Id, returnPath = "UserWall", returnController = "Home" });
+            </div>
+
+            <div class="Comment">
+                @if (p.Comments.Count > 0)
+                {
+                    <h4>Comments</h4>}
+                    @foreach (var c in p.Comments)
+                    {
+                        <hr class="cLine" />
+                    
+                        if (c.Author.FullName == null)
+                        {
+                            <p>@Html.ActionLink(c.Author.Email, "UserWall", new { id = c.Author.Id })</p>
+                        }
+                        else
+                        {
+                            <p>
+                                <b>@Html.ActionLink(c.Author.FullName, "UserWall", new { id = c.Author.Id })</b>
+                            </p>
+                        }
+                    
+                       <p class="cText">@c.Body</p>
+                       <p class="cDate">@c.DateTimePosted</p>
+                    
+                    <br />
+                    }
+
+            </div>                          
+                                                           
+       
+           </div>
+                       
+
     }
 
 </div>
