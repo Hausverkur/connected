@@ -4,6 +4,10 @@
     /*border-radius: 10px;*/
 }
 
+.DateTimePosted {
+    font-family: italic;
+}
+
 .italic {
     font-size: 28pt;
 }

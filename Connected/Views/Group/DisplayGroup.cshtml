@@ -62,9 +62,9 @@
         @foreach (var post in Model.Posts)
         {
             <p><b>@post.Author.UserName</b></p><!--Link to user wall-->
-<<<<<<< HEAD
+
             <p class="Text">@post.Body</p>
-=======
+
             <p>@post.Body</p>
             <div>
                 @foreach (var c in post.Comments)
@@ -79,11 +79,12 @@
                     }
 
                 <p>@c.Body</p>
-                <p>@c.DateTimePosted</p>
+                <p class="DateTimePosted">@c.DateTimePosted</p>
+                    <br />
                 }
             </div>
             
->>>>>>> 495c531087cfb198eb47b90eb4fd38f277e4f273
+
             <br />
         }
     </div>
